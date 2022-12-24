@@ -15,7 +15,6 @@ int main(int argc, char **argv){
         << err.error_message
         << "\n in file: " << err.data.filename
         << "\n at line: " << err.data.line_number
-        << "\n tok num: " << err.data.tok_number
-        ;
+        << "\n tok num: " << err.data.tok_number;
     }
 }

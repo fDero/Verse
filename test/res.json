@@ -280,66 +280,164 @@
 		"char_pos":0
 	},
 	{
-		"sourcetext":"3",
+		"sourcetext":"(",
 		"file_name":"test/main.verse",
 		"line_number":6,
 		"token_number":1,
 		"char_pos":1
 	},
 	{
-		"sourcetext":"+",
+		"sourcetext":"3",
 		"file_name":"test/main.verse",
 		"line_number":6,
 		"token_number":2,
-		"char_pos":3
+		"char_pos":2
 	},
 	{
-		"sourcetext":"4",
+		"sourcetext":"+",
 		"file_name":"test/main.verse",
 		"line_number":6,
 		"token_number":3,
-		"char_pos":5
+		"char_pos":4
 	},
 	{
-		"sourcetext":")",
+		"sourcetext":"4",
 		"file_name":"test/main.verse",
 		"line_number":6,
 		"token_number":4,
 		"char_pos":6
 	},
 	{
-		"sourcetext":";",
+		"sourcetext":")",
 		"file_name":"test/main.verse",
 		"line_number":6,
 		"token_number":5,
 		"char_pos":7
 	},
 	{
-		"sourcetext":"3",
+		"sourcetext":")",
+		"file_name":"test/main.verse",
+		"line_number":6,
+		"token_number":6,
+		"char_pos":8
+	},
+	{
+		"sourcetext":";",
+		"file_name":"test/main.verse",
+		"line_number":6,
+		"token_number":7,
+		"char_pos":9
+	},
+	{
+		"sourcetext":"(",
 		"file_name":"test/main.verse",
 		"line_number":7,
 		"token_number":0,
 		"char_pos":0
 	},
 	{
+		"sourcetext":"3",
+		"file_name":"test/main.verse",
+		"line_number":7,
+		"token_number":1,
+		"char_pos":1
+	},
+	{
 		"sourcetext":"+",
 		"file_name":"test/main.verse",
 		"line_number":7,
+		"token_number":2,
+		"char_pos":3
+	},
+	{
+		"sourcetext":"4",
+		"file_name":"test/main.verse",
+		"line_number":7,
+		"token_number":3,
+		"char_pos":5
+	},
+	{
+		"sourcetext":")",
+		"file_name":"test/main.verse",
+		"line_number":7,
+		"token_number":4,
+		"char_pos":6
+	},
+	{
+		"sourcetext":";",
+		"file_name":"test/main.verse",
+		"line_number":7,
+		"token_number":5,
+		"char_pos":7
+	},
+	{
+		"sourcetext":"3",
+		"file_name":"test/main.verse",
+		"line_number":8,
+		"token_number":0,
+		"char_pos":0
+	},
+	{
+		"sourcetext":"+",
+		"file_name":"test/main.verse",
+		"line_number":8,
 		"token_number":1,
 		"char_pos":2
 	},
 	{
 		"sourcetext":"4",
 		"file_name":"test/main.verse",
-		"line_number":7,
+		"line_number":8,
 		"token_number":2,
 		"char_pos":4
 	},
 	{
 		"sourcetext":";",
 		"file_name":"test/main.verse",
-		"line_number":7,
+		"line_number":8,
 		"token_number":3,
 		"char_pos":5
+	},
+	{
+		"sourcetext":"(",
+		"file_name":"test/main.verse",
+		"line_number":10,
+		"token_number":0,
+		"char_pos":0
+	},
+	{
+		"sourcetext":"idiota",
+		"file_name":"test/main.verse",
+		"line_number":10,
+		"token_number":1,
+		"char_pos":1
+	},
+	{
+		"sourcetext":")",
+		"file_name":"test/main.verse",
+		"line_number":10,
+		"token_number":2,
+		"char_pos":7
+	},
+	{
+		"sourcetext":";",
+		"file_name":"test/main.verse",
+		"line_number":10,
+		"token_number":3,
+		"char_pos":8
+	},
+	{
+		"sourcetext":"idiota",
+		"file_name":"test/main.verse",
+		"line_number":12,
+		"token_number":0,
+		"char_pos":0
+	},
+	{
+		"sourcetext":";",
+		"file_name":"test/main.verse",
+		"line_number":12,
+		"token_number":1,
+		"char_pos":6
 	}
 ]

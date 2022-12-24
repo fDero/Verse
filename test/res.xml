@@ -26,7 +26,13 @@
     <LITERAL value="3" pseudotype="int"/>
     <LITERAL value="4" pseudotype="int"/>
 </FUNCALL>
+<FUNCALL name="parenthesys_infix_operator_(+)">
+    <LITERAL value="3" pseudotype="int"/>
+    <LITERAL value="4" pseudotype="int"/>
+</FUNCALL>
 <FUNCALL name="infix_operator_(+)">
     <LITERAL value="3" pseudotype="int"/>
     <LITERAL value="4" pseudotype="int"/>
 </FUNCALL>
+<IDENTIFIER name="idiota"/>
+<IDENTIFIER name="idiota"/>
