@@ -1,7 +1,32 @@
+<INSTANTIATION name="flag" type="Bool"/>
 <INSTANTIATION name="follia" type="Bool"/>
 <ASSIGNMENT target="follia">
-    <FUNCALL name="&&">
+    <FUNCALL name="infix_operator_(&&)">
         <LITERAL value="true" pseudotype="bool"/>
-        <LITERAL value="true" pseudotype="bool"/>
+        <IDENTIFIER name="flag"/>
     </FUNCALL>
 </ASSIGNMENT>
+<FUNCALL name="infix_operator_(+)">
+    <FUNCALL name="myfunc">
+        <IDENTIFIER name="a"/>
+        <FUNCALL name="b">
+            <IDENTIFIER name="b1"/>
+            <FUNCALL name="b2">
+                <IDENTIFIER name="b21"/>
+                <IDENTIFIER name="b22"/>
+                <IDENTIFIER name="b23"/>
+            </FUNCALL>
+        </FUNCALL>
+        <FUNCALL name="c">
+        </FUNCALL>
+    </FUNCALL>
+    <LITERAL value="6" pseudotype="int"/>
+</FUNCALL>
+<FUNCALL name="parenthesys_infix_operator_(+)">
+    <LITERAL value="3" pseudotype="int"/>
+    <LITERAL value="4" pseudotype="int"/>
+</FUNCALL>
+<FUNCALL name="infix_operator_(+)">
+    <LITERAL value="3" pseudotype="int"/>
+    <LITERAL value="4" pseudotype="int"/>
+</FUNCALL>

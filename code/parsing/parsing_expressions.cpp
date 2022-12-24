@@ -61,7 +61,23 @@ bool parse_function_call(std::vector<Token>::iterator& it, const std::vector<Tok
     return true;
 }
 
+bool parse_parenthesys(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, Instruction& target){
+    if (it->sourcetext != "(") return false;
+    acquire_exact_match(it,tokens,"(");
+    std::shared_ptr<Instruction> expr;
+    acquire_expression(it,tokens,expr);
+    target = *expr;
+    if(std::holds_alternative<FunctionCall>(target)) {
+        FunctionCall& fcall = std::get<FunctionCall>(target);
+        std::string parenthesys_prefix = (operatorname(fcall.func_name))? "parenthesys_" : ""; 
+        fcall.func_name = parenthesys_prefix + fcall.func_name;    
+    }
+    acquire_exact_match(it,tokens,")");
+    return true;
+}
+
 bool parse_terminal(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, Instruction& target){
+    if (parse_parenthesys(it,tokens,target))        return true;
     if (parse_char_literal(it,tokens,target))       return true;
     if (parse_string_literal(it,tokens,target))     return true;
     if (parse_number_literal(it,tokens,target))     return true;
@@ -94,6 +110,7 @@ bool parse_non_terminated_expression(std::vector<Token>::iterator& it, const std
     std::shared_ptr<Instruction> rx;
     if (!parse_prefix_operator(it,tokens,expr) and !parse_terminal(it,tokens,expr)) return false;
     if (parse_infix_operator(it,tokens,binary_infix_operator_id)) {
+        binary_infix_operator_id = "infix_operator_(" + binary_infix_operator_id + ")";
         acquire_expression(it,tokens,rx);
         output.push_back(FunctionCall{binary_infix_operator_id, {expr, *rx}});       
     } else {
