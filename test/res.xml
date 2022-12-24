@@ -1,0 +1,36 @@
+<INSTANTIATION name="result" type="String"/>
+<LITERAL value="true" pseudotype="bool"/>
+<LITERAL value="false" pseudotype="bool"/>
+<LITERAL value="`ciao`" pseudotype="string"/>
+<LITERAL value="'a'" pseudotype="char"/>
+<LITERAL value="123" pseudotype="int"/>
+<LITERAL value="1.2" pseudotype="float"/>
+<INSTANTIATION name="flag" type="Bool"/>
+<ASSIGNMENT target="flag">
+    <LITERAL value="true" pseudotype="bool"/>
+</ASSIGNMENT>
+<STRUCT name="Segment::Point">
+	<FIELD name="x" type="Float"/>
+	<FIELD name="y" type="Float"/>
+</STRUCT>
+<STRUCT name="Segment">
+	<FIELD name="a" type="Point"/>
+	<FIELD name="b" type="Point"/>
+</STRUCT>
+<INSTANTIATION name="follia" type="Bool"/>
+<STRUCT name="plot_fuction::Point">
+	<FIELD name="x" type="Float"/>
+	<FIELD name="y" type="Float"/>
+</STRUCT>
+<FUNCDEF name="plot_fuction::plot_point">
+    <CODE>
+        <INSTANTIATION name="p" type="Point"/>
+    </CODE>
+</FUNCDEF>
+<FUNCDEF name="plot_fuction">
+    <CODE>
+        <INSTANTIATION name="s" type="S"/>
+        <INSTANTIATION name="s" type="S"/>
+        <INSTANTIATION name="s" type="S"/>
+    </CODE>
+</FUNCDEF>

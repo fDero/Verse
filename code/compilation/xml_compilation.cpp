@@ -1,0 +1,92 @@
+#include "../include/defs.hpp"
+#include "../include/procedures.hpp"
+
+bool convert_instantiation_into_xml(const Instruction& instr, std::fstream& output, const std::string& prefix){
+    if (not std::holds_alternative<Instantiation>(instr)) return false;
+    Instantiation instance = std::get<Instantiation>(instr);
+    output << prefix << ("<INSTANTIATION name=\"" + instance.name + "\" type=\"" + instance.typesignature + "\"/>\n"); 
+    return true;
+}
+
+bool convert_struct_definition_into_xml(const Instruction& instr, std::fstream& output, const std::string& prefix) {
+    if (not std::holds_alternative<StructDefinition>(instr)) return false;
+    StructDefinition structdef = std::get<StructDefinition>(instr);
+    output << prefix <<  ("<STRUCT name=\"" + structdef.struct_name + "\">\n");
+    for (const Instantiation& internal_state_var : structdef.internal_state) {
+        output << prefix << ("\t<FIELD name=\"" + internal_state_var.name + "\" type=\"" + internal_state_var.typesignature + "\"/>\n");
+    }
+    output << prefix <<  ("</STRUCT>\n");
+    return true;
+}
+
+bool convert_function_definition_into_xml(const Instruction& instr, std::fstream& output, const std::string& prefix){
+    if (not std::holds_alternative<FunctionDefinition>(instr)) return false;
+    FunctionDefinition funcdef = std::get<FunctionDefinition>(instr);
+    output << prefix <<  ("<FUNCDEF name=\"" + funcdef.func_name + "\">\n");
+    for (const Instantiation& arg : funcdef.args) {
+        output << ("\t<ARG name=\"" + arg.name + "\" type=\"" + arg.typesignature + "\"/>\n");
+    }
+    output << prefix <<  (indent + "<CODE>\n");
+    translate_instructions_into_xml(funcdef.code,output, indent + indent + prefix);
+    output << prefix <<  (indent + "</CODE>\n");
+    output << prefix <<  ("</FUNCDEF>\n");
+    return true;
+}
+
+bool convert_function_call_into_xml(const Instruction& instr, std::fstream& output, const std::string& prefix){
+    if (not std::holds_alternative<FunctionCall>(instr)) return false;
+    FunctionCall funcall = std::get<FunctionCall>(instr);
+    output << prefix <<  ("<FUNCALL name=\"" + funcall.func_name + "\">\n");
+    translate_instructions_into_xml(funcall.args,output,indent + prefix);
+    output << prefix << ("</FUNCALL>\n");
+    return true;
+}
+
+bool convert_identifier_into_xml(const Instruction& instr, std::fstream& output, const std::string& prefix){
+    if (not std::holds_alternative<Identifier>(instr)) return false;
+    Identifier id = std::get<Identifier>(instr);
+    output << prefix <<  ("<IDENTIFIER name=\"" + id.name + "\"/>\n");
+    return true;
+}
+
+bool convert_literal_into_xml(const Instruction& instr, std::fstream& output, const std::string& prefix){
+    if (not std::holds_alternative<Literal>(instr)) return false;
+    Literal val = std::get<Literal>(instr);
+    std::string value = val.value;
+    if (value[0] == '"') value[0] = value.back() = '`'; 
+    output << prefix <<  ("<LITERAL value=\"" + value + "\" pseudotype=\"" + val.pseudotype + "\"/>\n");
+    return true;
+} 
+
+bool convert_assignment_into_xml(const Instruction& instr, std::fstream& output, const std::string& prefix){
+    if (not std::holds_alternative<Assignment>(instr)) return false;   
+    Assignment ass = std::get<Assignment>(instr);
+    output << prefix <<  ("<ASSIGNMENT target=\"" + ass.name + "\"" + ">\n");
+    translate_instructions_into_xml({*ass.value},output,indent + prefix);
+    output << prefix <<  ("</ASSIGNMENT>\n");
+    return true;
+}
+
+void translate_instructions_into_xml(const std::vector<Instruction>& instructions, std::fstream& output, const std::string& prefix){
+    for (const auto& instr : instructions) {
+        if (convert_instantiation_into_xml(instr,output,prefix))        continue;
+        if (convert_struct_definition_into_xml(instr,output,prefix))    continue;
+        if (convert_function_definition_into_xml(instr,output,prefix))  continue;
+        if (convert_function_call_into_xml(instr,output,prefix))        continue;
+        if (convert_assignment_into_xml(instr,output,prefix))           continue;
+        if (convert_identifier_into_xml(instr,output,prefix))           continue;
+        if (convert_literal_into_xml(instr,output,prefix))              continue;
+        throw std::runtime_error("instruction can't be compiled");
+    }
+}
+
+void compile_xml(const std::string& input_filepath, const std::string& output_filepath){
+    std::vector<Token> tokens = tokenize_file(input_filepath); 
+    std::vector<Token>::iterator primer = tokens.begin();   
+    std::fstream output = std::fstream(output_filepath,  std::fstream::in | std::fstream::out | std::fstream::trunc);
+    std::vector<Instruction> instructions;
+    parse_file(primer, tokens, "", instructions); 
+    translate_instructions_into_xml(instructions,output,"");
+    output.close(); 
+    std::cout << input_filepath << " compiled successfully as " << output_filepath << "\n";
+}
