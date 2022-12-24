@@ -55,7 +55,6 @@ std::string extract_symbol(const std::string& sourcecode, const int current, con
 void inspect_for_errors(const std::string& sourcecode, const int current,const TokenInfo& data){
     std::string tmp;
     for (int i = current; i < sourcecode.size() and discardable.find(sourcecode[i]) == discardable.end(); i++) tmp.push_back(sourcecode[i]);
-    if (tmp.size() > 1) throw TokenizationError{"unrecognized token sequence",tmp, data.filename, data.line_number, data.tok_number, data.char_pos};
     if (tmp.size() > 0) throw TokenizationError{"unrecognized token",tmp, data.filename, data.line_number, data.tok_number, data.char_pos};
 }
 
