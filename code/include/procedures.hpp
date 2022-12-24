@@ -16,8 +16,9 @@ bool parse_conditional_statement(std::vector<Token>::iterator& it, const std::ve
 bool parse_while_loop(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::vector<Instruction>& output);
 bool parse_until_loop(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::vector<Instruction>& output);
 bool parse_expression(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::vector<Instruction>& output);
-std::string updated_context(const std::string& context, const std::string& scope);
+bool parse_non_terminated_expression(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::vector<Instruction>& output);
 void parse_instruction(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::string context, std::vector<Instruction>& output);
+std::string updated_context(const std::string& context, const std::string& scope);
 
 //compilation
 void compile_json(const std::string& input_filepath, const std::string& output_filepath);

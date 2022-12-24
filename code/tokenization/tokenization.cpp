@@ -44,10 +44,6 @@ std::string extract_string(const std::string& sourcecode, const int current, con
     return buffer;
 }
 
-std::string extract_special(const std::string& sourcecode, const int current, const TokenInfo& data){
-    return (current < sourcecode.size() and sourcecode[current] == ';')? std::string{(sourcecode[current])} : "";
-}
-
 std::string extract_symbol(const std::string& sourcecode, const int current, const TokenInfo& data){
     int i = current, j = current + 1;
     if(i >= sourcecode.size() or symbols.find(sourcecode[i]) == symbols.end()) return std::string{};
@@ -59,15 +55,14 @@ std::string extract_symbol(const std::string& sourcecode, const int current, con
 void inspect_for_errors(const std::string& sourcecode, const int current,const TokenInfo& data){
     std::string tmp;
     for (int i = current; i < sourcecode.size() and discardable.find(sourcecode[i]) == discardable.end(); i++) tmp.push_back(sourcecode[i]);
-    if (tmp.size() > 1) throw TokenizationError{"unrecognized token sequence",tmp, data.filename, data.tok_number, data.char_pos};
-    if (tmp.size() > 0) throw TokenizationError{"unrecognized token",tmp, data.filename, data.tok_number, data.char_pos};
+    if (tmp.size() > 1) throw TokenizationError{"unrecognized token sequence",tmp, data.filename, data.line_number, data.tok_number, data.char_pos};
+    if (tmp.size() > 0) throw TokenizationError{"unrecognized token",tmp, data.filename, data.line_number, data.tok_number, data.char_pos};
 }
 
 std::string extract_token(const std::string& sourcecode, const int current, const TokenInfo& data){
     std::string extracted; 
     extracted = extract_text(sourcecode,current,data);    if (!extracted.empty()) return extracted;
     extracted = extract_symbol(sourcecode,current,data);  if (!extracted.empty()) return extracted;
-    extracted = extract_special(sourcecode,current,data); if (!extracted.empty()) return extracted;
     extracted = extract_number(sourcecode,current,data);  if (!extracted.empty()) return extracted;
     extracted = extract_string(sourcecode,current,data);  if (!extracted.empty()) return extracted;
     inspect_for_errors(sourcecode,current,data);

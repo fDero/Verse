@@ -26,7 +26,7 @@ void acquire_typesignature(std::vector<Token>::iterator& it, const std::vector<T
 
 void acquire_expression(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::shared_ptr<Instruction>& value){
     std::vector<Instruction> expression_wrapper;
-    if (parse_expression(it,tokens, expression_wrapper)){
+    if (parse_non_terminated_expression(it,tokens, expression_wrapper)){
         value = std::make_shared<Instruction>(expression_wrapper.back());    
         return;
     }

@@ -14,9 +14,13 @@
 #include <memory>
 #include <stdio.h>
 
-inline const std::set<char> symbols{'+','-','*','/','=','.',':','<','>','!','(',')','[',']','{','}',','};
+inline const std::set<char> symbols{'+','-','*','/','=','.',':','<','>','!','(',')','[',']','{','}',',',';','&','|','^'};
 inline const std::set<std::string> combinations{">=","<=","!=","++","--","==","->","<-",">>","<<","&&","||","^^"};
 inline const std::set<char> discardable {'\t','\r','\0','\n',' '}; 
+
+inline const std::set<std::string> prefixes{"!","-","+","#"};
+inline const std::set<std::string> infixies{"+","-","*","/","^","<=",">=","->","<-",">>","<<","&&","||","^^","."};
+inline const std::set<std::string> postfixes{"++","--"};
 
 inline const std::string pointer_prefix = "#";
 inline const std::string context_concatenation = "::"; 
