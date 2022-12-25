@@ -58,6 +58,25 @@ bool convert_literal_into_xml(const Instruction& instr, std::fstream& output, co
     return true;
 } 
 
+bool convert_binary_operator_into_xml(const Instruction& instr, std::fstream& output, const std::string& prefix){
+    if (not std::holds_alternative<BinaryOperator>(instr)) return false;
+    BinaryOperator oper = std::get<BinaryOperator>(instr);
+    output << prefix <<  ("<OPERATOR text=\"" + oper.text + "\"" + ">\n");
+    translate_instructions_into_xml({*(oper.lx)},output,indent + prefix);
+    translate_instructions_into_xml({*(oper.rx)},output,indent + prefix);
+    output << prefix <<  ("</OPERATOR>\n");
+    return true;
+} 
+
+bool convert_unary_operator_into_xml(const Instruction& instr, std::fstream& output, const std::string& prefix){
+    if (not std::holds_alternative<UnaryOperator>(instr)) return false;
+    UnaryOperator oper = std::get<UnaryOperator>(instr);
+    output << prefix <<  ("<OPERATOR text=\"" + oper.text + "\"" + ">\n");
+    translate_instructions_into_xml({*(oper.operand)},output,indent + prefix);
+    output << prefix <<  ("</OPERATOR>\n");
+    return true;
+} 
+
 bool convert_assignment_into_xml(const Instruction& instr, std::fstream& output, const std::string& prefix){
     if (not std::holds_alternative<Assignment>(instr)) return false;   
     Assignment ass = std::get<Assignment>(instr);
@@ -70,6 +89,8 @@ bool convert_assignment_into_xml(const Instruction& instr, std::fstream& output,
 void translate_instructions_into_xml(const std::vector<Instruction>& instructions, std::fstream& output, const std::string& prefix){
     for (const auto& instr : instructions) {
         if (convert_instantiation_into_xml(instr,output,prefix))        continue;
+        if (convert_binary_operator_into_xml(instr,output,prefix))      continue;
+        if (convert_unary_operator_into_xml(instr,output,prefix))       continue;
         if (convert_struct_definition_into_xml(instr,output,prefix))    continue;
         if (convert_function_definition_into_xml(instr,output,prefix))  continue;
         if (convert_function_call_into_xml(instr,output,prefix))        continue;

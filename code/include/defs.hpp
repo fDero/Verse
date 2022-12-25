@@ -47,7 +47,8 @@ struct TokenizationError {
 };
 
 struct Instantiation; struct StructDefinition; struct FunctionDefinition;
-struct FunctionCall; struct Identifier; struct Literal; 
+struct Identifier; struct Literal;
+struct FunctionCall; struct UnaryOperator; struct BinaryOperator;
 struct Assignment; struct Conditional; struct WhileLoop; struct UntilLoop;
 
 using Instruction = std::variant<
@@ -57,6 +58,8 @@ using Instruction = std::variant<
     Identifier,
     Literal,
     FunctionCall,
+    UnaryOperator,
+    BinaryOperator,
     Assignment,
     WhileLoop,
     UntilLoop,
@@ -82,6 +85,17 @@ struct FunctionDefinition {
 struct FunctionCall { 
     std::string func_name; 
     std::vector<Instruction> args; 
+};
+
+struct BinaryOperator {
+    std::string text;
+    std::shared_ptr<Instruction> lx;
+    std::shared_ptr<Instruction> rx;
+};
+
+struct UnaryOperator {
+    std::string text;
+    std::shared_ptr<Instruction> operand;
 };
 
 struct Identifier { 

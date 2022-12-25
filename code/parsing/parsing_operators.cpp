@@ -1,10 +1,6 @@
 #include "../include/defs.hpp"
 #include "../include/procedures.hpp"
 
-bool encoded_operator(const std::string& text){
-    return text[0] == '@';
-}
-
 bool parse_prefix_operator(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, Instruction& target){
     if (prefixes.find(it->sourcetext) == prefixes.end()) return false;
     std::string operator_id = "@unary_prefix_operator_" + it->sourcetext;
