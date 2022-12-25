@@ -3,7 +3,7 @@
 
 bool parse_prefix_operator(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, Instruction& target){
     if (prefixes.find(it->sourcetext) == prefixes.end()) return false;
-    std::string operator_id = "@unary_prefix_operator_" + it->sourcetext;
+    std::string operator_id = it->sourcetext;
     std::advance(it,1);
     std::shared_ptr<Instruction> operand;
     acquire_expression(it,tokens,operand);
@@ -13,7 +13,7 @@ bool parse_prefix_operator(std::vector<Token>::iterator& it, const std::vector<T
 
 bool parse_infix_operator(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, const Instruction& expr, std::vector<Instruction>& output){
     if (infixies.find(it->sourcetext) == infixies.end()) return false;
-    std::string text = "@binary_infix_operator_" + it->sourcetext;
+    std::string text = it->sourcetext;
     std::advance(it,1);
     std::shared_ptr<Instruction> rx;
     acquire_expression(it,tokens,rx);
