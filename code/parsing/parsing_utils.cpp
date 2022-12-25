@@ -37,16 +37,3 @@ void acquire_expression(std::vector<Token>::iterator& it, const std::vector<Toke
 std::string updated_context(const std::string& context, const std::string& scope){
     return context + (context.empty()? "" : context_concatenation) + scope;
 }
-
-bool operatorname(const std::string& text){
-    std::string prefix_operator_match = "prefix_operator_(";
-    std::string infix_operator_match = "infix_operator_(";
-    bool prefix = true, infix = true;
-    for(int i = 0; prefix and i < text.size() and i < prefix_operator_match.size(); i++){
-        prefix = (prefix_operator_match[i] == text[i]);
-    }
-    for(int i = 0; infix and i < text.size() and i < infix_operator_match.size(); i++){
-        infix = (infix_operator_match[i] == text[i]);
-    }
-    return prefix or infix;
-}

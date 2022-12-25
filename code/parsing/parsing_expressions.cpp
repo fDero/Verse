@@ -67,11 +67,6 @@ bool parse_parenthesys(std::vector<Token>::iterator& it, const std::vector<Token
     std::shared_ptr<Instruction> expr;
     acquire_expression(it,tokens,expr);
     target = *expr;
-    if(std::holds_alternative<FunctionCall>(target)) {
-        FunctionCall& fcall = std::get<FunctionCall>(target);
-        std::string parenthesys_prefix = (operatorname(fcall.func_name))? "parenthesys_" : ""; 
-        fcall.func_name = parenthesys_prefix + fcall.func_name;    
-    }
     acquire_exact_match(it,tokens,")");
     return true;
 }
@@ -87,35 +82,10 @@ bool parse_terminal(std::vector<Token>::iterator& it, const std::vector<Token>& 
     return false;
 }
 
-bool parse_prefix_operator(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, Instruction& target){
-    if (prefixes.find(it->sourcetext) == prefixes.end()) return false;
-    std::string operator_id = it->sourcetext;
-    std::advance(it,1);
-    std::shared_ptr<Instruction> operand;
-    acquire_expression(it,tokens,operand);
-    target = FunctionCall{"prefix_operator_(" + operator_id + ")",{*operand}};
-    return true;
-}
-
-bool parse_infix_operator(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::string& target){
-    if (infixies.find(it->sourcetext) == infixies.end()) return false;
-    target = it->sourcetext;
-    std::advance(it,1);
-    return true;
-}
-
 bool parse_non_terminated_expression(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::vector<Instruction>& output){
     Instruction expr;
-    std::string binary_infix_operator_id; 
-    std::shared_ptr<Instruction> rx;
     if (!parse_prefix_operator(it,tokens,expr) and !parse_terminal(it,tokens,expr)) return false;
-    if (parse_infix_operator(it,tokens,binary_infix_operator_id)) {
-        binary_infix_operator_id = "infix_operator_(" + binary_infix_operator_id + ")";
-        acquire_expression(it,tokens,rx);
-        output.push_back(FunctionCall{binary_infix_operator_id, {expr, *rx}});       
-    } else {
-        output.push_back(expr);
-    }
+    if (!parse_infix_operator(it,tokens,expr,output)) output.push_back(expr);
     return true;
 }
 
