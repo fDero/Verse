@@ -1,443 +1,86 @@
 [
 	{
-		"sourcetext":"var",
-		"file_name":"test/main.verse",
-		"line_number":1,
-		"token_number":0,
-		"char_pos":0
-	},
-	{
-		"sourcetext":"flag",
-		"file_name":"test/main.verse",
-		"line_number":1,
-		"token_number":1,
-		"char_pos":4
-	},
-	{
-		"sourcetext":":",
-		"file_name":"test/main.verse",
-		"line_number":1,
-		"token_number":2,
-		"char_pos":9
-	},
-	{
-		"sourcetext":"Bool",
-		"file_name":"test/main.verse",
-		"line_number":1,
-		"token_number":3,
-		"char_pos":11
-	},
-	{
-		"sourcetext":";",
-		"file_name":"test/main.verse",
-		"line_number":1,
-		"token_number":4,
-		"char_pos":15
-	},
-	{
-		"sourcetext":"var",
-		"file_name":"test/main.verse",
-		"line_number":2,
-		"token_number":0,
-		"char_pos":0
-	},
-	{
-		"sourcetext":"follia",
-		"file_name":"test/main.verse",
-		"line_number":2,
-		"token_number":1,
-		"char_pos":4
-	},
-	{
-		"sourcetext":":",
-		"file_name":"test/main.verse",
-		"line_number":2,
-		"token_number":2,
-		"char_pos":11
-	},
-	{
-		"sourcetext":"Bool",
-		"file_name":"test/main.verse",
-		"line_number":2,
-		"token_number":3,
-		"char_pos":13
-	},
-	{
-		"sourcetext":"=",
-		"file_name":"test/main.verse",
-		"line_number":2,
-		"token_number":4,
-		"char_pos":18
-	},
-	{
-		"sourcetext":"true",
-		"file_name":"test/main.verse",
-		"line_number":2,
-		"token_number":5,
-		"char_pos":20
-	},
-	{
-		"sourcetext":"&&",
-		"file_name":"test/main.verse",
-		"line_number":2,
-		"token_number":6,
-		"char_pos":25
-	},
-	{
-		"sourcetext":"flag",
-		"file_name":"test/main.verse",
-		"line_number":2,
-		"token_number":7,
-		"char_pos":28
-	},
-	{
-		"sourcetext":";",
-		"file_name":"test/main.verse",
-		"line_number":2,
-		"token_number":8,
-		"char_pos":32
-	},
-	{
-		"sourcetext":"myfunc",
-		"file_name":"test/main.verse",
-		"line_number":4,
-		"token_number":0,
-		"char_pos":0
-	},
-	{
-		"sourcetext":"(",
-		"file_name":"test/main.verse",
-		"line_number":4,
-		"token_number":1,
-		"char_pos":6
-	},
-	{
 		"sourcetext":"a",
 		"file_name":"test/main.verse",
-		"line_number":4,
-		"token_number":2,
-		"char_pos":7
+		"line_number":1,
+		"token_number":0,
+		"char_pos":0
 	},
 	{
-		"sourcetext":",",
+		"sourcetext":"*",
 		"file_name":"test/main.verse",
-		"line_number":4,
-		"token_number":3,
-		"char_pos":8
+		"line_number":1,
+		"token_number":1,
+		"char_pos":2
 	},
 	{
 		"sourcetext":"b",
 		"file_name":"test/main.verse",
-		"line_number":4,
-		"token_number":4,
-		"char_pos":9
+		"line_number":1,
+		"token_number":2,
+		"char_pos":4
 	},
 	{
-		"sourcetext":"(",
+		"sourcetext":"+",
 		"file_name":"test/main.verse",
-		"line_number":4,
-		"token_number":5,
-		"char_pos":10
-	},
-	{
-		"sourcetext":"b1",
-		"file_name":"test/main.verse",
-		"line_number":4,
-		"token_number":6,
-		"char_pos":11
-	},
-	{
-		"sourcetext":",",
-		"file_name":"test/main.verse",
-		"line_number":4,
-		"token_number":7,
-		"char_pos":13
-	},
-	{
-		"sourcetext":"b2",
-		"file_name":"test/main.verse",
-		"line_number":4,
-		"token_number":8,
-		"char_pos":14
-	},
-	{
-		"sourcetext":"(",
-		"file_name":"test/main.verse",
-		"line_number":4,
-		"token_number":9,
-		"char_pos":16
-	},
-	{
-		"sourcetext":"b21",
-		"file_name":"test/main.verse",
-		"line_number":4,
-		"token_number":10,
-		"char_pos":17
-	},
-	{
-		"sourcetext":",",
-		"file_name":"test/main.verse",
-		"line_number":4,
-		"token_number":11,
-		"char_pos":20
-	},
-	{
-		"sourcetext":"b22",
-		"file_name":"test/main.verse",
-		"line_number":4,
-		"token_number":12,
-		"char_pos":21
-	},
-	{
-		"sourcetext":",",
-		"file_name":"test/main.verse",
-		"line_number":4,
-		"token_number":13,
-		"char_pos":24
-	},
-	{
-		"sourcetext":"b23",
-		"file_name":"test/main.verse",
-		"line_number":4,
-		"token_number":14,
-		"char_pos":25
-	},
-	{
-		"sourcetext":")",
-		"file_name":"test/main.verse",
-		"line_number":4,
-		"token_number":15,
-		"char_pos":28
-	},
-	{
-		"sourcetext":")",
-		"file_name":"test/main.verse",
-		"line_number":4,
-		"token_number":16,
-		"char_pos":29
-	},
-	{
-		"sourcetext":",",
-		"file_name":"test/main.verse",
-		"line_number":4,
-		"token_number":17,
-		"char_pos":30
+		"line_number":1,
+		"token_number":3,
+		"char_pos":6
 	},
 	{
 		"sourcetext":"c",
 		"file_name":"test/main.verse",
-		"line_number":4,
-		"token_number":18,
-		"char_pos":31
-	},
-	{
-		"sourcetext":"(",
-		"file_name":"test/main.verse",
-		"line_number":4,
-		"token_number":19,
-		"char_pos":32
-	},
-	{
-		"sourcetext":")",
-		"file_name":"test/main.verse",
-		"line_number":4,
-		"token_number":20,
-		"char_pos":33
-	},
-	{
-		"sourcetext":")",
-		"file_name":"test/main.verse",
-		"line_number":4,
-		"token_number":21,
-		"char_pos":34
-	},
-	{
-		"sourcetext":"+",
-		"file_name":"test/main.verse",
-		"line_number":4,
-		"token_number":22,
-		"char_pos":36
-	},
-	{
-		"sourcetext":"6",
-		"file_name":"test/main.verse",
-		"line_number":4,
-		"token_number":23,
-		"char_pos":38
-	},
-	{
-		"sourcetext":";",
-		"file_name":"test/main.verse",
-		"line_number":4,
-		"token_number":24,
-		"char_pos":39
-	},
-	{
-		"sourcetext":"(",
-		"file_name":"test/main.verse",
-		"line_number":6,
-		"token_number":0,
-		"char_pos":0
-	},
-	{
-		"sourcetext":"(",
-		"file_name":"test/main.verse",
-		"line_number":6,
-		"token_number":1,
-		"char_pos":1
-	},
-	{
-		"sourcetext":"3",
-		"file_name":"test/main.verse",
-		"line_number":6,
-		"token_number":2,
-		"char_pos":2
-	},
-	{
-		"sourcetext":"+",
-		"file_name":"test/main.verse",
-		"line_number":6,
-		"token_number":3,
-		"char_pos":4
-	},
-	{
-		"sourcetext":"4",
-		"file_name":"test/main.verse",
-		"line_number":6,
+		"line_number":1,
 		"token_number":4,
-		"char_pos":6
-	},
-	{
-		"sourcetext":")",
-		"file_name":"test/main.verse",
-		"line_number":6,
-		"token_number":5,
-		"char_pos":7
-	},
-	{
-		"sourcetext":")",
-		"file_name":"test/main.verse",
-		"line_number":6,
-		"token_number":6,
 		"char_pos":8
 	},
 	{
 		"sourcetext":";",
 		"file_name":"test/main.verse",
-		"line_number":6,
-		"token_number":7,
+		"line_number":1,
+		"token_number":5,
 		"char_pos":9
 	},
 	{
-		"sourcetext":"(",
+		"sourcetext":"c",
 		"file_name":"test/main.verse",
-		"line_number":7,
-		"token_number":0,
-		"char_pos":0
-	},
-	{
-		"sourcetext":"3",
-		"file_name":"test/main.verse",
-		"line_number":7,
-		"token_number":1,
-		"char_pos":1
-	},
-	{
-		"sourcetext":"+",
-		"file_name":"test/main.verse",
-		"line_number":7,
-		"token_number":2,
-		"char_pos":3
-	},
-	{
-		"sourcetext":"4",
-		"file_name":"test/main.verse",
-		"line_number":7,
-		"token_number":3,
-		"char_pos":5
-	},
-	{
-		"sourcetext":")",
-		"file_name":"test/main.verse",
-		"line_number":7,
-		"token_number":4,
-		"char_pos":6
-	},
-	{
-		"sourcetext":";",
-		"file_name":"test/main.verse",
-		"line_number":7,
-		"token_number":5,
-		"char_pos":7
-	},
-	{
-		"sourcetext":"3",
-		"file_name":"test/main.verse",
-		"line_number":8,
+		"line_number":2,
 		"token_number":0,
 		"char_pos":0
 	},
 	{
 		"sourcetext":"+",
 		"file_name":"test/main.verse",
-		"line_number":8,
+		"line_number":2,
 		"token_number":1,
 		"char_pos":2
 	},
 	{
-		"sourcetext":"4",
+		"sourcetext":"a",
 		"file_name":"test/main.verse",
-		"line_number":8,
+		"line_number":2,
 		"token_number":2,
 		"char_pos":4
 	},
 	{
-		"sourcetext":";",
+		"sourcetext":"*",
 		"file_name":"test/main.verse",
-		"line_number":8,
+		"line_number":2,
 		"token_number":3,
-		"char_pos":5
+		"char_pos":6
 	},
 	{
-		"sourcetext":"(",
+		"sourcetext":"b",
 		"file_name":"test/main.verse",
-		"line_number":10,
-		"token_number":0,
-		"char_pos":0
-	},
-	{
-		"sourcetext":"idiota",
-		"file_name":"test/main.verse",
-		"line_number":10,
-		"token_number":1,
-		"char_pos":1
-	},
-	{
-		"sourcetext":")",
-		"file_name":"test/main.verse",
-		"line_number":10,
-		"token_number":2,
-		"char_pos":7
-	},
-	{
-		"sourcetext":";",
-		"file_name":"test/main.verse",
-		"line_number":10,
-		"token_number":3,
+		"line_number":2,
+		"token_number":4,
 		"char_pos":8
 	},
 	{
-		"sourcetext":"idiota",
-		"file_name":"test/main.verse",
-		"line_number":12,
-		"token_number":0,
-		"char_pos":0
-	},
-	{
 		"sourcetext":";",
 		"file_name":"test/main.verse",
-		"line_number":12,
-		"token_number":1,
-		"char_pos":6
+		"line_number":2,
+		"token_number":5,
+		"char_pos":9
 	}
 ]
