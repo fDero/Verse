@@ -18,7 +18,8 @@ bool parse_instantiation(std::vector<Token>::iterator& it, const std::vector<Tok
     acquire_expression(it,tokens,value);
     acquire_exact_match(it,tokens,";");
     output.push_back(Instantiation{name, type});
-    output.push_back(Assignment{name, value});
+    std::shared_ptr<Instruction> id = std::make_shared<Instruction>(Identifier{name});
+    output.push_back(BinaryOperator{"=",id,value});
     return true;
 }
 

@@ -10,3 +10,10 @@ a + b + c + d;
 f(c(),a + b,g(a + b + c + d),h()+p(s));
 
 (a+b+c)*d;
+
+var s : String = "ciao";
+
+while n + 1 < 10 + 3 * 2 {
+    print("ciao");
+    n = n + 1;
+}
