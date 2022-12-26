@@ -68,6 +68,7 @@ bool parse_parenthesys(std::vector<Token>::iterator& it, const std::vector<Token
     acquire_expression(it,tokens,expr);
     target = *expr;
     acquire_exact_match(it,tokens,")");
+    operator_precedence_lockout(target);
     return true;
 }
 

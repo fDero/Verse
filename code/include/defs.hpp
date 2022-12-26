@@ -90,11 +90,13 @@ struct BinaryOperator {
     std::string text;
     std::shared_ptr<Instruction> lx;
     std::shared_ptr<Instruction> rx;
+    bool wrapped_in_parenthesys = false;
 };
 
 struct UnaryOperator {
     std::string text;
     std::shared_ptr<Instruction> operand;
+    bool wrapped_in_parenthesys = false;
 };
 
 struct Identifier { 

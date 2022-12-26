@@ -23,6 +23,7 @@ bool parse_prefix_operator(std::vector<Token>::iterator& it, const std::vector<T
 bool parse_infix_operator(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, Instruction& target);
 bool parse_terminal(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, Instruction& target);
 void fix_expression(Instruction& expr);
+void operator_precedence_lockout(Instruction& expr);
 
 bool parse_non_terminated_expression(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::vector<Instruction>& output);
 void parse_instruction(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::string context, std::vector<Instruction>& output);

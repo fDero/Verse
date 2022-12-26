@@ -40,7 +40,7 @@ void fix_binary_operators_precedence(Instruction& expr){
     if (not std::holds_alternative<BinaryOperator>(*(std::get<BinaryOperator>(expr).lx))) return;
     BinaryOperator root = std::get<BinaryOperator>(expr);
     BinaryOperator root_lx = std::get<BinaryOperator>(*(std::get<BinaryOperator>(expr).lx));
-    if (get_precedence(root) <= get_precedence(root_lx)) return;
+    if (get_precedence(root) <= get_precedence(root_lx) or root_lx.wrapped_in_parenthesys) return;
     BinaryOperator new_root_rx {root.text, root_lx.rx, root.rx};
     BinaryOperator new_root {root_lx.text, root_lx.lx, std::make_shared<Instruction>(new_root_rx)};
     fix_expression(*(new_root.rx));
@@ -52,7 +52,7 @@ void fix_unary_operators_precedence(Instruction& expr){
     if (not std::holds_alternative<UnaryOperator>(*(std::get<BinaryOperator>(expr).lx))) return;
     BinaryOperator root = std::get<BinaryOperator>(expr);
     UnaryOperator root_lx = std::get<UnaryOperator>(*(std::get<BinaryOperator>(expr).lx));
-    if (get_precedence(root) <= get_precedence(root_lx)) return;
+    if (get_precedence(root) <= get_precedence(root_lx) or root_lx.wrapped_in_parenthesys) return;
     BinaryOperator new_operand {root.text, root_lx.operand, root.rx};
     UnaryOperator new_root {root_lx.text, std::make_shared<Instruction>(new_operand)};  
     fix_expression(*(new_root.operand));
@@ -77,3 +77,13 @@ bool parse_infix_operator(std::vector<Token>::iterator& it, const std::vector<To
     return true;
 }
 
+void operator_precedence_lockout(Instruction& expr){
+    if (std::holds_alternative<UnaryOperator>(expr)){
+        UnaryOperator& op = std::get<UnaryOperator>(expr);
+        op.wrapped_in_parenthesys = true;
+    }
+    if (std::holds_alternative<BinaryOperator>(expr)){
+        BinaryOperator& op = std::get<BinaryOperator>(expr);
+        op.wrapped_in_parenthesys = true;
+    }
+}
