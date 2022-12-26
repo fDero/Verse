@@ -22,11 +22,11 @@ bool parse_expression(std::vector<Token>::iterator& it, const std::vector<Token>
 bool parse_prefix_operator(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, Instruction& target);
 bool parse_infix_operator(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, Instruction& target);
 bool parse_terminal(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, Instruction& target);
+void fix_expression(Instruction& expr);
 
 bool parse_non_terminated_expression(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::vector<Instruction>& output);
 void parse_instruction(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::string context, std::vector<Instruction>& output);
 void parse_file(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::string context, std::vector<Instruction>& output);
-
 
 //compilation
 void compile_json(const std::string& input_filepath, const std::string& output_filepath);
