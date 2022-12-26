@@ -1,5 +1,5 @@
-[![current version](https://github.com/fDero/Verse)][pre-release]
-[![license](https://github.com/fDero/Verse/LICENSE)][MIT]
+[![current version](http://img.shields.io/https://github.com/fDero/Verse)][pre-release]
+[![license](http://img.shields.io/https://github.com/fDero/Verse/LICENSE)][MIT]
 
 # Verse
 Compiler and interpreter of the verse programming language. 
