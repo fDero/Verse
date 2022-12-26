@@ -26,12 +26,20 @@ void acquire_typesignature(std::vector<Token>::iterator& it, const std::vector<T
 
 void acquire_expression(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::shared_ptr<Instruction>& value){
     std::vector<Instruction> expression_wrapper;
-    if (parse_non_terminated_expression(it,tokens, expression_wrapper)){
-        value = std::make_shared<Instruction>(expression_wrapper.back());    
-        return;
+    if (parse_non_terminated_expression(it,tokens, expression_wrapper)) value = std::make_shared<Instruction>(expression_wrapper[0]);    
+    else {
+        std::string found = (it == tokens.end())? "(END OF FILE)" : it->sourcetext;
+        throw std::runtime_error("unexpected token: " + found + " instead of: " + "expression");
     }
-    std::string found = (it == tokens.end())? "(END OF FILE)" : it->sourcetext;
-    throw std::runtime_error("unexpected token: " + found + " instead of: " + "expression");
+}
+
+void acquire_terminal(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::shared_ptr<Instruction>& value){
+    Instruction terminal;
+    if (parse_terminal(it,tokens, terminal)) value = std::make_shared<Instruction>(terminal);
+    else {
+        std::string found = (it == tokens.end())? "(END OF FILE)" : it->sourcetext;
+        throw std::runtime_error("unexpected token: " + found + " instead of: " + "expression");
+    }
 }
 
 std::string updated_context(const std::string& context, const std::string& scope){

@@ -84,8 +84,9 @@ bool parse_terminal(std::vector<Token>::iterator& it, const std::vector<Token>& 
 
 bool parse_non_terminated_expression(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::vector<Instruction>& output){
     Instruction expr;
-    if (!parse_prefix_operator(it,tokens,expr) and !parse_terminal(it,tokens,expr)) return false;
-    if (!parse_infix_operator(it,tokens,expr,output)) output.push_back(expr);
+    if (!parse_terminal(it,tokens,expr) and !parse_prefix_operator(it,tokens,expr)) return false;
+    while (it != tokens.end()) if (not parse_infix_operator(it,tokens,expr)) break;
+    output.push_back(expr);
     return true;
 }
 

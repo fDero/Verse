@@ -1,86 +1,65 @@
 [
 	{
-		"sourcetext":"a",
+		"sourcetext":"-",
 		"file_name":"test/main.verse",
 		"line_number":1,
 		"token_number":0,
 		"char_pos":0
 	},
 	{
-		"sourcetext":"*",
-		"file_name":"test/main.verse",
-		"line_number":1,
-		"token_number":1,
-		"char_pos":2
-	},
-	{
-		"sourcetext":"b",
-		"file_name":"test/main.verse",
-		"line_number":1,
-		"token_number":2,
-		"char_pos":4
-	},
-	{
-		"sourcetext":"+",
-		"file_name":"test/main.verse",
-		"line_number":1,
-		"token_number":3,
-		"char_pos":6
-	},
-	{
-		"sourcetext":"c",
-		"file_name":"test/main.verse",
-		"line_number":1,
-		"token_number":4,
-		"char_pos":8
-	},
-	{
-		"sourcetext":";",
-		"file_name":"test/main.verse",
-		"line_number":1,
-		"token_number":5,
-		"char_pos":9
-	},
-	{
-		"sourcetext":"c",
-		"file_name":"test/main.verse",
-		"line_number":2,
-		"token_number":0,
-		"char_pos":0
-	},
-	{
-		"sourcetext":"+",
-		"file_name":"test/main.verse",
-		"line_number":2,
-		"token_number":1,
-		"char_pos":2
-	},
-	{
 		"sourcetext":"a",
 		"file_name":"test/main.verse",
-		"line_number":2,
-		"token_number":2,
-		"char_pos":4
+		"line_number":1,
+		"token_number":1,
+		"char_pos":1
 	},
 	{
 		"sourcetext":"*",
 		"file_name":"test/main.verse",
-		"line_number":2,
+		"line_number":1,
+		"token_number":2,
+		"char_pos":3
+	},
+	{
+		"sourcetext":"-",
+		"file_name":"test/main.verse",
+		"line_number":1,
 		"token_number":3,
-		"char_pos":6
+		"char_pos":5
 	},
 	{
 		"sourcetext":"b",
 		"file_name":"test/main.verse",
-		"line_number":2,
+		"line_number":1,
 		"token_number":4,
+		"char_pos":6
+	},
+	{
+		"sourcetext":"*",
+		"file_name":"test/main.verse",
+		"line_number":1,
+		"token_number":5,
 		"char_pos":8
+	},
+	{
+		"sourcetext":"-",
+		"file_name":"test/main.verse",
+		"line_number":1,
+		"token_number":6,
+		"char_pos":10
+	},
+	{
+		"sourcetext":"c",
+		"file_name":"test/main.verse",
+		"line_number":1,
+		"token_number":7,
+		"char_pos":11
 	},
 	{
 		"sourcetext":";",
 		"file_name":"test/main.verse",
-		"line_number":2,
-		"token_number":5,
-		"char_pos":9
+		"line_number":1,
+		"token_number":8,
+		"char_pos":12
 	}
 ]

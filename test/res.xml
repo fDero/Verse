@@ -1,14 +1,13 @@
-<OPERATOR text="+">
+<OPERATOR text="*">
     <OPERATOR text="*">
-        <IDENTIFIER name="a"/>
-        <IDENTIFIER name="b"/>
+        <OPERATOR text="-">
+            <IDENTIFIER name="a"/>
+        </OPERATOR>
+        <OPERATOR text="-">
+            <IDENTIFIER name="b"/>
+        </OPERATOR>
     </OPERATOR>
-    <IDENTIFIER name="c"/>
-</OPERATOR>
-<OPERATOR text="+">
-    <IDENTIFIER name="c"/>
-    <OPERATOR text="*">
-        <IDENTIFIER name="a"/>
-        <IDENTIFIER name="b"/>
+    <OPERATOR text="-">
+        <IDENTIFIER name="c"/>
     </OPERATOR>
 </OPERATOR>
