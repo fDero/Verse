@@ -43,8 +43,8 @@ void fix_binary_operators_precedence(Instruction& expr){
     if (get_precedence(root) <= get_precedence(root_lx)) return;
     BinaryOperator new_root_rx {root.text, root_lx.rx, root.rx};
     BinaryOperator new_root {root_lx.text, root_lx.lx, std::make_shared<Instruction>(new_root_rx)};
-    expr = new_root;
     fix_expression(*(new_root.rx));
+    expr = new_root;
 }
 
 void fix_unary_operators_precedence(Instruction& expr){
@@ -53,7 +53,10 @@ void fix_unary_operators_precedence(Instruction& expr){
     BinaryOperator root = std::get<BinaryOperator>(expr);
     UnaryOperator root_lx = std::get<UnaryOperator>(*(std::get<BinaryOperator>(expr).lx));
     if (get_precedence(root) <= get_precedence(root_lx)) return;
-    std::cerr << "\n\n!\n\n";   
+    BinaryOperator new_operand {root.text, root_lx.operand, root.rx};
+    UnaryOperator new_root {root_lx.text, std::make_shared<Instruction>(new_operand)};  
+    fix_expression(*(new_root.operand));
+    expr = new_root;
 }
 
 void fix_expression(Instruction& expr){

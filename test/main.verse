@@ -5,4 +5,4 @@ a * b ^ c;
 
 a + b + c + d;
 
-- a ^ b;
+- - mystruct.myval ^ b;

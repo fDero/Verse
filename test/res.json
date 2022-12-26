@@ -189,31 +189,52 @@
 		"char_pos":0
 	},
 	{
-		"sourcetext":"a",
+		"sourcetext":"-",
 		"file_name":"test/main.verse",
 		"line_number":8,
 		"token_number":1,
 		"char_pos":2
 	},
 	{
-		"sourcetext":"^",
+		"sourcetext":"mystruct",
 		"file_name":"test/main.verse",
 		"line_number":8,
 		"token_number":2,
 		"char_pos":4
 	},
 	{
-		"sourcetext":"b",
+		"sourcetext":".",
 		"file_name":"test/main.verse",
 		"line_number":8,
 		"token_number":3,
-		"char_pos":6
+		"char_pos":12
+	},
+	{
+		"sourcetext":"myval",
+		"file_name":"test/main.verse",
+		"line_number":8,
+		"token_number":4,
+		"char_pos":13
+	},
+	{
+		"sourcetext":"^",
+		"file_name":"test/main.verse",
+		"line_number":8,
+		"token_number":5,
+		"char_pos":19
+	},
+	{
+		"sourcetext":"b",
+		"file_name":"test/main.verse",
+		"line_number":8,
+		"token_number":6,
+		"char_pos":21
 	},
 	{
 		"sourcetext":";",
 		"file_name":"test/main.verse",
 		"line_number":8,
-		"token_number":4,
-		"char_pos":7
+		"token_number":7,
+		"char_pos":22
 	}
 ]

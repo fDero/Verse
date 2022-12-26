@@ -31,9 +31,14 @@
     </OPERATOR>
     <IDENTIFIER name="d"/>
 </OPERATOR>
-<OPERATOR text="^">
+<OPERATOR text="-">
     <OPERATOR text="-">
-        <IDENTIFIER name="a"/>
+        <OPERATOR text="^">
+            <OPERATOR text=".">
+                <IDENTIFIER name="mystruct"/>
+                <IDENTIFIER name="myval"/>
+            </OPERATOR>
+            <IDENTIFIER name="b"/>
+        </OPERATOR>
     </OPERATOR>
-    <IDENTIFIER name="b"/>
 </OPERATOR>
