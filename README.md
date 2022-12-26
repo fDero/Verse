@@ -13,7 +13,7 @@ detail every aspect of the language and is supposed to be easy to read even if V
 If you want to install Verse with npm, you can just run the following command in your shell. This will work cross-platform on 
 every machine as long as **npm** is installed.
 ```bash
->> npm install Verse
+>> npm install verse
 ```
 
 
