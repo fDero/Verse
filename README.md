@@ -24,7 +24,7 @@ is the default package-manager of Debian-based linux distributions like (but not
 ```
 
 ### Installation via PACMAN
-If you want to install Verse with **apt**, you can just run the following command in your shell. As a reminder, keep in mind that **apt**
+If you want to install Verse with **pacman**, you can just run the following command in your shell. As a reminder, keep in mind that **pacman**
 is the default package-manager of Arch linux.
 ```bash
 >> pacman -i verse
