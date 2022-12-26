@@ -23,6 +23,13 @@ is the default package-manager of Debian-based linux distributions like (but not
 >> apt-get install verse
 ```
 
+### Installation via PACMAN
+If you want to install Verse with **apt**, you can just run the following command in your shell. As a reminder, keep in mind that **apt**
+is the default package-manager of Arch linux.
+```bash
+>> pacman -i verse
+```
+
 ### Build from source
 If you want to build everything from source it's required for you to also install **git**, **g++** and **make** (or *cmake*).
 The installation if you're building from source should be correctly performed with the following commands:
