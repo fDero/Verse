@@ -8,3 +8,21 @@ Compiler and interpreter of the verse programming language.
 Verse is a strictly typed, general purpuse, not garbage collected and data oriented programming language. It shares some key features with
 modern programming languages like Go and Rust while keeping it's core as simple as possible. The Verse documentation explains in great
 detail every aspect of the language and is supposed to be easy to read even if Verse is the first programming language you learn.
+
+### Installation with NPM
+If you want to install Verse with npm, you can just run the following command in your shell. This will work cross-platform on 
+every machine as long as **npm** is installed.
+```bash
+>> npm install Verse
+```
+
+
+### Build from source
+If you want to build everything from source it's required for you to also install **git**, **g++** and **make** (or *cmake*).
+The installation if you're building from source should be correctly performed with the following commands:
+```bash
+>> git clone https://github.com/fDero/Verse
+```
+```bash
+>> make build
+```
