@@ -3,11 +3,4 @@ build:
 
 run:
 	./verse -c test/main.verse -o test/res.xml test/res.json
-	cat test/res.xml
  
-clean:
-	rm verse
-
-complete:
-	make build
-	make run
