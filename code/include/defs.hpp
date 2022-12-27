@@ -19,7 +19,7 @@ inline const std::set<std::string> combinations{">=","<=","!=","++","--","==","-
 inline const std::set<char> discardable {'\t','\r','\0','\n',' '}; 
 
 inline const std::set<std::string> prefixes{"!","-","+","#"};
-inline const std::set<std::string> infixies{"=","+","-","*","/","^","<",">","<=",">=","->","<-",">>","<<","&&","||","^^",".",":",","};
+inline const std::set<std::string> infixies{"+","-","*","/","^","<",">","<=",">=","->","<-",">>","<<","&&","||","^^",".",":",","};
 
 inline const std::string pointer_prefix = "#";
 inline const std::string context_concatenation = "::"; 
@@ -47,8 +47,9 @@ struct TokenizationError {
 };
 
 struct Instantiation; struct StructDefinition; struct FunctionDefinition;
-struct Identifier; struct Literal; struct FunctionCall; struct UnaryOperator; struct BinaryOperator;
-struct Conditional; struct WhileLoop; struct UntilLoop;
+struct Identifier; struct Literal; 
+struct Assignment; struct FunctionCall; struct UnaryOperator; struct BinaryOperator;
+struct WhileLoop; struct UntilLoop; struct Conditional; 
 
 using Instruction = std::variant<
     Instantiation,
@@ -59,6 +60,7 @@ using Instruction = std::variant<
     FunctionCall,
     UnaryOperator,
     BinaryOperator,
+    Assignment,
     WhileLoop,
     UntilLoop,
     Conditional
@@ -90,6 +92,11 @@ struct BinaryOperator {
     std::shared_ptr<Instruction> lx;
     std::shared_ptr<Instruction> rx;
     bool wrapped_in_parenthesys = false;
+};
+
+struct Assignment {
+    std::shared_ptr<Instruction> target;
+    std::shared_ptr<Instruction> value;
 };
 
 struct UnaryOperator {

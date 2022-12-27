@@ -24,7 +24,7 @@ bool parse_prefix_operator(std::vector<Token>::iterator& it, const std::vector<T
 int get_precedence(const Instruction& expr){
     if (std::holds_alternative<BinaryOperator>(expr)){
         std::string optext = std::get<BinaryOperator>(expr).text;
-        if (optext == "=")  return 0;
+        if (optext == ",")  return 0;
         if (optext == "&&" or optext == "||" or optext == "^^") return 1;
         if (optext == "<" or optext == ">" or optext == "==" or optext == "!=" or optext == ">=" or optext == "<=") return 2;
         if (optext == "+" or optext == "-")  return 3;
@@ -74,6 +74,17 @@ bool parse_infix_operator(std::vector<Token>::iterator& it, const std::vector<To
     else acquire_terminal(it,tokens,rx);
     expr = BinaryOperator{infix_operator_text, lx, rx};
     fix_expression(expr);
+    return true;
+}
+
+bool parse_assignment(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, Instruction& expr){
+    if (it == tokens.end() or it->sourcetext != "=") return false;
+    std::shared_ptr<Instruction> lx = std::make_shared<Instruction>(expr);
+    std::string infix_operator_text = it->sourcetext;
+    std::advance(it,1);
+    std::shared_ptr<Instruction> rx;
+    acquire_expression(it,tokens,rx);
+    expr = Assignment{lx,rx};
     return true;
 }
 
