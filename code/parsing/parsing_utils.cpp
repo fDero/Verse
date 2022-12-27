@@ -43,19 +43,37 @@ void acquire_typesignature(std::vector<Token>::iterator& it, const std::vector<T
 
 void acquire_expression(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::shared_ptr<Instruction>& value){
     std::vector<Instruction> expression_wrapper;
-    if (parse_non_terminated_expression(it,tokens, expression_wrapper)) value = std::make_shared<Instruction>(expression_wrapper[0]);    
-    else {
+    if (not parse_non_terminated_expression(it,tokens, expression_wrapper)) {
         std::string found = (it == tokens.end())? "(END OF FILE)" : it->sourcetext;
         throw std::runtime_error("unexpected token: " + found + " instead of: " + "expression");
     }
+    value = std::make_shared<Instruction>(expression_wrapper[0]);
 }
 
 void acquire_terminal(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::shared_ptr<Instruction>& value){
     Instruction terminal;
-    if (parse_terminal(it,tokens, terminal)) value = std::make_shared<Instruction>(terminal);
-    else {
+    if (not parse_terminal(it,tokens, terminal)) {
         std::string found = (it == tokens.end())? "(END OF FILE)" : it->sourcetext;
         throw std::runtime_error("unexpected token: " + found + " instead of: " + "expression");
+    }
+    value = std::make_shared<Instruction>(terminal);
+}
+
+void acquire_codeblock(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::vector<Instruction>& code){
+    if (it != tokens.end() and it->sourcetext != "{") {
+        if (parse_struct_definition(it,tokens,"",code))   throw std::runtime_error("functions definitions not allowed in codeblock");
+        if (parse_function_definition(it,tokens,"",code)) throw std::runtime_error("functions definitions not allowed in codeblock");
+        parse_instruction(it,tokens,"",code);
+    } 
+    else {
+        acquire_exact_match(it,tokens,"{");
+        while(it != tokens.end() and it->sourcetext != "}") {
+            if (parse_struct_definition(it,tokens,"",code))   throw std::runtime_error("functions definitions not allowed in codeblock");
+            if (parse_function_definition(it,tokens,"",code)) throw std::runtime_error("functions definitions not allowed in codeblock");
+            parse_instruction(it,tokens,"",code);
+        }
+        if (it == tokens.end() or it->sourcetext != "}") throw std::runtime_error("brackets opened but never closed");
+        std::advance(it,1);
     }
 }
 

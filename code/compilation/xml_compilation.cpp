@@ -109,10 +109,10 @@ bool convert_conditional_into_xml(const Instruction& instr, std::fstream& output
     translate_instructions_into_xml({*(conditional.condition)},output,indent + prefix);
     output << prefix <<  ("\t<THEN>\n");
     translate_instructions_into_xml(conditional.then,output,indent + indent + prefix);
-    output << prefix <<  ("\t<THEN>\n");
+    output << prefix <<  ("\t</THEN>\n");
     output << prefix <<  ("\t<ELSE>\n");
     translate_instructions_into_xml(conditional.otherwise,output,indent + indent + prefix);
-    output << prefix <<  ("\t<ELSE>\n");
+    output << prefix <<  ("\t</ELSE>\n");
     output << prefix <<  ("</IF>\n");
     return true;
 }
