@@ -1,7 +1,7 @@
 #include "../include/defs.hpp"
 #include "../include/procedures.hpp"
 
-void parse_instruction(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::string context, std::vector<Instruction>& output){
+void acquire_instruction(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::string context, std::vector<Instruction>& output){
     if (parse_instantiation(it,tokens,output))                  return;
     if (parse_struct_definition(it,tokens,context,output))      return;
     if (parse_function_definition(it,tokens,context,output))    return;
@@ -14,7 +14,7 @@ void parse_instruction(std::vector<Token>::iterator& it, const std::vector<Token
 
 void parse_file(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::string context, std::vector<Instruction>& output){ 
     while (it != tokens.end()) {
-        parse_instruction(it,tokens,context,output);
+        acquire_instruction(it,tokens,context,output);
     }
 }
 
@@ -61,16 +61,16 @@ void acquire_terminal(std::vector<Token>::iterator& it, const std::vector<Token>
 
 void acquire_codeblock(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::vector<Instruction>& code){
     if (it != tokens.end() and it->sourcetext != "{") {
-        if (parse_struct_definition(it,tokens,"",code))   throw std::runtime_error("functions definitions not allowed in codeblock");
-        if (parse_function_definition(it,tokens,"",code)) throw std::runtime_error("functions definitions not allowed in codeblock");
-        parse_instruction(it,tokens,"",code);
+        if (parse_struct_definition(it,tokens,"",code))   throw std::runtime_error("struct definitions not allowed in codeblock");
+        if (parse_function_definition(it,tokens,"",code)) throw std::runtime_error("function definitions not allowed in codeblock");
+        acquire_instruction(it,tokens,"",code);
     } 
     else {
         acquire_exact_match(it,tokens,"{");
         while(it != tokens.end() and it->sourcetext != "}") {
-            if (parse_struct_definition(it,tokens,"",code))   throw std::runtime_error("functions definitions not allowed in codeblock");
-            if (parse_function_definition(it,tokens,"",code)) throw std::runtime_error("functions definitions not allowed in codeblock");
-            parse_instruction(it,tokens,"",code);
+            if (parse_struct_definition(it,tokens,"",code))   throw std::runtime_error("struct definitions not allowed in codeblock");
+            if (parse_function_definition(it,tokens,"",code)) throw std::runtime_error("function definitions not allowed in codeblock");
+            acquire_instruction(it,tokens,"",code);
         }
         if (it == tokens.end() or it->sourcetext != "}") throw std::runtime_error("brackets opened but never closed");
         std::advance(it,1);

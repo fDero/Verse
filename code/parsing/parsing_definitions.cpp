@@ -70,7 +70,7 @@ bool parse_function_definition(std::vector<Token>::iterator& it, const std::vect
     while(it != tokens.end() and it->sourcetext != "}"){
         if (parse_struct_definition(it,tokens,func_name,output))   continue;
         if (parse_function_definition(it,tokens,func_name,output)) continue;
-        parse_instruction(it,tokens,func_name,code);
+        acquire_instruction(it,tokens,func_name,code);
     }
     if (it == tokens.end() or it->sourcetext != "}") throw std::runtime_error("brackets opened but never closed in function definition");
     std::advance(it,1);
