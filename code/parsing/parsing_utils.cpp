@@ -1,4 +1,4 @@
-#include "../include/defs.hpp"
+#include "../include/verse.hpp"
 #include "../include/procedures.hpp"
 
 void acquire_instruction(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::string context, std::vector<Instruction>& output){
@@ -33,12 +33,18 @@ void acquire_identifier(std::vector<Token>::iterator& it, const std::vector<Toke
     if(not is_identifier) throw std::runtime_error("unexpected token: " + found + " instead of: " + "identifier");
 }
 
-void acquire_typesignature(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::string& type){
+void acquire_baretype(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::string& type){
     bool is_type = (it != tokens.end() and isalpha(it->sourcetext[0]) and isupper(it->sourcetext[0]));
     type = (is_type)? it->sourcetext : "/ERROR";
     std::advance(it,is_type);
     std::string found = (it == tokens.end())? "(END OF FILE)" : it->sourcetext;
     if(not is_type) throw std::runtime_error("unexpected token: " + found + " instead of: " + "type");
+}
+
+void acquire_typesignature(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, TypeSignature& type){
+    std::string base_type;
+    acquire_baretype(it,tokens,base_type);
+    type = BaseType{base_type};
 }
 
 void acquire_expression(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::shared_ptr<Instruction>& value){
@@ -78,5 +84,5 @@ void acquire_codeblock(std::vector<Token>::iterator& it, const std::vector<Token
 }
 
 std::string updated_context(const std::string& context, const std::string& scope){
-    return context + (context.empty()? "" : context_concatenation) + scope;
+    return context + (context.empty()? "" : "::") + scope;
 }

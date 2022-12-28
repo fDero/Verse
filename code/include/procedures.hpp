@@ -7,7 +7,9 @@ std::vector<Token> tokenize_file(const std::string& input_filepath);
 std::string updated_context(const std::string& context, const std::string& scope);
 void acquire_exact_match(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, const std::string& match);
 void acquire_identifier(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::string& name);
-void acquire_typesignature(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::string& type);
+void acquire_typesignature(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, TypeSignature& type);
+void acquire_baretype(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::string& type);
+
 void acquire_expression(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::shared_ptr<Instruction>& value);
 void acquire_terminal(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::shared_ptr<Instruction>& value);
 void acquire_codeblock(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::vector<Instruction>& code);
@@ -33,6 +35,7 @@ bool parse_non_terminated_expression(std::vector<Token>::iterator& it, const std
 void parse_file(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::string context, std::vector<Instruction>& output);
 
 //compilation
+std::string serialize_type(const TypeSignature& type);
 void compile_json(const std::string& input_filepath, const std::string& output_filepath);
 void compile_xml(const std::string& input_filepath, const std::string& output_filepath);
 void translate_instructions_into_xml(const std::vector<Instruction>& instructions, std::fstream& output, const std::string& prefix);

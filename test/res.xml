@@ -1,3 +1,4 @@
+<LITERAL value="'c'" pseudotype="char"/>
 <OPERATOR text="+">
 	<OPERATOR text="+">
 		<OPERATOR text="+">
@@ -85,7 +86,7 @@
 	</OPERATOR>
 	<IDENTIFIER name="d"/>
 </OPERATOR>
-<INSTANTIATION name="s" type="String"/>
+<INSTANTIATION name="s" type="TEMPORARY DISABLED"/>
 <OPERATOR text="=">
 	<IDENTIFIER name="s"/>
 	<LITERAL value="`ciao`" pseudotype="string"/>
@@ -105,7 +106,7 @@
 		</OPERATOR>
 	</OPERATOR>
 	<CODE>
-		<INSTANTIATION name="x" type="X"/>
+		<INSTANTIATION name="x" type="TEMPORARY DISABLED"/>
 		<OPERATOR text="=">
 			<IDENTIFIER name="x"/>
 			<ASSIGNMENT>
@@ -177,3 +178,19 @@
 		</IF>
 	</ELSE>
 </IF>
+<OPERATOR text="+">
+	<OPERATOR text="+">
+		<IDENTIFIER name="a"/>
+		<OPERATOR text="*">
+			<OPERATOR text="*">
+				<IDENTIFIER name="b"/>
+				<OPERATOR text="^">
+					<IDENTIFIER name="c"/>
+					<IDENTIFIER name="d"/>
+				</OPERATOR>
+			</OPERATOR>
+			<IDENTIFIER name="e"/>
+		</OPERATOR>
+	</OPERATOR>
+	<IDENTIFIER name="f"/>
+</OPERATOR>

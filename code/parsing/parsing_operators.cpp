@@ -1,5 +1,8 @@
-#include "../include/defs.hpp"
+#include "../include/verse.hpp"
 #include "../include/procedures.hpp"
+
+inline const std::set<std::string> prefixes{"!","-","+","#"};
+inline const std::set<std::string> infixies{"+","-","*","/","^","<",">","<=",">=","->","<-",">>","<<","&&","||","^^",".",":",","};
 
 bool parse_prefix_operator(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, Instruction& target){
     if (it == tokens.end() or prefixes.find(it->sourcetext) == prefixes.end()) return false;

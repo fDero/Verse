@@ -1,10 +1,11 @@
-#include "../include/defs.hpp"
+#include "../include/verse.hpp"
 #include "../include/procedures.hpp"
 
 bool parse_instantiation(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::vector<Instruction>& output){ 
     if(it->sourcetext != "var") return false; 
     std::advance(it,1); 
-    std::string name, type;
+    std::string name;
+    TypeSignature type;
     std::shared_ptr<Instruction> value;
     acquire_identifier(it, tokens, name);
     acquire_exact_match(it,tokens,":");
@@ -27,13 +28,15 @@ bool parse_struct_definition(std::vector<Token>::iterator& it, const std::vector
     if(it->sourcetext != "struct") return false;
     std::advance(it,1);
     std::string struct_name;
+    std::vector<TypeSignature> generics;
     std::vector<Instantiation> internal_state;
-    acquire_typesignature(it,tokens,struct_name);
+    acquire_baretype(it,tokens,struct_name);
     struct_name = updated_context(context,struct_name);
     acquire_exact_match(it,tokens,"{");
     while(it != tokens.end() and it->sourcetext != "}"){
         if (parse_struct_definition(it,tokens,struct_name,output)) continue;
-        std::string name, type;
+        std::string name;
+        TypeSignature type;
         acquire_identifier(it, tokens, name);
         acquire_exact_match(it,tokens,":");
         acquire_typesignature(it,tokens,type);
@@ -42,7 +45,7 @@ bool parse_struct_definition(std::vector<Token>::iterator& it, const std::vector
     }
     if (it == tokens.end()) throw std::runtime_error("brackets opened but never closed in struct definition");
     std::advance(it,1);
-    output.push_back(StructDefinition{struct_name, internal_state});
+    output.push_back(StructDefinition{struct_name, generics, internal_state});
     return true;
 }
 
@@ -50,6 +53,7 @@ bool parse_function_definition(std::vector<Token>::iterator& it, const std::vect
     if(it->sourcetext != "func") return false;
     std::advance(it,1);
     std::string func_name;
+    std::vector<TypeSignature> generics;
     std::vector<Instantiation> arguments;
     std::vector<Instruction> code;
     acquire_identifier(it,tokens,func_name);
@@ -57,7 +61,8 @@ bool parse_function_definition(std::vector<Token>::iterator& it, const std::vect
     acquire_exact_match(it,tokens,"(");
     if (it != tokens.end() and it->sourcetext != ")" and it->sourcetext != ",") do {
         std::advance(it,it->sourcetext == ",");
-        std::string name, type;
+        std::string name;
+        TypeSignature type;
         acquire_identifier(it, tokens, name);
         acquire_exact_match(it,tokens,":");
         acquire_typesignature(it,tokens,type);
@@ -74,6 +79,6 @@ bool parse_function_definition(std::vector<Token>::iterator& it, const std::vect
     }
     if (it == tokens.end() or it->sourcetext != "}") throw std::runtime_error("brackets opened but never closed in function definition");
     std::advance(it,1);
-    output.push_back(FunctionDefinition{func_name,arguments,code});
+    output.push_back(FunctionDefinition{func_name,generics,arguments,code});
     return true;
 }

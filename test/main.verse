@@ -1,4 +1,6 @@
 
+'c';
+
 z + x + a * b ^ c + y;
 
 a * b ^ c;
@@ -30,3 +32,5 @@ if n < 10 {
 } else {
     print("exactly ten");
 }
+
+a + b * c ^ d * e + f;

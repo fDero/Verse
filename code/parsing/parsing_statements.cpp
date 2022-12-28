@@ -1,4 +1,4 @@
-#include "../include/defs.hpp"
+#include "../include/verse.hpp"
 #include "../include/procedures.hpp"
 
 bool parse_conditional(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::vector<Instruction>& output){

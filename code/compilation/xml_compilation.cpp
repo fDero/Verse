@@ -1,10 +1,15 @@
-#include "../include/defs.hpp"
+#include "../include/verse.hpp"
 #include "../include/procedures.hpp"
+
+std::string serialize_type(const TypeSignature& type){
+    return "TEMPORARY DISABLED";
+}
 
 bool convert_instantiation_into_xml(const Instruction& instr, std::fstream& output, const std::string& prefix){
     if (not std::holds_alternative<Instantiation>(instr)) return false;
     Instantiation instance = std::get<Instantiation>(instr);
-    output << prefix << ("<INSTANTIATION name=\"" + instance.name + "\" type=\"" + instance.typesignature + "\"/>\n"); 
+    std::string typesignature = serialize_type(instance.typesignature);
+    output << prefix << ("<INSTANTIATION name=\"" + instance.name + "\" type=\"" + typesignature + "\"/>\n"); 
     return true;
 }
 
@@ -13,7 +18,8 @@ bool convert_struct_definition_into_xml(const Instruction& instr, std::fstream& 
     StructDefinition structdef = std::get<StructDefinition>(instr);
     output << prefix <<  ("<STRUCT name=\"" + structdef.struct_name + "\">\n");
     for (const Instantiation& internal_state_var : structdef.internal_state) {
-        output << prefix << ("\t<FIELD name=\"" + internal_state_var.name + "\" type=\"" + internal_state_var.typesignature + "\"/>\n");
+        std::string typesignature = serialize_type(internal_state_var.typesignature);
+        output << prefix << ("\t<FIELD name=\"" + internal_state_var.name + "\" type=\"" + typesignature + "\"/>\n");
     }
     output << prefix <<  ("</STRUCT>\n");
     return true;
@@ -24,11 +30,12 @@ bool convert_function_definition_into_xml(const Instruction& instr, std::fstream
     FunctionDefinition funcdef = std::get<FunctionDefinition>(instr);
     output << prefix <<  ("<FUNCDEF name=\"" + funcdef.func_name + "\">\n");
     for (const Instantiation& arg : funcdef.args) {
-        output << ("\t<ARG name=\"" + arg.name + "\" type=\"" + arg.typesignature + "\"/>\n");
+        std::string typesignature = serialize_type(arg.typesignature);
+        output << ("\t<ARG name=\"" + arg.name + "\" type=\"" + typesignature + "\"/>\n");
     }
-    output << prefix <<  (indent + "<CODE>\n");
-    translate_instructions_into_xml(funcdef.code,output, indent + indent + prefix);
-    output << prefix <<  (indent + "</CODE>\n");
+    output << prefix <<  ("\t<CODE>\n");
+    translate_instructions_into_xml(funcdef.code,output, "\t\t" + prefix);
+    output << prefix <<  ("\t</CODE>\n");
     output << prefix <<  ("</FUNCDEF>\n");
     return true;
 }
@@ -37,7 +44,7 @@ bool convert_function_call_into_xml(const Instruction& instr, std::fstream& outp
     if (not std::holds_alternative<FunctionCall>(instr)) return false;
     FunctionCall funcall = std::get<FunctionCall>(instr);
     output << prefix <<  ("<FUNCALL name=\"" + funcall.func_name + "\">\n");
-    translate_instructions_into_xml(funcall.args,output,indent + prefix);
+    translate_instructions_into_xml(funcall.args,output,"\t" + prefix);
     output << prefix << ("</FUNCALL>\n");
     return true;
 }
@@ -62,8 +69,8 @@ bool convert_binary_operator_into_xml(const Instruction& instr, std::fstream& ou
     if (not std::holds_alternative<BinaryOperator>(instr)) return false;
     BinaryOperator oper = std::get<BinaryOperator>(instr);
     output << prefix <<  ("<OPERATOR text=\"" + oper.text + "\"" + ">\n");
-    translate_instructions_into_xml({*(oper.lx)},output,indent + prefix);
-    translate_instructions_into_xml({*(oper.rx)},output,indent + prefix);
+    translate_instructions_into_xml({*(oper.lx)},output,"\t" + prefix);
+    translate_instructions_into_xml({*(oper.rx)},output,"\t" + prefix);
     output << prefix <<  ("</OPERATOR>\n");
     return true;
 } 
@@ -72,7 +79,7 @@ bool convert_unary_operator_into_xml(const Instruction& instr, std::fstream& out
     if (not std::holds_alternative<UnaryOperator>(instr)) return false;
     UnaryOperator oper = std::get<UnaryOperator>(instr);
     output << prefix <<  ("<OPERATOR text=\"" + oper.text + "\"" + ">\n");
-    translate_instructions_into_xml({*(oper.operand)},output,indent + prefix);
+    translate_instructions_into_xml({*(oper.operand)},output,"\t" + prefix);
     output << prefix <<  ("</OPERATOR>\n");
     return true;
 } 
@@ -81,9 +88,9 @@ bool convert_while_into_xml(const Instruction& instr, std::fstream& output, cons
     if (not std::holds_alternative<WhileLoop>(instr)) return false;
     WhileLoop loop = std::get<WhileLoop>(instr);
     output << prefix <<  ("<WHILE>\n");
-    translate_instructions_into_xml({*(loop.condition)},output,indent + prefix);
+    translate_instructions_into_xml({*(loop.condition)},output,"\t" + prefix);
     output << prefix <<  ("\t<CODE>\n");
-    translate_instructions_into_xml(loop.code,output,indent + indent + prefix);
+    translate_instructions_into_xml(loop.code,output,"\t\t" + prefix);
     output << prefix <<  ("\t<CODE>\n");
     output << prefix <<  ("</WHILE>\n");
     return true;
@@ -93,9 +100,9 @@ bool convert_until_into_xml(const Instruction& instr, std::fstream& output, cons
     if (not std::holds_alternative<UntilLoop>(instr)) return false;
     UntilLoop loop = std::get<UntilLoop>(instr);
     output << prefix <<  ("<UNTIL>\n");
-    translate_instructions_into_xml({*(loop.condition)},output,indent + prefix);
+    translate_instructions_into_xml({*(loop.condition)},output,"\t" + prefix);
     output << prefix <<  ("\t<CODE>\n");
-    translate_instructions_into_xml(loop.code,output,indent + indent + prefix);
+    translate_instructions_into_xml(loop.code,output,"\t\t" + prefix);
     output << prefix <<  ("\t<CODE>\n");
     output << prefix <<  ("</UNTIL>\n");
     return true;
@@ -106,12 +113,12 @@ bool convert_conditional_into_xml(const Instruction& instr, std::fstream& output
     if (not std::holds_alternative<Conditional>(instr)) return false;
     Conditional conditional = std::get<Conditional>(instr);
     output << prefix <<  ("<IF>\n");
-    translate_instructions_into_xml({*(conditional.condition)},output,indent + prefix);
+    translate_instructions_into_xml({*(conditional.condition)},output,"\t" + prefix);
     output << prefix <<  ("\t<THEN>\n");
-    translate_instructions_into_xml(conditional.then,output,indent + indent + prefix);
+    translate_instructions_into_xml(conditional.then,output,"\t\t" + prefix);
     output << prefix <<  ("\t</THEN>\n");
     output << prefix <<  ("\t<ELSE>\n");
-    translate_instructions_into_xml(conditional.otherwise,output,indent + indent + prefix);
+    translate_instructions_into_xml(conditional.otherwise,output,"\t\t" + prefix);
     output << prefix <<  ("\t</ELSE>\n");
     output << prefix <<  ("</IF>\n");
     return true;
@@ -121,8 +128,8 @@ bool convert_assignment_into_xml(const Instruction& instr, std::fstream& output,
     if (not std::holds_alternative<Assignment>(instr)) return false;
     Assignment ass = std::get<Assignment>(instr);
     output << prefix <<  ("<ASSIGNMENT>\n");
-    translate_instructions_into_xml({*(ass.target)},output,indent + prefix);
-    translate_instructions_into_xml({*(ass.value)},output,indent + prefix);
+    translate_instructions_into_xml({*(ass.target)},output,"\t" + prefix);
+    translate_instructions_into_xml({*(ass.value)},output,"\t" + prefix);
     output << prefix <<  ("</ASSIGNMENT>\n");
     return true;
 }
