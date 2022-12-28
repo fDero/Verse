@@ -42,3 +42,13 @@ The installation if you're building from source should be correctly performed wi
 ```bash
 >> make build
 ```
+If everything worked out as expected 
+you should see the verse executable now in 
+the folder you're in, to complete the installation
+move the file in a folder recognized as part of the 
+path of your system, in linux for example such a folder
+could be ```/usr/bin```
+
+
+
+
