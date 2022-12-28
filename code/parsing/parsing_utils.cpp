@@ -5,7 +5,7 @@ void acquire_instruction(std::vector<Token>::iterator& it, const std::vector<Tok
     if (parse_instantiation(it,tokens,output))                  return;
     if (parse_struct_definition(it,tokens,context,output))      return;
     if (parse_function_definition(it,tokens,context,output))    return;
-    if (parse_conditional_statement(it,tokens,output))          return;
+    if (parse_conditional(it,tokens,output))                    return;
     if (parse_while_loop(it,tokens,output))                     return;
     if (parse_until_loop(it,tokens,output))                     return;
     if (parse_expression(it,tokens,output))                     return;

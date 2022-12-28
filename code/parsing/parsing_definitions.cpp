@@ -2,10 +2,10 @@
 #include "../include/procedures.hpp"
 
 bool parse_instantiation(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::vector<Instruction>& output){ 
+    if(it->sourcetext != "var") return false; 
+    std::advance(it,1); 
     std::string name, type;
     std::shared_ptr<Instruction> value;
-    if(it->sourcetext == "var") std::advance(it,1); 
-    else return false;
     acquire_identifier(it, tokens, name);
     acquire_exact_match(it,tokens,":");
     acquire_typesignature(it,tokens,type);
@@ -24,10 +24,10 @@ bool parse_instantiation(std::vector<Token>::iterator& it, const std::vector<Tok
 }
 
 bool parse_struct_definition(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::string context, std::vector<Instruction>& output){
+    if(it->sourcetext != "struct") return false;
+    std::advance(it,1);
     std::string struct_name;
     std::vector<Instantiation> internal_state;
-    if(it->sourcetext == "struct") std::advance(it,1);
-    else return false;
     acquire_typesignature(it,tokens,struct_name);
     struct_name = updated_context(context,struct_name);
     acquire_exact_match(it,tokens,"{");
@@ -47,11 +47,11 @@ bool parse_struct_definition(std::vector<Token>::iterator& it, const std::vector
 }
 
 bool parse_function_definition(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::string context, std::vector<Instruction>& output){    
+    if(it->sourcetext != "func") return false;
+    std::advance(it,1);
     std::string func_name;
     std::vector<Instantiation> arguments;
     std::vector<Instruction> code;
-    if(it->sourcetext == "func") std::advance(it,1);
-    else return false;
     acquire_identifier(it,tokens,func_name);
     func_name = updated_context(context,func_name);
     acquire_exact_match(it,tokens,"(");

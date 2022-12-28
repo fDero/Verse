@@ -1,7 +1,7 @@
 #include "../include/defs.hpp"
 #include "../include/procedures.hpp"
 
-bool parse_conditional_statement(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::vector<Instruction>& output){
+bool parse_conditional(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::vector<Instruction>& output){
     if (it->sourcetext != "if") return false;
     std::advance(it,1);
     std::shared_ptr<Instruction> condition;

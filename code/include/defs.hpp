@@ -16,7 +16,7 @@
 
 inline const std::set<char> symbols{'+','-','*','/','=','.',':','<','>','!','(',')','[',']','{','}',',',';','&','|','^','#'};
 inline const std::set<std::string> combinations{">=","<=","!=","++","--","==","->","<-",">>","<<","&&","||","^^"};
-inline const std::set<char> discardable {'\t','\r','\0','\n',' '}; 
+inline const std::set<char> discardable{'\t','\r','\0','\n',' '}; 
 
 inline const std::set<std::string> prefixes{"!","-","+","#"};
 inline const std::set<std::string> infixies{"+","-","*","/","^","<",">","<=",">=","->","<-",">>","<<","&&","||","^^",".",":",","};
@@ -94,15 +94,15 @@ struct BinaryOperator {
     bool wrapped_in_parenthesys = false;
 };
 
-struct Assignment {
-    std::shared_ptr<Instruction> target;
-    std::shared_ptr<Instruction> value;
-};
-
 struct UnaryOperator {
     std::string text;
     std::shared_ptr<Instruction> operand;
     bool wrapped_in_parenthesys = false;
+};
+
+struct Assignment {
+    std::shared_ptr<Instruction> target;
+    std::shared_ptr<Instruction> value;
 };
 
 struct Identifier { 
