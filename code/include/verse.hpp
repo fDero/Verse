@@ -22,10 +22,11 @@ struct Token {
     unsigned int char_pos;
 };
 
-struct Instantiation; struct StructDefinition; struct FunctionDefinition;
-struct Identifier; struct Literal; 
-struct Assignment; struct FunctionCall; struct UnaryOperator; struct BinaryOperator;
-struct WhileLoop; struct UntilLoop; struct Conditional; 
+struct Instantiation;  struct StructDefinition; struct FunctionDefinition;
+struct FunctionCall;   struct UnaryOperator;    struct BinaryOperator;
+struct WhileLoop;      struct UntilLoop;        struct Conditional; 
+struct Assignment;     struct Literal;          struct Identifier;              
+
 using Instruction = std::variant<
     Instantiation,      StructDefinition,       FunctionDefinition,
     FunctionCall,       UnaryOperator,          BinaryOperator,

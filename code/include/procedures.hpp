@@ -1,41 +1,42 @@
 #pragma once
 
 //tokenization
-std::vector<Token> tokenize_file(const std::string& input_filepath);
+std::vector<Token> tokenize_file(const std::string&);
 
 //parsing
-std::string updated_context(const std::string& context, const std::string& scope);
-void acquire_exact_match(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, const std::string& match);
-void acquire_identifier(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::string& name);
-void acquire_typesignature(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, TypeSignature& type);
-void acquire_baretype(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::string& type);
+std::string updated_context(const std::string&,const std::string&);
+void acquire_exact_match(std::vector<Token>::iterator&,const std::vector<Token>&,const std::string&);
+void acquire_identifier(std::vector<Token>::iterator&,const std::vector<Token>&,std::string&);
+void acquire_typesignature(std::vector<Token>::iterator&,const std::vector<Token>&,TypeSignature&);
+void acquire_baretype(std::vector<Token>::iterator&,const std::vector<Token>&,std::string&);
 
-void acquire_expression(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::shared_ptr<Instruction>& value);
-void acquire_terminal(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::shared_ptr<Instruction>& value);
-void acquire_codeblock(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::vector<Instruction>& code);
-void acquire_instruction(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::string context, std::vector<Instruction>& output);
+void acquire_expression(std::vector<Token>::iterator&,const std::vector<Token>&,std::shared_ptr<Instruction>&);
+void acquire_terminal(std::vector<Token>::iterator&,const std::vector<Token>&,std::shared_ptr<Instruction>&);
+void acquire_codeblock(std::vector<Token>::iterator&,const std::vector<Token>&,std::vector<Instruction>&);
+void acquire_instruction(std::vector<Token>::iterator&,const std::vector<Token>&,std::string,std::vector<Instruction>&);
 
-bool parse_instantiation(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::vector<Instruction>& output);
-bool parse_struct_definition(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::string context, std::vector<Instruction>& output);
-bool parse_function_definition(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::string context, std::vector<Instruction>& output);
-bool parse_conditional(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::vector<Instruction>& output);
-bool parse_while_loop(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::vector<Instruction>& output);
-bool parse_until_loop(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::vector<Instruction>& output);
-bool parse_expression(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::vector<Instruction>& output);
+bool parse_struct_definition(std::vector<Token>::iterator&,const std::vector<Token>&,std::string,std::vector<Instruction>&);
+bool parse_function_definition(std::vector<Token>::iterator&,const std::vector<Token>&,std::string,std::vector<Instruction>&);
+bool parse_instantiation(std::vector<Token>::iterator&,const std::vector<Token>&,std::vector<Instruction>&);
+bool parse_conditional(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::vector<Instruction>&);
+bool parse_while_loop(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::vector<Instruction>&);
+bool parse_until_loop(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::vector<Instruction>&);
+bool parse_expression(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::vector<Instruction>&);
 
-void fix_expression(Instruction& expr);
-void operator_precedence_lockout(Instruction& expr);
+void operator_precedence_lockout(Instruction&);
+void fix_expression(Instruction&);
 
-bool parse_prefix_operator(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, Instruction& target);
-bool parse_infix_operator(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, Instruction& target);
-bool parse_terminal(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, Instruction& target);
-bool parse_assignment(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, Instruction& expr);
+bool parse_prefix_operator(std::vector<Token>::iterator&,const std::vector<Token>&,Instruction&);
+bool parse_infix_operator(std::vector<Token>::iterator&,const std::vector<Token>&,Instruction&);
+bool parse_assignment(std::vector<Token>::iterator&,const std::vector<Token>&,Instruction&);
+bool parse_terminal(std::vector<Token>::iterator&,const std::vector<Token>&,Instruction&);
 
-bool parse_non_terminated_expression(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::vector<Instruction>& output);
-void parse_file(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::string context, std::vector<Instruction>& output);
+
+bool parse_non_terminated_expression(std::vector<Token>::iterator&,const std::vector<Token>&,std::vector<Instruction>&);
+void parse_file(std::vector<Token>::iterator&,const std::vector<Token>&,std::string,std::vector<Instruction>&);
 
 //compilation
-std::string serialize_type(const TypeSignature& type);
-void compile_json(const std::string& input_filepath, const std::string& output_filepath);
-void compile_xml(const std::string& input_filepath, const std::string& output_filepath);
-void translate_instructions_into_xml(const std::vector<Instruction>& instructions, std::fstream& output, const std::string& prefix);
+std::string serialize_type(const TypeSignature&);
+void compile_json(const std::string&,const std::string&);
+void compile_xml(const std::string&,const std::string&);
+void translate_instructions_into_xml(const std::vector<Instruction>&,std::fstream&,const std::string&);

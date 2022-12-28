@@ -1,10 +1,6 @@
 #include "../include/verse.hpp"
 #include "../include/procedures.hpp"
 
-std::string serialize_type(const TypeSignature& type){
-    return "TEMPORARY DISABLED";
-}
-
 bool convert_instantiation_into_xml(const Instruction& instr, std::fstream& output, const std::string& prefix){
     if (not std::holds_alternative<Instantiation>(instr)) return false;
     Instantiation instance = std::get<Instantiation>(instr);
@@ -134,6 +130,17 @@ bool convert_assignment_into_xml(const Instruction& instr, std::fstream& output,
     return true;
 }
 
+void compile_xml(const std::string& input_filepath, const std::string& output_filepath){
+    std::vector<Token> tokens = tokenize_file(input_filepath); 
+    std::vector<Token>::iterator primer = tokens.begin();   
+    std::fstream output = std::fstream(output_filepath,  std::fstream::in | std::fstream::out | std::fstream::trunc);
+    std::vector<Instruction> instructions;
+    parse_file(primer, tokens, "", instructions); 
+    translate_instructions_into_xml(instructions,output,"");
+    output.close(); 
+    std::cout << input_filepath << " compiled successfully as " << output_filepath << "\n";
+}
+
 void translate_instructions_into_xml(const std::vector<Instruction>& instructions, std::fstream& output, const std::string& prefix){
     for (const auto& instr : instructions) {
         if (convert_instantiation_into_xml(instr,output,prefix))        continue;
@@ -152,13 +159,29 @@ void translate_instructions_into_xml(const std::vector<Instruction>& instruction
     }
 }
 
-void compile_xml(const std::string& input_filepath, const std::string& output_filepath){
-    std::vector<Token> tokens = tokenize_file(input_filepath); 
-    std::vector<Token>::iterator primer = tokens.begin();   
-    std::fstream output = std::fstream(output_filepath,  std::fstream::in | std::fstream::out | std::fstream::trunc);
-    std::vector<Instruction> instructions;
-    parse_file(primer, tokens, "", instructions); 
-    translate_instructions_into_xml(instructions,output,"");
-    output.close(); 
-    std::cout << input_filepath << " compiled successfully as " << output_filepath << "\n";
+std::string serialize_base_type(const TypeSignature& type){
+    BaseType base = std::get<BaseType>(type);
+    if (base.generics.empty()) return base.base_type;
+    std::string serialized = base.base_type + "<";
+    for (const TypeSignature& generic : base.generics) serialized += serialize_type(generic) + ",";
+    serialized.back() = '>';
+    return serialized;
+}
+
+std::string serialize_pointer_type(const TypeSignature& type){
+    Pointer ptr = std::get<Pointer>(type);
+    return serialize_type(*(ptr.pointed)) + "*";
+}
+
+std::string serialize_array_type(const TypeSignature& type){
+    Array arr = std::get<Array>(type);
+    std::string length = (arr.length > 0)? std::to_string(arr.length) : "";
+    return serialize_type(*(arr.type)) + "[" + length + "]";
+}
+
+std::string serialize_type(const TypeSignature& type){
+    if (std::holds_alternative<Pointer>(type)) return serialize_pointer_type(type);
+    if (std::holds_alternative<BaseType>(type)) return serialize_base_type(type);
+    if (std::holds_alternative<Array>(type)) return serialize_base_type(type);
+    throw std::runtime_error("can't serialize ill formed type");
 }
