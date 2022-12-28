@@ -27,7 +27,7 @@ is the default package-manager of Debian-based linux distributions like (but not
 If you want to install Verse with **pacman**, you can just run the following command in your shell. As a reminder, keep in mind that **pacman**
 is the default package-manager of Arch linux.
 ```bash
->> pacman -i verse
+>> pacman -S verse
 ```
 
 ### Build from source
@@ -35,6 +35,9 @@ If you want to build everything from source it's required for you to also instal
 The installation if you're building from source should be correctly performed with the following commands:
 ```bash
 >> git clone https://github.com/fDero/Verse
+```
+```bash
+cd Verse
 ```
 ```bash
 >> make build
