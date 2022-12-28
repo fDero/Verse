@@ -37,7 +37,7 @@ The installation if you're building from source should be correctly performed wi
 >> git clone https://github.com/fDero/Verse
 ```
 ```bash
-cd Verse
+>> cd Verse
 ```
 ```bash
 >> make build
