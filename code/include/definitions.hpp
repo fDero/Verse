@@ -10,6 +10,7 @@ struct StructDefinition {
     std::string struct_name; 
     std::vector<TypeSignature> generics; 
     std::vector<Instantiation> internal_state;
+    //
 };
 
 struct FunctionDefinition { 
