@@ -182,6 +182,6 @@ std::string serialize_array_type(const TypeSignature& type){
 std::string serialize_type(const TypeSignature& type){
     if (std::holds_alternative<Pointer>(type)) return serialize_pointer_type(type);
     if (std::holds_alternative<BaseType>(type)) return serialize_base_type(type);
-    if (std::holds_alternative<Array>(type)) return serialize_base_type(type);
+    if (std::holds_alternative<Array>(type)) return serialize_array_type(type);
     throw std::runtime_error("can't serialize ill formed type");
 }

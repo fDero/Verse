@@ -15,6 +15,9 @@ void acquire_terminal(std::vector<Token>::iterator&,const std::vector<Token>&,st
 void acquire_codeblock(std::vector<Token>::iterator&,const std::vector<Token>&,std::vector<Instruction>&);
 void acquire_instruction(std::vector<Token>::iterator&,const std::vector<Token>&,std::string,std::vector<Instruction>&);
 
+void acquire_generics(std::vector<Token>::iterator&,const std::vector<Token>&,std::vector<TypeSignature>&);
+void acquire_simple_generics(std::vector<Token>::iterator&,const std::vector<Token>&,std::vector<TypeSignature>&);
+
 bool parse_struct_definition(std::vector<Token>::iterator&,const std::vector<Token>&,std::string,std::vector<Instruction>&);
 bool parse_function_definition(std::vector<Token>::iterator&,const std::vector<Token>&,std::string,std::vector<Instruction>&);
 bool parse_instantiation(std::vector<Token>::iterator&,const std::vector<Token>&,std::vector<Instruction>&);

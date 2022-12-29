@@ -31,6 +31,7 @@ bool parse_struct_definition(std::vector<Token>::iterator& it, const std::vector
     std::vector<TypeSignature> generics;
     std::vector<Instantiation> internal_state;
     acquire_baretype(it,tokens,struct_name);
+    acquire_simple_generics(it,tokens,generics);
     struct_name = updated_context(context,struct_name);
     acquire_exact_match(it,tokens,"{");
     while(it != tokens.end() and it->sourcetext != "}"){
@@ -57,6 +58,7 @@ bool parse_function_definition(std::vector<Token>::iterator& it, const std::vect
     std::vector<Instantiation> arguments;
     std::vector<Instruction> code;
     acquire_identifier(it,tokens,func_name);
+    acquire_simple_generics(it,tokens,generics);
     func_name = updated_context(context,func_name);
     acquire_exact_match(it,tokens,"(");
     if (it != tokens.end() and it->sourcetext != ")" and it->sourcetext != ",") do {

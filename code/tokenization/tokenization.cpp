@@ -2,7 +2,7 @@
 #include "../include/procedures.hpp"
 
 inline const std::set<char> symbols{'+','-','*','/','=','.',':','<','>','!','(',')','[',']','{','}',',',';','&','|','^','#'};
-inline const std::set<std::string> combinations{">=","<=","!=","++","--","==","->","<-",">>","<<","&&","||","^^"};
+inline const std::set<std::string> combinations{">=","<=","!=","++","--","==","->","<-","&&","||","^^"};
 inline const std::set<char> discardable{'\t','\r','\0','\n',' '}; 
 
 std::string extract_number(const std::string& sourcecode, const int current, const TokenInfo& data){

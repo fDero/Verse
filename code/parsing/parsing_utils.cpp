@@ -41,10 +41,48 @@ void acquire_baretype(std::vector<Token>::iterator& it, const std::vector<Token>
     if(not is_type) throw std::runtime_error("unexpected token: " + found + " instead of: " + "type");
 }
 
+void acquire_generics(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::vector<TypeSignature>& generics){
+    if (it == tokens.end() or it->sourcetext != "<") return;
+    do {
+        std::advance(it,1);
+        TypeSignature generic;
+        acquire_typesignature(it,tokens,generic);    
+        generics.push_back(generic);
+    } while (it != tokens.end() and it->sourcetext == ",");
+    acquire_exact_match(it,tokens,">");
+}
+
+void acquire_simple_generics(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::vector<TypeSignature>& generics){
+    if (it == tokens.end() or it->sourcetext != "<") return;
+    do {
+        std::advance(it,1);
+        std::string generic_base_type;
+        acquire_baretype(it,tokens,generic_base_type);    
+        generics.push_back(BaseType{generic_base_type,{}});
+    } while (it != tokens.end() and it->sourcetext == ",");
+    acquire_exact_match(it,tokens,">");
+}
+
 void acquire_typesignature(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, TypeSignature& type){
     std::string base_type;
+    std::vector<TypeSignature> generics;
     acquire_baretype(it,tokens,base_type);
-    type = BaseType{base_type};
+    acquire_generics(it,tokens,generics);
+    type = BaseType{base_type,generics};
+    while (it != tokens.end()){
+        if (it->sourcetext == "*") { 
+            std::advance(it,1); 
+            type = Pointer{std::make_shared<TypeSignature>(type)};
+            continue;
+        }
+        if (it->sourcetext == "["){
+            std::advance(it,1); 
+            acquire_exact_match(it,tokens,"]");
+            type = Array{std::make_shared<TypeSignature>(type),0}; 
+            continue;
+        }
+        break;
+    }
 }
 
 void acquire_expression(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::shared_ptr<Instruction>& value){
