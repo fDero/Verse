@@ -1,20 +1,21 @@
 #include "../include/verse.hpp"
 #include "../include/procedures.hpp"
 
-void acquire_instruction(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::string context, std::vector<Instruction>& output){
-    if (parse_instantiation(it,tokens,output))                  return;
-    if (parse_struct_definition(it,tokens,context,output))      return;
-    if (parse_function_definition(it,tokens,context,output))    return;
-    if (parse_conditional(it,tokens,output))                    return;
-    if (parse_while_loop(it,tokens,output))                     return;
-    if (parse_until_loop(it,tokens,output))                     return;
-    if (parse_expression(it,tokens,output))                     return;
+void acquire_instruction(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::vector<Instruction>& output){
+    if (parse_variable(it,tokens,output))             return;
+    if (parse_constant(it,tokens,output))             return;
+    if (parse_struct_definition(it,tokens,output))    return;
+    if (parse_function_definition(it,tokens,output))  return;
+    if (parse_conditional(it,tokens,output))          return;
+    if (parse_while_loop(it,tokens,output))           return;
+    if (parse_until_loop(it,tokens,output))           return;
+    if (parse_expression(it,tokens,output))           return;
     throw std::runtime_error("unexpected token: " + it->sourcetext);
 }
 
-void parse_file(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::string context, std::vector<Instruction>& output){ 
+void parse_file(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::vector<Instruction>& output){ 
     while (it != tokens.end()) {
-        acquire_instruction(it,tokens,context,output);
+        acquire_instruction(it,tokens,output);
     }
 }
 
@@ -31,6 +32,12 @@ void acquire_identifier(std::vector<Token>::iterator& it, const std::vector<Toke
     std::advance(it,is_identifier);
     std::string found = (it == tokens.end())? "(END OF FILE)" : it->sourcetext;
     if(not is_identifier) throw std::runtime_error("unexpected token: " + found + " instead of: " + "identifier");
+}
+
+void acquire_instance(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, Instance& target){
+    acquire_identifier(it, tokens, target.name);
+    acquire_exact_match(it,tokens,":");
+    acquire_typesignature(it,tokens,target.typesignature);
 }
 
 void acquire_baretype(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::string& type){
@@ -105,22 +112,18 @@ void acquire_terminal(std::vector<Token>::iterator& it, const std::vector<Token>
 
 void acquire_codeblock(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::vector<Instruction>& code){
     if (it != tokens.end() and it->sourcetext != "{") {
-        if (parse_struct_definition(it,tokens,"",code))   throw std::runtime_error("struct definitions not allowed in codeblock");
-        if (parse_function_definition(it,tokens,"",code)) throw std::runtime_error("function definitions not allowed in codeblock");
-        acquire_instruction(it,tokens,"",code);
+        if (parse_struct_definition(it,tokens,code))   throw std::runtime_error("struct definitions not allowed in codeblock");
+        if (parse_function_definition(it,tokens,code)) throw std::runtime_error("function definitions not allowed in codeblock");
+        acquire_instruction(it,tokens,code);
     } 
     else {
         acquire_exact_match(it,tokens,"{");
         while(it != tokens.end() and it->sourcetext != "}") {
-            if (parse_struct_definition(it,tokens,"",code))   throw std::runtime_error("struct definitions not allowed in codeblock");
-            if (parse_function_definition(it,tokens,"",code)) throw std::runtime_error("function definitions not allowed in codeblock");
-            acquire_instruction(it,tokens,"",code);
+            if (parse_struct_definition(it,tokens,code))   throw std::runtime_error("struct definitions not allowed in codeblock");
+            if (parse_function_definition(it,tokens,code)) throw std::runtime_error("function definitions not allowed in codeblock");
+            acquire_instruction(it,tokens,code);
         }
         if (it == tokens.end() or it->sourcetext != "}") throw std::runtime_error("brackets opened but never closed");
         std::advance(it,1);
     }
-}
-
-std::string updated_context(const std::string& context, const std::string& scope){
-    return context + (context.empty()? "" : "::") + scope;
 }

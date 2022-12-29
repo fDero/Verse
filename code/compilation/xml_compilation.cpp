@@ -1,19 +1,39 @@
 #include "../include/verse.hpp"
 #include "../include/procedures.hpp"
 
-bool convert_instantiation_into_xml(const Instruction& instr, std::fstream& output, const std::string& prefix){
-    if (not std::holds_alternative<Instantiation>(instr)) return false;
-    Instantiation instance = std::get<Instantiation>(instr);
-    std::string typesignature = serialize_type(instance.typesignature);
-    output << prefix << ("<INSTANTIATION name=\"" + instance.name + "\" type=\"" + typesignature + "\"/>\n"); 
+bool convert_variable_into_xml(const Instruction& instr, std::fstream& output, const std::string& prefix){
+    if (not std::holds_alternative<Variable>(instr)) return false;
+    Variable var = std::get<Variable>(instr);
+    std::string typesignature = serialize_type(var.typesignature);
+    output << prefix << ("<VAR name=\"" + var.name + "\" type=\"" + typesignature + "\"/>\n"); 
     return true;
+}
+
+bool convert_constant_into_xml(const Instruction& instr, std::fstream& output, const std::string& prefix){
+    if (not std::holds_alternative<Constant>(instr)) return false;
+    Constant constant = std::get<Constant>(instr);
+    std::string typesignature = serialize_type(constant.typesignature);
+    output << prefix << ("<CONST name=\"" + constant.name + "\" type=\"" + typesignature + "\">\n");
+    translate_instructions_into_xml({*(constant.value)},output,"\t" + prefix);
+    output << prefix << ("</CONST>\n");
+    return true;
+}
+
+std::string serialize_generics(const std::vector<TypeSignature>& generics){
+    if (generics.empty()) return "";
+    std::string result = " generics=\"";
+    for (const TypeSignature& generic : generics) result += serialize_type(generic) + ",";
+    result.back() = '"';
+    return result;
 }
 
 bool convert_struct_definition_into_xml(const Instruction& instr, std::fstream& output, const std::string& prefix) {
     if (not std::holds_alternative<StructDefinition>(instr)) return false;
     StructDefinition structdef = std::get<StructDefinition>(instr);
-    output << prefix <<  ("<STRUCT name=\"" + structdef.struct_name + "\">\n");
-    for (const Instantiation& internal_state_var : structdef.internal_state) {
+    std::string generics = serialize_generics(structdef.generics);
+    output << prefix <<  ("<STRUCT name=\"" + structdef.struct_name + "\"" + generics + ">\n");
+    translate_instructions_into_xml(structdef.internal_definitions,output,"\t\t"+prefix);
+    for (const Instance& internal_state_var : structdef.internal_state) {
         std::string typesignature = serialize_type(internal_state_var.typesignature);
         output << prefix << ("\t<FIELD name=\"" + internal_state_var.name + "\" type=\"" + typesignature + "\"/>\n");
     }
@@ -24,12 +44,14 @@ bool convert_struct_definition_into_xml(const Instruction& instr, std::fstream& 
 bool convert_function_definition_into_xml(const Instruction& instr, std::fstream& output, const std::string& prefix){
     if (not std::holds_alternative<FunctionDefinition>(instr)) return false;
     FunctionDefinition funcdef = std::get<FunctionDefinition>(instr);
-    output << prefix <<  ("<FUNCDEF name=\"" + funcdef.func_name + "\">\n");
-    for (const Instantiation& arg : funcdef.args) {
+    std::string generics = serialize_generics(funcdef.generics);
+    output << prefix <<  ("<FUNCDEF name=\"" + funcdef.func_name + "\"" + generics + ">\n");
+    for (const Instance& arg : funcdef.args) {
         std::string typesignature = serialize_type(arg.typesignature);
-        output << ("\t<ARG name=\"" + arg.name + "\" type=\"" + typesignature + "\"/>\n");
+        output << prefix << ("\t<ARG name=\"" + arg.name + "\" type=\"" + typesignature + "\"/>\n");
     }
     output << prefix <<  ("\t<CODE>\n");
+    translate_instructions_into_xml(funcdef.internal_definitions,output,"\t\t"+prefix);
     translate_instructions_into_xml(funcdef.code,output, "\t\t" + prefix);
     output << prefix <<  ("\t</CODE>\n");
     output << prefix <<  ("</FUNCDEF>\n");
@@ -135,7 +157,7 @@ void compile_xml(const std::string& input_filepath, const std::string& output_fi
     std::vector<Token>::iterator primer = tokens.begin();   
     std::fstream output = std::fstream(output_filepath,  std::fstream::in | std::fstream::out | std::fstream::trunc);
     std::vector<Instruction> instructions;
-    parse_file(primer, tokens, "", instructions); 
+    parse_file(primer, tokens, instructions); 
     translate_instructions_into_xml(instructions,output,"");
     output.close(); 
     std::cout << input_filepath << " compiled successfully as " << output_filepath << "\n";
@@ -143,7 +165,8 @@ void compile_xml(const std::string& input_filepath, const std::string& output_fi
 
 void translate_instructions_into_xml(const std::vector<Instruction>& instructions, std::fstream& output, const std::string& prefix){
     for (const auto& instr : instructions) {
-        if (convert_instantiation_into_xml(instr,output,prefix))        continue;
+        if (convert_variable_into_xml(instr,output,prefix))             continue;
+        if (convert_constant_into_xml(instr,output,prefix))             continue;
         if (convert_binary_operator_into_xml(instr,output,prefix))      continue;
         if (convert_unary_operator_into_xml(instr,output,prefix))       continue;
         if (convert_struct_definition_into_xml(instr,output,prefix))    continue;

@@ -22,16 +22,18 @@ struct Token {
     unsigned int char_pos;
 };
 
-struct Instantiation;  struct StructDefinition; struct FunctionDefinition;
-struct FunctionCall;   struct UnaryOperator;    struct BinaryOperator;
-struct WhileLoop;      struct UntilLoop;        struct Conditional; 
-struct Assignment;     struct Literal;          struct Identifier;              
+struct Variable;         struct Constant;          struct FunctionDefinition;  
+struct EnumDefinition;   struct StructDefinition;  struct UnionDefinition;
+struct FunctionCall;     struct UnaryOperator;     struct BinaryOperator;
+struct WhileLoop;        struct UntilLoop;         struct Conditional; 
+struct Assignment;       struct Literal;           struct Identifier;              
 
 using Instruction = std::variant<
-    Instantiation,      StructDefinition,       FunctionDefinition,
-    FunctionCall,       UnaryOperator,          BinaryOperator,
-    WhileLoop,          UntilLoop,              Conditional,
-    Assignment,         Literal,                Identifier
+    Variable,       Constant,          FunctionDefinition,
+    /*Enum*/        StructDefinition,  /*Union*/
+    FunctionCall,   UnaryOperator,     BinaryOperator,
+    WhileLoop,      UntilLoop,         Conditional, 
+    Assignment,     Literal,           Identifier
 >;
 
 #include "types.hpp"
