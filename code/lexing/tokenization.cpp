@@ -40,7 +40,7 @@ std::string extract_string(const std::string& sourcecode, const int current, con
             escape = (sourcecode[i] == '\\' and !escape);
             buffer.push_back(sourcecode[i]);
         }
-        if (current+buffer.size() >= sourcecode.size() and sourcecode[current+buffer.size()] != sourcecode[current]){
+        if (current+buffer.size() >= sourcecode.size() or sourcecode[current+buffer.size()] != sourcecode[current]){
             throw TokenizationError{"string literal opened but never closed",buffer, data.filename, data.tok_number, data.char_pos};
         }
         buffer.push_back(sourcecode[current]);
