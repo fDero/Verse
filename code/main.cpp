@@ -6,26 +6,11 @@ int main(int argc, char **argv){
     try {
         CommandLine command_line = read_commandline(argc,argv);
         switch (command_line.mode){
-            case Mode::compiler:
-            compile(command_line.inputs, command_line.outputs);
-            break;
-            
-            case Mode::interpreter:
-            evaluate(command_line.inputs, command_line.outputs);
-            break;
-            
-            case Mode::debugger:
-            debug(command_line.inputs, command_line.outputs);
-            break;
-            
-            case Mode::version:
-            version();
-            break;
-        
-            default:
-            case Mode::help:
-            help();
-            break;
+            case Mode::compiler:      compile(command_line.inputs, command_line.outputs);   break;
+            case Mode::interpreter:   evaluate(command_line.inputs, command_line.outputs);  break;
+            case Mode::debugger:      debug(command_line.inputs, command_line.outputs);     break;
+            case Mode::version:       version();                                            break;
+            case Mode::help:          help();                                               break;
         }
     }
     catch (const TokenizationError& err){
