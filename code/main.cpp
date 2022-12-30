@@ -9,8 +9,8 @@ int main(int argc, char **argv){
             case Mode::compiler:      compile(command_line.inputs, command_line.outputs);   break;
             case Mode::interpreter:   evaluate(command_line.inputs, command_line.outputs);  break;
             case Mode::debugger:      debug(command_line.inputs, command_line.outputs);     break;
-            case Mode::version:       version();                                            break;
-            case Mode::help:          help();                                               break;
+            case Mode::version:       display_commandline_version();                        break;
+            case Mode::help:          display_commandline_help();                           break;
         }
     }
     catch (const TokenizationError& err){

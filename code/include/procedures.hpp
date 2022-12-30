@@ -1,13 +1,13 @@
 #pragma once
 
 //commandline
+CommandLine read_commandline(int,char**);
+FileExtension file_extension(const std::string& filename);
 void compile(const std::vector<std::string>&,const std::vector<std::string>&);
 void evaluate(const std::vector<std::string>&,const std::vector<std::string>&);
 void debug(const std::vector<std::string>&,const std::vector<std::string>&);
-CommandLine read_commandline(int,char**);
-FileExtension file_extension(const std::string& filename);
-void version();
-void help(); 
+void display_commandline_version();
+void display_commandline_help(); 
 
 //lexing
 std::vector<Token> tokenize_file(const std::string&);
@@ -42,7 +42,7 @@ bool parse_non_terminated_expression(std::vector<Token>::iterator&,const std::ve
 void parse_file(std::vector<Token>::iterator&,const std::vector<Token>&,std::vector<Instruction>&);
 
 //compilation
-void compile_json(const std::string&,const std::string&);
-void compile_xml(const std::string&,const std::string&);
-void translate_instructions_into_xml(const std::vector<Instruction>&,std::fstream&,const std::string&);
 std::string serialize_type(const TypeSignature&);
+void compile_json(const std::vector<std::string>&,const std::string&);
+void compile_xml(const std::vector<std::string>&,const std::string&);
+void translate_instructions_into_xml(const std::vector<Instruction>&,std::fstream&,const std::string&);

@@ -150,7 +150,8 @@ bool convert_assignment_into_xml(const Instruction& instr, std::fstream& output,
     return true;
 }
 
-void compile_xml(const std::string& input_filepath, const std::string& output_filepath){
+void compile_xml(const std::vector<std::string>& input_files, const std::string& output_filepath){
+    std::string input_filepath = input_files.back();
     std::vector<Token> tokens = tokenize_file(input_filepath); 
     std::vector<Token>::iterator primer = tokens.begin();   
     std::fstream output = std::fstream(output_filepath,  std::fstream::in | std::fstream::out | std::fstream::trunc);
