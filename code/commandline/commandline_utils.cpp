@@ -63,3 +63,10 @@ CommandLine read_commandline(int argc, char **argv){
     }
     return state;
 }
+
+FileExtension file_extension(const std::string& filename){
+    if (filename.size() >= 5 and filename.substr(filename.size()-4,4) == ".xml")   return FileExtension::xml;
+    if (filename.size() >= 6 and filename.substr(filename.size()-5,5) == ".json")  return FileExtension::json;
+    if (filename.size() >= 7 and filename.substr(filename.size()-6,6) == ".verse") return FileExtension::verse;
+    throw std::runtime_error("unreconized file extension");
+}

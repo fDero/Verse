@@ -1,12 +1,13 @@
 #pragma once
 
 //commandline
-void help();
-void version();
 void compile(const std::vector<std::string>&,const std::vector<std::string>&);
 void evaluate(const std::vector<std::string>&,const std::vector<std::string>&);
 void debug(const std::vector<std::string>&,const std::vector<std::string>&);
 CommandLine read_commandline(int,char**);
+FileExtension file_extension(const std::string& filename);
+void version();
+void help(); 
 
 //lexing
 std::vector<Token> tokenize_file(const std::string&);

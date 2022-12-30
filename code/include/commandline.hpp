@@ -6,6 +6,10 @@ enum class Mode {
     compiler, interpreter, debugger
 };
 
+enum class FileExtension {
+    verse, json, xml
+};
+
 struct CommandLine {
     std::vector<std::string> inputs;
     std::vector<std::string> outputs;
