@@ -14,6 +14,8 @@
 #include <memory>
 #include <stdio.h>
 
+struct CommandLine; enum class Mode; 
+
 struct Token {
     std::string sourcetext;
     std::string filename;
