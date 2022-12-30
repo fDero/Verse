@@ -45,7 +45,7 @@ bool parse_struct_definition(std::vector<Token>::iterator& it, const std::vector
     acquire_exact_match(it,tokens,"{");
     while(it != tokens.end() and it->sourcetext != "}"){
         if (parse_struct_definition(it,tokens,this_struct.internal_definitions)) continue;
-        Instance field;
+        Instance field;  
         acquire_instance(it,tokens,field);
         acquire_exact_match(it,tokens,";");
         this_struct.internal_state.push_back(field);
@@ -65,7 +65,7 @@ bool parse_function_definition(std::vector<Token>::iterator& it, const std::vect
     acquire_exact_match(it,tokens,"(");
     if (it != tokens.end() and it->sourcetext != ")" and it->sourcetext != ",") do {
         std::advance(it,it->sourcetext == ",");
-        Instance arg;
+        Instance arg; 
         acquire_instance(it,tokens,arg);
         this_func.args.push_back(arg);
     } while (it != tokens.end() and it->sourcetext == ",");

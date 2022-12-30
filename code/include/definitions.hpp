@@ -19,3 +19,7 @@ struct FunctionDefinition {
     std::vector<Instruction>   code; 
     std::vector<Instruction>   internal_definitions;
 };
+
+struct EnumDefinition {
+
+};
