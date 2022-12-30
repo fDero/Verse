@@ -1,4 +1,4 @@
-.PHONY: test build
+.PHONY: test build update
 COMPILER=g++
 STD=c++17
 LINKER=g++
@@ -27,4 +27,3 @@ test:
 update:
 	${COMPILER} -c -std=${STD} ${FOLDER}/${FILE}.cpp -o build/${FILE}.o
 	${LINKER} build/*.o -o verse
-	
