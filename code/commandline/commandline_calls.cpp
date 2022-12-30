@@ -36,7 +36,7 @@ void display_commandline_help(){
     std::cout << "compile verse code: \n\t verse -c <input files> -o <output files>\n\n";
     std::cout << "run code directly: \n\t verse -i <input files>\n\n";
     std::cout << "debug your code: \n\t verse -d <input files>\n\n";
-    std::cout << "show current version: \n\t verse -v <input files>\n\n";
+    std::cout << "show current version: \n\t verse -v\n\n";
 
     std::cout << ">> every input file must be saved as .verse\n";
     std::cout << ">> two different output files can't share the same file extension\n";
