@@ -1,8 +1,16 @@
 #include "include/verse.hpp"
 #include "include/procedures.hpp"
 
+void read_commandline(int argc, char **argv){
+    if (argc < 2) throw std::runtime_error("don't know what to do");
+    for (int i = 1; i < argc; i++){
+        std::cout << argv[i] << std::endl;
+    }
+}
+
 int main(int argc, char **argv){
     try {
+        read_commandline(argc,argv);
         std::string input_file = argv[2];
         std::string output_file = argv[4];
         std::string output_file2 = argv[5];

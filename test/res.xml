@@ -86,7 +86,7 @@
 	</OPERATOR>
 	<IDENTIFIER name="d"/>
 </OPERATOR>
-<INSTANTIATION name="s" type="TEMPORARY DISABLED"/>
+<VAR name="s" type="String"/>
 <OPERATOR text="=">
 	<IDENTIFIER name="s"/>
 	<LITERAL value="`ciao`" pseudotype="string"/>
@@ -106,7 +106,7 @@
 		</OPERATOR>
 	</OPERATOR>
 	<CODE>
-		<INSTANTIATION name="x" type="TEMPORARY DISABLED"/>
+		<VAR name="x" type="X"/>
 		<OPERATOR text="=">
 			<IDENTIFIER name="x"/>
 			<ASSIGNMENT>
