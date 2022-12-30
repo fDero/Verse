@@ -13,10 +13,11 @@ void acquire_instruction(std::vector<Token>::iterator& it, const std::vector<Tok
     throw std::runtime_error("unexpected token: " + it->sourcetext);
 }
 
-void parse_file(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::vector<Instruction>& output){ 
-    while (it != tokens.end()) {
-        acquire_instruction(it,tokens,output);
-    }
+std::vector<Instruction> get_instructions_from_tokens(std::vector<Token>& tokens){ 
+    std::vector<Instruction> output;
+    std::vector<Token>::iterator it = tokens.begin();
+    while (it != tokens.end()) acquire_instruction(it,tokens,output);
+    return output;
 }
 
 void acquire_exact_match(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, const std::string& match){

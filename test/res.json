@@ -1,1248 +1,1795 @@
 [
-	{
-		"sourcetext":"'c'",
-		"file_name":"test/main.verse",
-		"line_number":2,
-		"token_number":0,
-		"char_pos":0
-	},
-	{
-		"sourcetext":";",
-		"file_name":"test/main.verse",
-		"line_number":2,
-		"token_number":1,
-		"char_pos":3
-	},
+	" files: test/snippet1.verse test/snippet2.verse ",
 	{
 		"sourcetext":"z",
-		"file_name":"test/main.verse",
-		"line_number":4,
+		"file_name":"test/snippet1.verse",
+		"line_number":2,
 		"token_number":0,
 		"char_pos":0
 	},
 	{
 		"sourcetext":"+",
-		"file_name":"test/main.verse",
-		"line_number":4,
+		"file_name":"test/snippet1.verse",
+		"line_number":2,
 		"token_number":1,
 		"char_pos":2
 	},
 	{
 		"sourcetext":"x",
-		"file_name":"test/main.verse",
-		"line_number":4,
+		"file_name":"test/snippet1.verse",
+		"line_number":2,
 		"token_number":2,
 		"char_pos":4
 	},
 	{
 		"sourcetext":"+",
-		"file_name":"test/main.verse",
-		"line_number":4,
+		"file_name":"test/snippet1.verse",
+		"line_number":2,
 		"token_number":3,
 		"char_pos":6
 	},
 	{
 		"sourcetext":"a",
-		"file_name":"test/main.verse",
-		"line_number":4,
+		"file_name":"test/snippet1.verse",
+		"line_number":2,
 		"token_number":4,
 		"char_pos":8
 	},
 	{
 		"sourcetext":"*",
-		"file_name":"test/main.verse",
-		"line_number":4,
+		"file_name":"test/snippet1.verse",
+		"line_number":2,
 		"token_number":5,
 		"char_pos":10
 	},
 	{
 		"sourcetext":"b",
-		"file_name":"test/main.verse",
-		"line_number":4,
+		"file_name":"test/snippet1.verse",
+		"line_number":2,
 		"token_number":6,
 		"char_pos":12
 	},
 	{
 		"sourcetext":"^",
-		"file_name":"test/main.verse",
-		"line_number":4,
+		"file_name":"test/snippet1.verse",
+		"line_number":2,
 		"token_number":7,
 		"char_pos":14
 	},
 	{
 		"sourcetext":"c",
-		"file_name":"test/main.verse",
-		"line_number":4,
+		"file_name":"test/snippet1.verse",
+		"line_number":2,
 		"token_number":8,
 		"char_pos":16
 	},
 	{
 		"sourcetext":"+",
-		"file_name":"test/main.verse",
-		"line_number":4,
+		"file_name":"test/snippet1.verse",
+		"line_number":2,
 		"token_number":9,
 		"char_pos":18
 	},
 	{
 		"sourcetext":"y",
-		"file_name":"test/main.verse",
-		"line_number":4,
+		"file_name":"test/snippet1.verse",
+		"line_number":2,
 		"token_number":10,
 		"char_pos":20
 	},
 	{
 		"sourcetext":";",
-		"file_name":"test/main.verse",
-		"line_number":4,
+		"file_name":"test/snippet1.verse",
+		"line_number":2,
 		"token_number":11,
 		"char_pos":21
 	},
 	{
 		"sourcetext":"a",
-		"file_name":"test/main.verse",
-		"line_number":6,
+		"file_name":"test/snippet1.verse",
+		"line_number":4,
 		"token_number":0,
 		"char_pos":0
 	},
 	{
 		"sourcetext":"*",
-		"file_name":"test/main.verse",
-		"line_number":6,
+		"file_name":"test/snippet1.verse",
+		"line_number":4,
 		"token_number":1,
 		"char_pos":2
 	},
 	{
 		"sourcetext":"b",
-		"file_name":"test/main.verse",
-		"line_number":6,
+		"file_name":"test/snippet1.verse",
+		"line_number":4,
 		"token_number":2,
 		"char_pos":4
 	},
 	{
 		"sourcetext":"^",
-		"file_name":"test/main.verse",
-		"line_number":6,
+		"file_name":"test/snippet1.verse",
+		"line_number":4,
 		"token_number":3,
 		"char_pos":6
 	},
 	{
 		"sourcetext":"c",
-		"file_name":"test/main.verse",
-		"line_number":6,
+		"file_name":"test/snippet1.verse",
+		"line_number":4,
 		"token_number":4,
 		"char_pos":8
 	},
 	{
 		"sourcetext":";",
-		"file_name":"test/main.verse",
-		"line_number":6,
+		"file_name":"test/snippet1.verse",
+		"line_number":4,
 		"token_number":5,
 		"char_pos":9
 	},
 	{
 		"sourcetext":"a",
-		"file_name":"test/main.verse",
-		"line_number":8,
+		"file_name":"test/snippet1.verse",
+		"line_number":6,
 		"token_number":0,
 		"char_pos":0
 	},
 	{
 		"sourcetext":"+",
-		"file_name":"test/main.verse",
-		"line_number":8,
+		"file_name":"test/snippet1.verse",
+		"line_number":6,
 		"token_number":1,
 		"char_pos":2
 	},
 	{
 		"sourcetext":"b",
-		"file_name":"test/main.verse",
-		"line_number":8,
+		"file_name":"test/snippet1.verse",
+		"line_number":6,
 		"token_number":2,
 		"char_pos":4
 	},
 	{
 		"sourcetext":"+",
-		"file_name":"test/main.verse",
-		"line_number":8,
+		"file_name":"test/snippet1.verse",
+		"line_number":6,
 		"token_number":3,
 		"char_pos":6
 	},
 	{
 		"sourcetext":"c",
-		"file_name":"test/main.verse",
-		"line_number":8,
+		"file_name":"test/snippet1.verse",
+		"line_number":6,
 		"token_number":4,
 		"char_pos":8
 	},
 	{
 		"sourcetext":"+",
-		"file_name":"test/main.verse",
-		"line_number":8,
+		"file_name":"test/snippet1.verse",
+		"line_number":6,
 		"token_number":5,
 		"char_pos":10
 	},
 	{
 		"sourcetext":"d",
-		"file_name":"test/main.verse",
-		"line_number":8,
+		"file_name":"test/snippet1.verse",
+		"line_number":6,
 		"token_number":6,
 		"char_pos":12
 	},
 	{
 		"sourcetext":";",
-		"file_name":"test/main.verse",
-		"line_number":8,
+		"file_name":"test/snippet1.verse",
+		"line_number":6,
 		"token_number":7,
 		"char_pos":13
 	},
 	{
 		"sourcetext":"-",
-		"file_name":"test/main.verse",
-		"line_number":10,
+		"file_name":"test/snippet1.verse",
+		"line_number":8,
 		"token_number":0,
 		"char_pos":0
 	},
 	{
 		"sourcetext":"-",
-		"file_name":"test/main.verse",
-		"line_number":10,
+		"file_name":"test/snippet1.verse",
+		"line_number":8,
 		"token_number":1,
 		"char_pos":2
 	},
 	{
 		"sourcetext":"mystruct",
-		"file_name":"test/main.verse",
-		"line_number":10,
+		"file_name":"test/snippet1.verse",
+		"line_number":8,
 		"token_number":2,
 		"char_pos":4
 	},
 	{
 		"sourcetext":".",
-		"file_name":"test/main.verse",
-		"line_number":10,
+		"file_name":"test/snippet1.verse",
+		"line_number":8,
 		"token_number":3,
 		"char_pos":12
 	},
 	{
 		"sourcetext":"myval",
-		"file_name":"test/main.verse",
-		"line_number":10,
+		"file_name":"test/snippet1.verse",
+		"line_number":8,
 		"token_number":4,
 		"char_pos":13
 	},
 	{
 		"sourcetext":"^",
-		"file_name":"test/main.verse",
-		"line_number":10,
+		"file_name":"test/snippet1.verse",
+		"line_number":8,
 		"token_number":5,
 		"char_pos":19
 	},
 	{
 		"sourcetext":"b",
-		"file_name":"test/main.verse",
-		"line_number":10,
+		"file_name":"test/snippet1.verse",
+		"line_number":8,
 		"token_number":6,
 		"char_pos":21
 	},
 	{
 		"sourcetext":";",
-		"file_name":"test/main.verse",
-		"line_number":10,
+		"file_name":"test/snippet1.verse",
+		"line_number":8,
 		"token_number":7,
 		"char_pos":22
 	},
 	{
 		"sourcetext":"f",
-		"file_name":"test/main.verse",
-		"line_number":12,
+		"file_name":"test/snippet1.verse",
+		"line_number":10,
 		"token_number":0,
 		"char_pos":0
 	},
 	{
 		"sourcetext":"(",
-		"file_name":"test/main.verse",
-		"line_number":12,
+		"file_name":"test/snippet1.verse",
+		"line_number":10,
 		"token_number":1,
 		"char_pos":1
 	},
 	{
 		"sourcetext":"c",
-		"file_name":"test/main.verse",
-		"line_number":12,
+		"file_name":"test/snippet1.verse",
+		"line_number":10,
 		"token_number":2,
 		"char_pos":2
 	},
 	{
 		"sourcetext":"(",
-		"file_name":"test/main.verse",
-		"line_number":12,
+		"file_name":"test/snippet1.verse",
+		"line_number":10,
 		"token_number":3,
 		"char_pos":3
 	},
 	{
 		"sourcetext":")",
-		"file_name":"test/main.verse",
-		"line_number":12,
+		"file_name":"test/snippet1.verse",
+		"line_number":10,
 		"token_number":4,
 		"char_pos":4
 	},
 	{
 		"sourcetext":",",
-		"file_name":"test/main.verse",
-		"line_number":12,
+		"file_name":"test/snippet1.verse",
+		"line_number":10,
 		"token_number":5,
 		"char_pos":5
 	},
 	{
 		"sourcetext":"a",
-		"file_name":"test/main.verse",
-		"line_number":12,
+		"file_name":"test/snippet1.verse",
+		"line_number":10,
 		"token_number":6,
 		"char_pos":6
 	},
 	{
 		"sourcetext":"+",
-		"file_name":"test/main.verse",
-		"line_number":12,
+		"file_name":"test/snippet1.verse",
+		"line_number":10,
 		"token_number":7,
 		"char_pos":8
 	},
 	{
 		"sourcetext":"b",
-		"file_name":"test/main.verse",
-		"line_number":12,
+		"file_name":"test/snippet1.verse",
+		"line_number":10,
 		"token_number":8,
 		"char_pos":10
 	},
 	{
 		"sourcetext":",",
-		"file_name":"test/main.verse",
-		"line_number":12,
+		"file_name":"test/snippet1.verse",
+		"line_number":10,
 		"token_number":9,
 		"char_pos":11
 	},
 	{
 		"sourcetext":"g",
-		"file_name":"test/main.verse",
-		"line_number":12,
+		"file_name":"test/snippet1.verse",
+		"line_number":10,
 		"token_number":10,
 		"char_pos":12
 	},
 	{
 		"sourcetext":"(",
-		"file_name":"test/main.verse",
-		"line_number":12,
+		"file_name":"test/snippet1.verse",
+		"line_number":10,
 		"token_number":11,
 		"char_pos":13
 	},
 	{
 		"sourcetext":"a",
-		"file_name":"test/main.verse",
-		"line_number":12,
+		"file_name":"test/snippet1.verse",
+		"line_number":10,
 		"token_number":12,
 		"char_pos":14
 	},
 	{
 		"sourcetext":"+",
-		"file_name":"test/main.verse",
-		"line_number":12,
+		"file_name":"test/snippet1.verse",
+		"line_number":10,
 		"token_number":13,
 		"char_pos":16
 	},
 	{
 		"sourcetext":"b",
-		"file_name":"test/main.verse",
-		"line_number":12,
+		"file_name":"test/snippet1.verse",
+		"line_number":10,
 		"token_number":14,
 		"char_pos":18
 	},
 	{
 		"sourcetext":"+",
-		"file_name":"test/main.verse",
-		"line_number":12,
+		"file_name":"test/snippet1.verse",
+		"line_number":10,
 		"token_number":15,
 		"char_pos":20
 	},
 	{
 		"sourcetext":"c",
-		"file_name":"test/main.verse",
-		"line_number":12,
+		"file_name":"test/snippet1.verse",
+		"line_number":10,
 		"token_number":16,
 		"char_pos":22
 	},
 	{
 		"sourcetext":"+",
-		"file_name":"test/main.verse",
-		"line_number":12,
+		"file_name":"test/snippet1.verse",
+		"line_number":10,
 		"token_number":17,
 		"char_pos":24
 	},
 	{
 		"sourcetext":"d",
-		"file_name":"test/main.verse",
-		"line_number":12,
+		"file_name":"test/snippet1.verse",
+		"line_number":10,
 		"token_number":18,
 		"char_pos":26
 	},
 	{
 		"sourcetext":")",
-		"file_name":"test/main.verse",
-		"line_number":12,
+		"file_name":"test/snippet1.verse",
+		"line_number":10,
 		"token_number":19,
 		"char_pos":27
 	},
 	{
 		"sourcetext":",",
-		"file_name":"test/main.verse",
-		"line_number":12,
+		"file_name":"test/snippet1.verse",
+		"line_number":10,
 		"token_number":20,
 		"char_pos":28
 	},
 	{
 		"sourcetext":"h",
-		"file_name":"test/main.verse",
-		"line_number":12,
+		"file_name":"test/snippet1.verse",
+		"line_number":10,
 		"token_number":21,
 		"char_pos":29
 	},
 	{
 		"sourcetext":"(",
-		"file_name":"test/main.verse",
-		"line_number":12,
+		"file_name":"test/snippet1.verse",
+		"line_number":10,
 		"token_number":22,
 		"char_pos":30
 	},
 	{
 		"sourcetext":")",
-		"file_name":"test/main.verse",
-		"line_number":12,
+		"file_name":"test/snippet1.verse",
+		"line_number":10,
 		"token_number":23,
 		"char_pos":31
 	},
 	{
 		"sourcetext":"+",
-		"file_name":"test/main.verse",
-		"line_number":12,
+		"file_name":"test/snippet1.verse",
+		"line_number":10,
 		"token_number":24,
 		"char_pos":32
 	},
 	{
 		"sourcetext":"p",
-		"file_name":"test/main.verse",
-		"line_number":12,
+		"file_name":"test/snippet1.verse",
+		"line_number":10,
 		"token_number":25,
 		"char_pos":33
 	},
 	{
 		"sourcetext":"(",
-		"file_name":"test/main.verse",
-		"line_number":12,
+		"file_name":"test/snippet1.verse",
+		"line_number":10,
 		"token_number":26,
 		"char_pos":34
 	},
 	{
 		"sourcetext":"s",
-		"file_name":"test/main.verse",
-		"line_number":12,
+		"file_name":"test/snippet1.verse",
+		"line_number":10,
 		"token_number":27,
 		"char_pos":35
 	},
 	{
 		"sourcetext":")",
-		"file_name":"test/main.verse",
-		"line_number":12,
+		"file_name":"test/snippet1.verse",
+		"line_number":10,
 		"token_number":28,
 		"char_pos":36
 	},
 	{
 		"sourcetext":")",
-		"file_name":"test/main.verse",
-		"line_number":12,
+		"file_name":"test/snippet1.verse",
+		"line_number":10,
 		"token_number":29,
 		"char_pos":37
 	},
 	{
 		"sourcetext":";",
-		"file_name":"test/main.verse",
-		"line_number":12,
+		"file_name":"test/snippet1.verse",
+		"line_number":10,
 		"token_number":30,
 		"char_pos":38
 	},
 	{
 		"sourcetext":"(",
-		"file_name":"test/main.verse",
-		"line_number":14,
+		"file_name":"test/snippet1.verse",
+		"line_number":12,
 		"token_number":0,
 		"char_pos":0
 	},
 	{
 		"sourcetext":"a",
-		"file_name":"test/main.verse",
-		"line_number":14,
+		"file_name":"test/snippet1.verse",
+		"line_number":12,
 		"token_number":1,
 		"char_pos":1
 	},
 	{
 		"sourcetext":"+",
-		"file_name":"test/main.verse",
-		"line_number":14,
+		"file_name":"test/snippet1.verse",
+		"line_number":12,
 		"token_number":2,
 		"char_pos":2
 	},
 	{
 		"sourcetext":"b",
-		"file_name":"test/main.verse",
-		"line_number":14,
+		"file_name":"test/snippet1.verse",
+		"line_number":12,
 		"token_number":3,
 		"char_pos":3
 	},
 	{
 		"sourcetext":"+",
-		"file_name":"test/main.verse",
-		"line_number":14,
+		"file_name":"test/snippet1.verse",
+		"line_number":12,
 		"token_number":4,
 		"char_pos":4
 	},
 	{
 		"sourcetext":"c",
-		"file_name":"test/main.verse",
-		"line_number":14,
+		"file_name":"test/snippet1.verse",
+		"line_number":12,
 		"token_number":5,
 		"char_pos":5
 	},
 	{
 		"sourcetext":")",
-		"file_name":"test/main.verse",
-		"line_number":14,
+		"file_name":"test/snippet1.verse",
+		"line_number":12,
 		"token_number":6,
 		"char_pos":6
 	},
 	{
 		"sourcetext":"*",
-		"file_name":"test/main.verse",
-		"line_number":14,
+		"file_name":"test/snippet1.verse",
+		"line_number":12,
 		"token_number":7,
 		"char_pos":7
 	},
 	{
 		"sourcetext":"d",
-		"file_name":"test/main.verse",
-		"line_number":14,
+		"file_name":"test/snippet1.verse",
+		"line_number":12,
 		"token_number":8,
 		"char_pos":8
 	},
 	{
 		"sourcetext":";",
-		"file_name":"test/main.verse",
-		"line_number":14,
+		"file_name":"test/snippet1.verse",
+		"line_number":12,
 		"token_number":9,
 		"char_pos":9
 	},
 	{
 		"sourcetext":"var",
-		"file_name":"test/main.verse",
-		"line_number":16,
+		"file_name":"test/snippet1.verse",
+		"line_number":14,
 		"token_number":0,
 		"char_pos":0
 	},
 	{
 		"sourcetext":"s",
-		"file_name":"test/main.verse",
-		"line_number":16,
+		"file_name":"test/snippet1.verse",
+		"line_number":14,
 		"token_number":1,
 		"char_pos":4
 	},
 	{
 		"sourcetext":":",
-		"file_name":"test/main.verse",
-		"line_number":16,
+		"file_name":"test/snippet1.verse",
+		"line_number":14,
 		"token_number":2,
 		"char_pos":6
 	},
 	{
 		"sourcetext":"String",
-		"file_name":"test/main.verse",
-		"line_number":16,
+		"file_name":"test/snippet1.verse",
+		"line_number":14,
 		"token_number":3,
 		"char_pos":8
 	},
 	{
 		"sourcetext":"=",
-		"file_name":"test/main.verse",
-		"line_number":16,
+		"file_name":"test/snippet1.verse",
+		"line_number":14,
 		"token_number":4,
 		"char_pos":15
 	},
 	{
 		"sourcetext":"`ciao`",
-		"file_name":"test/main.verse",
-		"line_number":16,
+		"file_name":"test/snippet1.verse",
+		"line_number":14,
 		"token_number":5,
 		"char_pos":17
 	},
 	{
 		"sourcetext":";",
-		"file_name":"test/main.verse",
-		"line_number":16,
+		"file_name":"test/snippet1.verse",
+		"line_number":14,
 		"token_number":6,
 		"char_pos":23
 	},
 	{
 		"sourcetext":"while",
-		"file_name":"test/main.verse",
-		"line_number":18,
+		"file_name":"test/snippet1.verse",
+		"line_number":16,
 		"token_number":0,
 		"char_pos":0
 	},
 	{
 		"sourcetext":"n",
-		"file_name":"test/main.verse",
-		"line_number":18,
+		"file_name":"test/snippet1.verse",
+		"line_number":16,
 		"token_number":1,
 		"char_pos":6
 	},
 	{
 		"sourcetext":"+",
-		"file_name":"test/main.verse",
-		"line_number":18,
+		"file_name":"test/snippet1.verse",
+		"line_number":16,
 		"token_number":2,
 		"char_pos":8
 	},
 	{
 		"sourcetext":"1",
-		"file_name":"test/main.verse",
-		"line_number":18,
+		"file_name":"test/snippet1.verse",
+		"line_number":16,
 		"token_number":3,
 		"char_pos":10
 	},
 	{
 		"sourcetext":"<",
-		"file_name":"test/main.verse",
-		"line_number":18,
+		"file_name":"test/snippet1.verse",
+		"line_number":16,
 		"token_number":4,
 		"char_pos":12
 	},
 	{
 		"sourcetext":"10",
-		"file_name":"test/main.verse",
-		"line_number":18,
+		"file_name":"test/snippet1.verse",
+		"line_number":16,
 		"token_number":5,
 		"char_pos":14
 	},
 	{
 		"sourcetext":"+",
-		"file_name":"test/main.verse",
-		"line_number":18,
+		"file_name":"test/snippet1.verse",
+		"line_number":16,
 		"token_number":6,
 		"char_pos":17
 	},
 	{
 		"sourcetext":"3",
-		"file_name":"test/main.verse",
-		"line_number":18,
+		"file_name":"test/snippet1.verse",
+		"line_number":16,
 		"token_number":7,
 		"char_pos":19
 	},
 	{
 		"sourcetext":"*",
-		"file_name":"test/main.verse",
-		"line_number":18,
+		"file_name":"test/snippet1.verse",
+		"line_number":16,
 		"token_number":8,
 		"char_pos":21
 	},
 	{
 		"sourcetext":"2",
-		"file_name":"test/main.verse",
-		"line_number":18,
+		"file_name":"test/snippet1.verse",
+		"line_number":16,
 		"token_number":9,
 		"char_pos":23
 	},
 	{
 		"sourcetext":"{",
-		"file_name":"test/main.verse",
-		"line_number":18,
+		"file_name":"test/snippet1.verse",
+		"line_number":16,
 		"token_number":10,
 		"char_pos":25
 	},
 	{
 		"sourcetext":"var",
-		"file_name":"test/main.verse",
-		"line_number":19,
+		"file_name":"test/snippet1.verse",
+		"line_number":17,
 		"token_number":0,
 		"char_pos":4
 	},
 	{
 		"sourcetext":"x",
-		"file_name":"test/main.verse",
-		"line_number":19,
+		"file_name":"test/snippet1.verse",
+		"line_number":17,
 		"token_number":1,
 		"char_pos":8
 	},
 	{
 		"sourcetext":":",
-		"file_name":"test/main.verse",
-		"line_number":19,
+		"file_name":"test/snippet1.verse",
+		"line_number":17,
 		"token_number":2,
 		"char_pos":10
 	},
 	{
 		"sourcetext":"X",
-		"file_name":"test/main.verse",
-		"line_number":19,
+		"file_name":"test/snippet1.verse",
+		"line_number":17,
 		"token_number":3,
 		"char_pos":12
 	},
 	{
 		"sourcetext":"=",
-		"file_name":"test/main.verse",
-		"line_number":19,
+		"file_name":"test/snippet1.verse",
+		"line_number":17,
 		"token_number":4,
 		"char_pos":14
 	},
 	{
 		"sourcetext":"y",
-		"file_name":"test/main.verse",
-		"line_number":19,
+		"file_name":"test/snippet1.verse",
+		"line_number":17,
 		"token_number":5,
 		"char_pos":16
 	},
 	{
 		"sourcetext":"=",
-		"file_name":"test/main.verse",
-		"line_number":19,
+		"file_name":"test/snippet1.verse",
+		"line_number":17,
 		"token_number":6,
 		"char_pos":18
 	},
 	{
 		"sourcetext":"z",
-		"file_name":"test/main.verse",
-		"line_number":19,
+		"file_name":"test/snippet1.verse",
+		"line_number":17,
 		"token_number":7,
 		"char_pos":20
 	},
 	{
 		"sourcetext":";",
-		"file_name":"test/main.verse",
-		"line_number":19,
+		"file_name":"test/snippet1.verse",
+		"line_number":17,
 		"token_number":8,
 		"char_pos":21
 	},
 	{
 		"sourcetext":"print",
-		"file_name":"test/main.verse",
-		"line_number":20,
+		"file_name":"test/snippet1.verse",
+		"line_number":18,
 		"token_number":0,
 		"char_pos":4
 	},
 	{
 		"sourcetext":"(",
-		"file_name":"test/main.verse",
-		"line_number":20,
+		"file_name":"test/snippet1.verse",
+		"line_number":18,
 		"token_number":1,
 		"char_pos":9
 	},
 	{
 		"sourcetext":"`ciao`",
-		"file_name":"test/main.verse",
-		"line_number":20,
+		"file_name":"test/snippet1.verse",
+		"line_number":18,
 		"token_number":2,
 		"char_pos":10
 	},
 	{
 		"sourcetext":")",
-		"file_name":"test/main.verse",
-		"line_number":20,
+		"file_name":"test/snippet1.verse",
+		"line_number":18,
 		"token_number":3,
 		"char_pos":16
 	},
 	{
 		"sourcetext":";",
-		"file_name":"test/main.verse",
-		"line_number":20,
+		"file_name":"test/snippet1.verse",
+		"line_number":18,
 		"token_number":4,
 		"char_pos":17
 	},
 	{
 		"sourcetext":"n",
-		"file_name":"test/main.verse",
-		"line_number":21,
+		"file_name":"test/snippet1.verse",
+		"line_number":19,
 		"token_number":0,
 		"char_pos":4
 	},
 	{
 		"sourcetext":"=",
-		"file_name":"test/main.verse",
-		"line_number":21,
+		"file_name":"test/snippet1.verse",
+		"line_number":19,
 		"token_number":1,
 		"char_pos":6
 	},
 	{
 		"sourcetext":"n",
-		"file_name":"test/main.verse",
-		"line_number":21,
+		"file_name":"test/snippet1.verse",
+		"line_number":19,
 		"token_number":2,
 		"char_pos":8
 	},
 	{
 		"sourcetext":"+",
-		"file_name":"test/main.verse",
-		"line_number":21,
+		"file_name":"test/snippet1.verse",
+		"line_number":19,
 		"token_number":3,
 		"char_pos":10
 	},
 	{
 		"sourcetext":"1",
-		"file_name":"test/main.verse",
-		"line_number":21,
+		"file_name":"test/snippet1.verse",
+		"line_number":19,
 		"token_number":4,
 		"char_pos":12
 	},
 	{
 		"sourcetext":";",
-		"file_name":"test/main.verse",
-		"line_number":21,
+		"file_name":"test/snippet1.verse",
+		"line_number":19,
 		"token_number":5,
 		"char_pos":13
 	},
 	{
 		"sourcetext":"}",
-		"file_name":"test/main.verse",
+		"file_name":"test/snippet1.verse",
+		"line_number":20,
+		"token_number":0,
+		"char_pos":0
+	},
+	{
+		"sourcetext":"a",
+		"file_name":"test/snippet1.verse",
 		"line_number":22,
 		"token_number":0,
 		"char_pos":0
 	},
 	{
-		"sourcetext":"a",
-		"file_name":"test/main.verse",
-		"line_number":24,
-		"token_number":0,
-		"char_pos":0
-	},
-	{
 		"sourcetext":"=",
-		"file_name":"test/main.verse",
-		"line_number":24,
+		"file_name":"test/snippet1.verse",
+		"line_number":22,
 		"token_number":1,
 		"char_pos":2
 	},
 	{
 		"sourcetext":"func_that_returns_a_reference",
-		"file_name":"test/main.verse",
-		"line_number":24,
+		"file_name":"test/snippet1.verse",
+		"line_number":22,
 		"token_number":2,
 		"char_pos":4
 	},
 	{
 		"sourcetext":"(",
-		"file_name":"test/main.verse",
-		"line_number":24,
+		"file_name":"test/snippet1.verse",
+		"line_number":22,
 		"token_number":3,
 		"char_pos":33
 	},
 	{
 		"sourcetext":")",
-		"file_name":"test/main.verse",
-		"line_number":24,
+		"file_name":"test/snippet1.verse",
+		"line_number":22,
 		"token_number":4,
 		"char_pos":34
 	},
 	{
 		"sourcetext":"=",
-		"file_name":"test/main.verse",
-		"line_number":24,
+		"file_name":"test/snippet1.verse",
+		"line_number":22,
 		"token_number":5,
 		"char_pos":36
 	},
 	{
 		"sourcetext":"#",
-		"file_name":"test/main.verse",
-		"line_number":24,
+		"file_name":"test/snippet1.verse",
+		"line_number":22,
 		"token_number":6,
 		"char_pos":38
 	},
 	{
 		"sourcetext":"c",
-		"file_name":"test/main.verse",
-		"line_number":24,
+		"file_name":"test/snippet1.verse",
+		"line_number":22,
 		"token_number":7,
 		"char_pos":39
 	},
 	{
 		"sourcetext":"=",
-		"file_name":"test/main.verse",
-		"line_number":24,
+		"file_name":"test/snippet1.verse",
+		"line_number":22,
 		"token_number":8,
 		"char_pos":41
 	},
 	{
 		"sourcetext":"6",
-		"file_name":"test/main.verse",
-		"line_number":24,
+		"file_name":"test/snippet1.verse",
+		"line_number":22,
 		"token_number":9,
 		"char_pos":43
 	},
 	{
 		"sourcetext":";",
-		"file_name":"test/main.verse",
-		"line_number":24,
+		"file_name":"test/snippet1.verse",
+		"line_number":22,
 		"token_number":10,
 		"char_pos":44
 	},
 	{
 		"sourcetext":"while",
-		"file_name":"test/main.verse",
-		"line_number":26,
+		"file_name":"test/snippet1.verse",
+		"line_number":24,
 		"token_number":0,
 		"char_pos":0
 	},
 	{
 		"sourcetext":"n",
-		"file_name":"test/main.verse",
-		"line_number":26,
+		"file_name":"test/snippet1.verse",
+		"line_number":24,
 		"token_number":1,
 		"char_pos":6
 	},
 	{
 		"sourcetext":"<",
-		"file_name":"test/main.verse",
-		"line_number":26,
+		"file_name":"test/snippet1.verse",
+		"line_number":24,
 		"token_number":2,
 		"char_pos":8
 	},
 	{
 		"sourcetext":"10",
-		"file_name":"test/main.verse",
-		"line_number":26,
+		"file_name":"test/snippet1.verse",
+		"line_number":24,
 		"token_number":3,
 		"char_pos":10
 	},
 	{
 		"sourcetext":"print",
-		"file_name":"test/main.verse",
-		"line_number":26,
+		"file_name":"test/snippet1.verse",
+		"line_number":24,
 		"token_number":4,
 		"char_pos":13
 	},
 	{
 		"sourcetext":"(",
-		"file_name":"test/main.verse",
-		"line_number":26,
+		"file_name":"test/snippet1.verse",
+		"line_number":24,
 		"token_number":5,
 		"char_pos":18
 	},
 	{
 		"sourcetext":")",
-		"file_name":"test/main.verse",
-		"line_number":26,
+		"file_name":"test/snippet1.verse",
+		"line_number":24,
 		"token_number":6,
 		"char_pos":19
 	},
 	{
 		"sourcetext":";",
-		"file_name":"test/main.verse",
-		"line_number":26,
+		"file_name":"test/snippet1.verse",
+		"line_number":24,
 		"token_number":7,
 		"char_pos":20
 	},
 	{
 		"sourcetext":"if",
-		"file_name":"test/main.verse",
-		"line_number":28,
+		"file_name":"test/snippet1.verse",
+		"line_number":26,
 		"token_number":0,
 		"char_pos":0
 	},
 	{
 		"sourcetext":"n",
-		"file_name":"test/main.verse",
-		"line_number":28,
+		"file_name":"test/snippet1.verse",
+		"line_number":26,
 		"token_number":1,
 		"char_pos":3
 	},
 	{
 		"sourcetext":"<",
-		"file_name":"test/main.verse",
-		"line_number":28,
+		"file_name":"test/snippet1.verse",
+		"line_number":26,
 		"token_number":2,
 		"char_pos":5
 	},
 	{
 		"sourcetext":"10",
-		"file_name":"test/main.verse",
-		"line_number":28,
+		"file_name":"test/snippet1.verse",
+		"line_number":26,
 		"token_number":3,
 		"char_pos":7
 	},
 	{
 		"sourcetext":"{",
-		"file_name":"test/main.verse",
-		"line_number":28,
+		"file_name":"test/snippet1.verse",
+		"line_number":26,
 		"token_number":4,
 		"char_pos":10
 	},
 	{
 		"sourcetext":"print",
-		"file_name":"test/main.verse",
-		"line_number":29,
+		"file_name":"test/snippet1.verse",
+		"line_number":27,
 		"token_number":0,
 		"char_pos":4
 	},
 	{
 		"sourcetext":"(",
-		"file_name":"test/main.verse",
-		"line_number":29,
+		"file_name":"test/snippet1.verse",
+		"line_number":27,
 		"token_number":1,
 		"char_pos":9
 	},
 	{
 		"sourcetext":"`less then ten`",
-		"file_name":"test/main.verse",
-		"line_number":29,
+		"file_name":"test/snippet1.verse",
+		"line_number":27,
 		"token_number":2,
 		"char_pos":10
 	},
 	{
 		"sourcetext":")",
-		"file_name":"test/main.verse",
-		"line_number":29,
+		"file_name":"test/snippet1.verse",
+		"line_number":27,
 		"token_number":3,
 		"char_pos":25
 	},
 	{
 		"sourcetext":";",
-		"file_name":"test/main.verse",
-		"line_number":29,
+		"file_name":"test/snippet1.verse",
+		"line_number":27,
 		"token_number":4,
 		"char_pos":26
 	},
 	{
 		"sourcetext":"}",
-		"file_name":"test/main.verse",
-		"line_number":30,
+		"file_name":"test/snippet1.verse",
+		"line_number":28,
 		"token_number":0,
 		"char_pos":0
 	},
 	{
 		"sourcetext":"else",
-		"file_name":"test/main.verse",
-		"line_number":30,
+		"file_name":"test/snippet1.verse",
+		"line_number":28,
 		"token_number":1,
 		"char_pos":2
 	},
 	{
 		"sourcetext":"if",
-		"file_name":"test/main.verse",
-		"line_number":30,
+		"file_name":"test/snippet1.verse",
+		"line_number":28,
 		"token_number":2,
 		"char_pos":7
 	},
 	{
 		"sourcetext":"n",
-		"file_name":"test/main.verse",
-		"line_number":30,
+		"file_name":"test/snippet1.verse",
+		"line_number":28,
 		"token_number":3,
 		"char_pos":10
 	},
 	{
 		"sourcetext":">",
-		"file_name":"test/main.verse",
-		"line_number":30,
+		"file_name":"test/snippet1.verse",
+		"line_number":28,
 		"token_number":4,
 		"char_pos":12
 	},
 	{
 		"sourcetext":"10",
-		"file_name":"test/main.verse",
-		"line_number":30,
+		"file_name":"test/snippet1.verse",
+		"line_number":28,
 		"token_number":5,
 		"char_pos":14
 	},
 	{
 		"sourcetext":"{",
-		"file_name":"test/main.verse",
-		"line_number":30,
+		"file_name":"test/snippet1.verse",
+		"line_number":28,
 		"token_number":6,
 		"char_pos":17
 	},
 	{
 		"sourcetext":"print",
-		"file_name":"test/main.verse",
-		"line_number":31,
+		"file_name":"test/snippet1.verse",
+		"line_number":29,
 		"token_number":0,
 		"char_pos":4
 	},
 	{
 		"sourcetext":"(",
-		"file_name":"test/main.verse",
-		"line_number":31,
+		"file_name":"test/snippet1.verse",
+		"line_number":29,
 		"token_number":1,
 		"char_pos":9
 	},
 	{
 		"sourcetext":"`more then ten`",
-		"file_name":"test/main.verse",
-		"line_number":31,
+		"file_name":"test/snippet1.verse",
+		"line_number":29,
 		"token_number":2,
 		"char_pos":10
 	},
 	{
 		"sourcetext":")",
-		"file_name":"test/main.verse",
-		"line_number":31,
+		"file_name":"test/snippet1.verse",
+		"line_number":29,
 		"token_number":3,
 		"char_pos":25
 	},
 	{
 		"sourcetext":";",
-		"file_name":"test/main.verse",
-		"line_number":31,
+		"file_name":"test/snippet1.verse",
+		"line_number":29,
 		"token_number":4,
 		"char_pos":26
 	},
 	{
 		"sourcetext":"}",
-		"file_name":"test/main.verse",
-		"line_number":32,
+		"file_name":"test/snippet1.verse",
+		"line_number":30,
 		"token_number":0,
 		"char_pos":0
 	},
 	{
 		"sourcetext":"else",
-		"file_name":"test/main.verse",
-		"line_number":32,
+		"file_name":"test/snippet1.verse",
+		"line_number":30,
 		"token_number":1,
 		"char_pos":2
 	},
 	{
 		"sourcetext":"{",
-		"file_name":"test/main.verse",
-		"line_number":32,
+		"file_name":"test/snippet1.verse",
+		"line_number":30,
 		"token_number":2,
 		"char_pos":7
 	},
 	{
 		"sourcetext":"print",
-		"file_name":"test/main.verse",
-		"line_number":33,
+		"file_name":"test/snippet1.verse",
+		"line_number":31,
 		"token_number":0,
 		"char_pos":4
 	},
 	{
 		"sourcetext":"(",
-		"file_name":"test/main.verse",
-		"line_number":33,
+		"file_name":"test/snippet1.verse",
+		"line_number":31,
 		"token_number":1,
 		"char_pos":9
 	},
 	{
 		"sourcetext":"`exactly ten`",
-		"file_name":"test/main.verse",
-		"line_number":33,
+		"file_name":"test/snippet1.verse",
+		"line_number":31,
 		"token_number":2,
 		"char_pos":10
 	},
 	{
 		"sourcetext":")",
-		"file_name":"test/main.verse",
-		"line_number":33,
+		"file_name":"test/snippet1.verse",
+		"line_number":31,
 		"token_number":3,
 		"char_pos":23
 	},
 	{
 		"sourcetext":";",
-		"file_name":"test/main.verse",
-		"line_number":33,
+		"file_name":"test/snippet1.verse",
+		"line_number":31,
 		"token_number":4,
 		"char_pos":24
 	},
 	{
 		"sourcetext":"}",
-		"file_name":"test/main.verse",
-		"line_number":34,
+		"file_name":"test/snippet1.verse",
+		"line_number":32,
 		"token_number":0,
 		"char_pos":0
 	},
 	{
-		"sourcetext":"a",
-		"file_name":"test/main.verse",
-		"line_number":36,
+		"sourcetext":"func",
+		"file_name":"test/snippet2.verse",
+		"line_number":1,
 		"token_number":0,
 		"char_pos":0
 	},
 	{
-		"sourcetext":"+",
-		"file_name":"test/main.verse",
-		"line_number":36,
+		"sourcetext":"fibonacci",
+		"file_name":"test/snippet2.verse",
+		"line_number":1,
 		"token_number":1,
-		"char_pos":2
+		"char_pos":5
 	},
 	{
-		"sourcetext":"b",
-		"file_name":"test/main.verse",
-		"line_number":36,
+		"sourcetext":"(",
+		"file_name":"test/snippet2.verse",
+		"line_number":1,
 		"token_number":2,
-		"char_pos":4
-	},
-	{
-		"sourcetext":"*",
-		"file_name":"test/main.verse",
-		"line_number":36,
-		"token_number":3,
-		"char_pos":6
-	},
-	{
-		"sourcetext":"c",
-		"file_name":"test/main.verse",
-		"line_number":36,
-		"token_number":4,
-		"char_pos":8
-	},
-	{
-		"sourcetext":"^",
-		"file_name":"test/main.verse",
-		"line_number":36,
-		"token_number":5,
-		"char_pos":10
-	},
-	{
-		"sourcetext":"d",
-		"file_name":"test/main.verse",
-		"line_number":36,
-		"token_number":6,
-		"char_pos":12
-	},
-	{
-		"sourcetext":"*",
-		"file_name":"test/main.verse",
-		"line_number":36,
-		"token_number":7,
 		"char_pos":14
 	},
 	{
-		"sourcetext":"e",
-		"file_name":"test/main.verse",
-		"line_number":36,
-		"token_number":8,
+		"sourcetext":"n",
+		"file_name":"test/snippet2.verse",
+		"line_number":1,
+		"token_number":3,
+		"char_pos":15
+	},
+	{
+		"sourcetext":":",
+		"file_name":"test/snippet2.verse",
+		"line_number":1,
+		"token_number":4,
+		"char_pos":17
+	},
+	{
+		"sourcetext":"Int",
+		"file_name":"test/snippet2.verse",
+		"line_number":1,
+		"token_number":5,
+		"char_pos":19
+	},
+	{
+		"sourcetext":")",
+		"file_name":"test/snippet2.verse",
+		"line_number":1,
+		"token_number":6,
+		"char_pos":22
+	},
+	{
+		"sourcetext":"{",
+		"file_name":"test/snippet2.verse",
+		"line_number":1,
+		"token_number":7,
+		"char_pos":23
+	},
+	{
+		"sourcetext":"var",
+		"file_name":"test/snippet2.verse",
+		"line_number":2,
+		"token_number":0,
+		"char_pos":4
+	},
+	{
+		"sourcetext":"a",
+		"file_name":"test/snippet2.verse",
+		"line_number":2,
+		"token_number":1,
+		"char_pos":8
+	},
+	{
+		"sourcetext":":",
+		"file_name":"test/snippet2.verse",
+		"line_number":2,
+		"token_number":2,
+		"char_pos":10
+	},
+	{
+		"sourcetext":"Int",
+		"file_name":"test/snippet2.verse",
+		"line_number":2,
+		"token_number":3,
+		"char_pos":12
+	},
+	{
+		"sourcetext":"=",
+		"file_name":"test/snippet2.verse",
+		"line_number":2,
+		"token_number":4,
 		"char_pos":16
 	},
 	{
-		"sourcetext":"+",
-		"file_name":"test/main.verse",
-		"line_number":36,
-		"token_number":9,
+		"sourcetext":"1",
+		"file_name":"test/snippet2.verse",
+		"line_number":2,
+		"token_number":5,
 		"char_pos":18
 	},
 	{
-		"sourcetext":"f",
-		"file_name":"test/main.verse",
-		"line_number":36,
-		"token_number":10,
-		"char_pos":20
+		"sourcetext":";",
+		"file_name":"test/snippet2.verse",
+		"line_number":2,
+		"token_number":6,
+		"char_pos":19
+	},
+	{
+		"sourcetext":"var",
+		"file_name":"test/snippet2.verse",
+		"line_number":3,
+		"token_number":0,
+		"char_pos":4
+	},
+	{
+		"sourcetext":"b",
+		"file_name":"test/snippet2.verse",
+		"line_number":3,
+		"token_number":1,
+		"char_pos":8
+	},
+	{
+		"sourcetext":":",
+		"file_name":"test/snippet2.verse",
+		"line_number":3,
+		"token_number":2,
+		"char_pos":10
+	},
+	{
+		"sourcetext":"Int",
+		"file_name":"test/snippet2.verse",
+		"line_number":3,
+		"token_number":3,
+		"char_pos":12
+	},
+	{
+		"sourcetext":"=",
+		"file_name":"test/snippet2.verse",
+		"line_number":3,
+		"token_number":4,
+		"char_pos":16
+	},
+	{
+		"sourcetext":"1",
+		"file_name":"test/snippet2.verse",
+		"line_number":3,
+		"token_number":5,
+		"char_pos":18
 	},
 	{
 		"sourcetext":";",
-		"file_name":"test/main.verse",
-		"line_number":36,
-		"token_number":11,
+		"file_name":"test/snippet2.verse",
+		"line_number":3,
+		"token_number":6,
+		"char_pos":19
+	},
+	{
+		"sourcetext":"func",
+		"file_name":"test/snippet2.verse",
+		"line_number":5,
+		"token_number":0,
+		"char_pos":4
+	},
+	{
+		"sourcetext":"swap",
+		"file_name":"test/snippet2.verse",
+		"line_number":5,
+		"token_number":1,
+		"char_pos":9
+	},
+	{
+		"sourcetext":"(",
+		"file_name":"test/snippet2.verse",
+		"line_number":5,
+		"token_number":2,
+		"char_pos":13
+	},
+	{
+		"sourcetext":"a",
+		"file_name":"test/snippet2.verse",
+		"line_number":5,
+		"token_number":3,
+		"char_pos":14
+	},
+	{
+		"sourcetext":":",
+		"file_name":"test/snippet2.verse",
+		"line_number":5,
+		"token_number":4,
+		"char_pos":16
+	},
+	{
+		"sourcetext":"Int",
+		"file_name":"test/snippet2.verse",
+		"line_number":5,
+		"token_number":5,
+		"char_pos":18
+	},
+	{
+		"sourcetext":"*",
+		"file_name":"test/snippet2.verse",
+		"line_number":5,
+		"token_number":6,
 		"char_pos":21
+	},
+	{
+		"sourcetext":",",
+		"file_name":"test/snippet2.verse",
+		"line_number":5,
+		"token_number":7,
+		"char_pos":22
+	},
+	{
+		"sourcetext":"b",
+		"file_name":"test/snippet2.verse",
+		"line_number":5,
+		"token_number":8,
+		"char_pos":24
+	},
+	{
+		"sourcetext":":",
+		"file_name":"test/snippet2.verse",
+		"line_number":5,
+		"token_number":9,
+		"char_pos":26
+	},
+	{
+		"sourcetext":"Int",
+		"file_name":"test/snippet2.verse",
+		"line_number":5,
+		"token_number":10,
+		"char_pos":28
+	},
+	{
+		"sourcetext":"*",
+		"file_name":"test/snippet2.verse",
+		"line_number":5,
+		"token_number":11,
+		"char_pos":31
+	},
+	{
+		"sourcetext":")",
+		"file_name":"test/snippet2.verse",
+		"line_number":5,
+		"token_number":12,
+		"char_pos":32
+	},
+	{
+		"sourcetext":"{",
+		"file_name":"test/snippet2.verse",
+		"line_number":5,
+		"token_number":13,
+		"char_pos":33
+	},
+	{
+		"sourcetext":"var",
+		"file_name":"test/snippet2.verse",
+		"line_number":6,
+		"token_number":0,
+		"char_pos":8
+	},
+	{
+		"sourcetext":"tmp",
+		"file_name":"test/snippet2.verse",
+		"line_number":6,
+		"token_number":1,
+		"char_pos":12
+	},
+	{
+		"sourcetext":":",
+		"file_name":"test/snippet2.verse",
+		"line_number":6,
+		"token_number":2,
+		"char_pos":16
+	},
+	{
+		"sourcetext":"Int",
+		"file_name":"test/snippet2.verse",
+		"line_number":6,
+		"token_number":3,
+		"char_pos":18
+	},
+	{
+		"sourcetext":"=",
+		"file_name":"test/snippet2.verse",
+		"line_number":6,
+		"token_number":4,
+		"char_pos":22
+	},
+	{
+		"sourcetext":"#",
+		"file_name":"test/snippet2.verse",
+		"line_number":6,
+		"token_number":5,
+		"char_pos":24
+	},
+	{
+		"sourcetext":"a",
+		"file_name":"test/snippet2.verse",
+		"line_number":6,
+		"token_number":6,
+		"char_pos":25
+	},
+	{
+		"sourcetext":";",
+		"file_name":"test/snippet2.verse",
+		"line_number":6,
+		"token_number":7,
+		"char_pos":26
+	},
+	{
+		"sourcetext":"#",
+		"file_name":"test/snippet2.verse",
+		"line_number":7,
+		"token_number":0,
+		"char_pos":8
+	},
+	{
+		"sourcetext":"a",
+		"file_name":"test/snippet2.verse",
+		"line_number":7,
+		"token_number":1,
+		"char_pos":9
+	},
+	{
+		"sourcetext":"=",
+		"file_name":"test/snippet2.verse",
+		"line_number":7,
+		"token_number":2,
+		"char_pos":11
+	},
+	{
+		"sourcetext":"#",
+		"file_name":"test/snippet2.verse",
+		"line_number":7,
+		"token_number":3,
+		"char_pos":13
+	},
+	{
+		"sourcetext":"b",
+		"file_name":"test/snippet2.verse",
+		"line_number":7,
+		"token_number":4,
+		"char_pos":14
+	},
+	{
+		"sourcetext":";",
+		"file_name":"test/snippet2.verse",
+		"line_number":7,
+		"token_number":5,
+		"char_pos":15
+	},
+	{
+		"sourcetext":"#",
+		"file_name":"test/snippet2.verse",
+		"line_number":8,
+		"token_number":0,
+		"char_pos":8
+	},
+	{
+		"sourcetext":"b",
+		"file_name":"test/snippet2.verse",
+		"line_number":8,
+		"token_number":1,
+		"char_pos":9
+	},
+	{
+		"sourcetext":"=",
+		"file_name":"test/snippet2.verse",
+		"line_number":8,
+		"token_number":2,
+		"char_pos":11
+	},
+	{
+		"sourcetext":"tmp",
+		"file_name":"test/snippet2.verse",
+		"line_number":8,
+		"token_number":3,
+		"char_pos":13
+	},
+	{
+		"sourcetext":";",
+		"file_name":"test/snippet2.verse",
+		"line_number":8,
+		"token_number":4,
+		"char_pos":16
+	},
+	{
+		"sourcetext":"}",
+		"file_name":"test/snippet2.verse",
+		"line_number":9,
+		"token_number":0,
+		"char_pos":4
+	},
+	{
+		"sourcetext":"while",
+		"file_name":"test/snippet2.verse",
+		"line_number":11,
+		"token_number":0,
+		"char_pos":4
+	},
+	{
+		"sourcetext":"(",
+		"file_name":"test/snippet2.verse",
+		"line_number":11,
+		"token_number":1,
+		"char_pos":10
+	},
+	{
+		"sourcetext":"n",
+		"file_name":"test/snippet2.verse",
+		"line_number":11,
+		"token_number":2,
+		"char_pos":11
+	},
+	{
+		"sourcetext":">",
+		"file_name":"test/snippet2.verse",
+		"line_number":11,
+		"token_number":3,
+		"char_pos":13
+	},
+	{
+		"sourcetext":"0",
+		"file_name":"test/snippet2.verse",
+		"line_number":11,
+		"token_number":4,
+		"char_pos":15
+	},
+	{
+		"sourcetext":")",
+		"file_name":"test/snippet2.verse",
+		"line_number":11,
+		"token_number":5,
+		"char_pos":16
+	},
+	{
+		"sourcetext":"{",
+		"file_name":"test/snippet2.verse",
+		"line_number":11,
+		"token_number":6,
+		"char_pos":17
+	},
+	{
+		"sourcetext":"swap",
+		"file_name":"test/snippet2.verse",
+		"line_number":12,
+		"token_number":0,
+		"char_pos":8
+	},
+	{
+		"sourcetext":"(",
+		"file_name":"test/snippet2.verse",
+		"line_number":12,
+		"token_number":1,
+		"char_pos":12
+	},
+	{
+		"sourcetext":"#",
+		"file_name":"test/snippet2.verse",
+		"line_number":12,
+		"token_number":2,
+		"char_pos":13
+	},
+	{
+		"sourcetext":"a",
+		"file_name":"test/snippet2.verse",
+		"line_number":12,
+		"token_number":3,
+		"char_pos":14
+	},
+	{
+		"sourcetext":",",
+		"file_name":"test/snippet2.verse",
+		"line_number":12,
+		"token_number":4,
+		"char_pos":15
+	},
+	{
+		"sourcetext":"#",
+		"file_name":"test/snippet2.verse",
+		"line_number":12,
+		"token_number":5,
+		"char_pos":16
+	},
+	{
+		"sourcetext":"b",
+		"file_name":"test/snippet2.verse",
+		"line_number":12,
+		"token_number":6,
+		"char_pos":17
+	},
+	{
+		"sourcetext":")",
+		"file_name":"test/snippet2.verse",
+		"line_number":12,
+		"token_number":7,
+		"char_pos":18
+	},
+	{
+		"sourcetext":";",
+		"file_name":"test/snippet2.verse",
+		"line_number":12,
+		"token_number":8,
+		"char_pos":19
+	},
+	{
+		"sourcetext":"#",
+		"file_name":"test/snippet2.verse",
+		"line_number":13,
+		"token_number":0,
+		"char_pos":8
+	},
+	{
+		"sourcetext":"b",
+		"file_name":"test/snippet2.verse",
+		"line_number":13,
+		"token_number":1,
+		"char_pos":9
+	},
+	{
+		"sourcetext":"=",
+		"file_name":"test/snippet2.verse",
+		"line_number":13,
+		"token_number":2,
+		"char_pos":11
+	},
+	{
+		"sourcetext":"#",
+		"file_name":"test/snippet2.verse",
+		"line_number":13,
+		"token_number":3,
+		"char_pos":13
+	},
+	{
+		"sourcetext":"b",
+		"file_name":"test/snippet2.verse",
+		"line_number":13,
+		"token_number":4,
+		"char_pos":14
+	},
+	{
+		"sourcetext":"+",
+		"file_name":"test/snippet2.verse",
+		"line_number":13,
+		"token_number":5,
+		"char_pos":16
+	},
+	{
+		"sourcetext":"1",
+		"file_name":"test/snippet2.verse",
+		"line_number":13,
+		"token_number":6,
+		"char_pos":18
+	},
+	{
+		"sourcetext":";",
+		"file_name":"test/snippet2.verse",
+		"line_number":13,
+		"token_number":7,
+		"char_pos":19
+	},
+	{
+		"sourcetext":"n",
+		"file_name":"test/snippet2.verse",
+		"line_number":14,
+		"token_number":0,
+		"char_pos":8
+	},
+	{
+		"sourcetext":"=",
+		"file_name":"test/snippet2.verse",
+		"line_number":14,
+		"token_number":1,
+		"char_pos":10
+	},
+	{
+		"sourcetext":"n",
+		"file_name":"test/snippet2.verse",
+		"line_number":14,
+		"token_number":2,
+		"char_pos":12
+	},
+	{
+		"sourcetext":"-",
+		"file_name":"test/snippet2.verse",
+		"line_number":14,
+		"token_number":3,
+		"char_pos":14
+	},
+	{
+		"sourcetext":"1",
+		"file_name":"test/snippet2.verse",
+		"line_number":14,
+		"token_number":4,
+		"char_pos":16
+	},
+	{
+		"sourcetext":";",
+		"file_name":"test/snippet2.verse",
+		"line_number":14,
+		"token_number":5,
+		"char_pos":17
+	},
+	{
+		"sourcetext":"}",
+		"file_name":"test/snippet2.verse",
+		"line_number":15,
+		"token_number":0,
+		"char_pos":4
+	},
+	{
+		"sourcetext":"result",
+		"file_name":"test/snippet2.verse",
+		"line_number":16,
+		"token_number":0,
+		"char_pos":4
+	},
+	{
+		"sourcetext":"=",
+		"file_name":"test/snippet2.verse",
+		"line_number":16,
+		"token_number":1,
+		"char_pos":11
+	},
+	{
+		"sourcetext":"a",
+		"file_name":"test/snippet2.verse",
+		"line_number":16,
+		"token_number":2,
+		"char_pos":13
+	},
+	{
+		"sourcetext":";",
+		"file_name":"test/snippet2.verse",
+		"line_number":16,
+		"token_number":3,
+		"char_pos":14
+	},
+	{
+		"sourcetext":"}",
+		"file_name":"test/snippet2.verse",
+		"line_number":17,
+		"token_number":0,
+		"char_pos":0
 	}
 ]

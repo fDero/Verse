@@ -72,7 +72,7 @@ std::string extract_token(const std::string& sourcecode, const int current, cons
     return extracted;
 }
 
-std::vector<Token> tokenize_file(const std::string& input_filename){
+std::vector<Token> get_tokens_from_file(const std::string& input_filename){
     std::fstream source_code;
     source_code.open(input_filename,std::ios::in);
     if (!source_code.is_open()) throw std::runtime_error("FATAL ERROR: can't find file named: " + input_filename);

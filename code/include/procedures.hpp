@@ -10,9 +10,10 @@ void display_commandline_version();
 void display_commandline_help(); 
 
 //lexing
-std::vector<Token> tokenize_file(const std::string&);
+std::vector<Token> get_tokens_from_file(const std::string&);
 
 //parsing
+std::vector<Instruction> get_instructions_from_tokens(std::vector<Token>& tokens);
 void acquire_exact_match(std::vector<Token>::iterator&,const std::vector<Token>&,const std::string&);
 void acquire_identifier(std::vector<Token>::iterator&,const std::vector<Token>&,std::string&);
 void acquire_typesignature(std::vector<Token>::iterator&,const std::vector<Token>&,TypeSignature&);
@@ -39,10 +40,12 @@ bool parse_infix_operator(std::vector<Token>::iterator&,const std::vector<Token>
 bool parse_assignment(std::vector<Token>::iterator&,const std::vector<Token>&,Instruction&);
 bool parse_terminal(std::vector<Token>::iterator&,const std::vector<Token>&,Instruction&);
 bool parse_non_terminated_expression(std::vector<Token>::iterator&,const std::vector<Token>&,std::vector<Instruction>&);
-void parse_file(std::vector<Token>::iterator&,const std::vector<Token>&,std::vector<Instruction>&);
 
 //compilation
 std::string serialize_type(const TypeSignature&);
+void initialize_output_file(const std::string& filename);
+void translate_instructions_into_xml(const std::vector<Instruction>&,std::fstream&,const std::string&);
 void compile_json(const std::vector<std::string>&,const std::string&);
 void compile_xml(const std::vector<std::string>&,const std::string&);
-void translate_instructions_into_xml(const std::vector<Instruction>&,std::fstream&,const std::string&);
+
+

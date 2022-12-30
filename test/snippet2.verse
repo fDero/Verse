@@ -2,7 +2,7 @@ func fibonacci(n : Int){
     var a : Int = 1;
     var b : Int = 1;
 
-    func swap(a : #Int, b : #Int){
+    func swap(a : Int*, b : Int*){
         var tmp : Int = #a;
         #a = #b;
         #b = tmp;

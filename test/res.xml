@@ -1,4 +1,4 @@
-<LITERAL value="'c'" pseudotype="char"/>
+<!-- file: test/snippet1.verse -->
 <OPERATOR text="+">
 	<OPERATOR text="+">
 		<OPERATOR text="+">
@@ -178,19 +178,82 @@
 		</IF>
 	</ELSE>
 </IF>
-<OPERATOR text="+">
-	<OPERATOR text="+">
-		<IDENTIFIER name="a"/>
-		<OPERATOR text="*">
-			<OPERATOR text="*">
-				<IDENTIFIER name="b"/>
-				<OPERATOR text="^">
-					<IDENTIFIER name="c"/>
-					<IDENTIFIER name="d"/>
-				</OPERATOR>
+<!-- file: test/snippet2.verse -->
+<FUNCDEF name="fibonacci">
+	<ARG name="n" type="Int"/>
+	<FUNCDEF name="swap">
+		<ARG name="a" type="Int*"/>
+		<ARG name="b" type="Int*"/>
+		<VAR name="tmp" type="Int"/>
+		<OPERATOR text="=">
+			<IDENTIFIER name="tmp"/>
+			<OPERATOR text="#">
+				<IDENTIFIER name="a"/>
 			</OPERATOR>
-			<IDENTIFIER name="e"/>
 		</OPERATOR>
+		<ASSIGNMENT>
+			<OPERATOR text="#">
+				<IDENTIFIER name="a"/>
+			</OPERATOR>
+			<OPERATOR text="#">
+				<IDENTIFIER name="b"/>
+			</OPERATOR>
+		</ASSIGNMENT>
+		<ASSIGNMENT>
+			<OPERATOR text="#">
+				<IDENTIFIER name="b"/>
+			</OPERATOR>
+			<IDENTIFIER name="tmp"/>
+		</ASSIGNMENT>
+	</FUNCDEF>
+	<VAR name="a" type="Int"/>
+	<OPERATOR text="=">
+		<IDENTIFIER name="a"/>
+		<LITERAL value="1" pseudotype="int"/>
 	</OPERATOR>
-	<IDENTIFIER name="f"/>
-</OPERATOR>
+	<VAR name="b" type="Int"/>
+	<OPERATOR text="=">
+		<IDENTIFIER name="b"/>
+		<LITERAL value="1" pseudotype="int"/>
+	</OPERATOR>
+	<WHILE>
+		<OPERATOR text=">">
+			<IDENTIFIER name="n"/>
+			<LITERAL value="0" pseudotype="int"/>
+		</OPERATOR>
+		<CODE>
+			<FUNCALL name="swap">
+				<OPERATOR text=",">
+					<OPERATOR text="#">
+						<IDENTIFIER name="a"/>
+					</OPERATOR>
+					<OPERATOR text="#">
+						<IDENTIFIER name="b"/>
+					</OPERATOR>
+				</OPERATOR>
+			</FUNCALL>
+			<ASSIGNMENT>
+				<OPERATOR text="#">
+					<IDENTIFIER name="b"/>
+				</OPERATOR>
+				<OPERATOR text="+">
+					<OPERATOR text="#">
+						<IDENTIFIER name="b"/>
+					</OPERATOR>
+					<LITERAL value="1" pseudotype="int"/>
+				</OPERATOR>
+			</ASSIGNMENT>
+			<ASSIGNMENT>
+				<IDENTIFIER name="n"/>
+				<OPERATOR text="-">
+					<IDENTIFIER name="n"/>
+					<LITERAL value="1" pseudotype="int"/>
+				</OPERATOR>
+			</ASSIGNMENT>
+		<CODE>
+	</WHILE>
+	<ASSIGNMENT>
+		<IDENTIFIER name="result"/>
+		<IDENTIFIER name="a"/>
+	</ASSIGNMENT>
+</FUNCDEF>

@@ -151,15 +151,15 @@ bool convert_assignment_into_xml(const Instruction& instr, std::fstream& output,
 }
 
 void compile_xml(const std::vector<std::string>& input_files, const std::string& output_filepath){
-    std::string input_filepath = input_files.back();
-    std::vector<Token> tokens = tokenize_file(input_filepath); 
-    std::vector<Token>::iterator primer = tokens.begin();   
-    std::fstream output = std::fstream(output_filepath,  std::fstream::in | std::fstream::out | std::fstream::trunc);
-    std::vector<Instruction> instructions;
-    parse_file(primer, tokens, instructions); 
-    translate_instructions_into_xml(instructions,output,"");
-    output.close(); 
-    std::cout << input_filepath << " compiled successfully as " << output_filepath << "\n";
+    initialize_output_file(output_filepath);
+    std::fstream output = std::fstream(output_filepath, std::ios_base::app);
+    for (const std::string& input : input_files){
+        std::vector<Token> tokens = get_tokens_from_file(input); 
+        std::vector<Instruction> instructions = get_instructions_from_tokens(tokens);
+        output << "<!-- file: " << input << " -->\n";
+        translate_instructions_into_xml(instructions,output,"");  
+    }
+    output.close();
 }
 
 void translate_instructions_into_xml(const std::vector<Instruction>& instructions, std::fstream& output, const std::string& prefix){

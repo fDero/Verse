@@ -11,7 +11,7 @@ bool compiler_flag(int& i, int argc, char **argv, CommandLine& state){
 }
 
 bool interpreter_flag(int& i, int argc, char **argv, CommandLine& state){
-    if (std::string(argv[i]) != "-i" and std::string(argv[i]) != "--evaluate") return false;
+    if (std::string(argv[i]) != "-r" and std::string(argv[i]) != "--run") return false;
     while (++i < argc and argv[i][0] != '-')  state.inputs.push_back(argv[i]);
     if (state.mode != Mode::standard) throw std::runtime_error("conflicting flags");
     state.mode = Mode::interpreter;
