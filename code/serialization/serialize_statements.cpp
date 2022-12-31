@@ -76,6 +76,16 @@ bool convert_attempt_into_xml(const Instruction& instr, std::fstream& output, co
     if (not std::holds_alternative<Attempt>(instr)) return false;
     Attempt attempt = std::get<Attempt>(instr);
     output << prefix << ("<ATTEMPT>\n");
+    for (const std::vector<Instruction>& option : attempt.attempts){
+        output << prefix << ("\t<TRY>\n");
+        translate_instructions_into_xml(option,output,"\t\t" + prefix);
+        output << prefix << ("\t</TRY>\n");
+    }
+    if (!attempt.otherwise.empty()){
+        output << prefix << ("\t<DEFAULT>\n");
+        translate_instructions_into_xml(attempt.otherwise,output,"\t\t" + prefix);
+        output << prefix << ("\t</DEFAULT>\n");
+    }
     output << prefix << ("</ATTEMPT>\n");
     return true;
     

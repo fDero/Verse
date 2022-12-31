@@ -13,7 +13,45 @@
 <CONTINUE/>
 <BREAK/>
 <ATTEMPT>
+	<TRY>
+		<FUNCALL name="open">
+			<IDENTIFIER name="file"/>
+		</FUNCALL>
+	</TRY>
 </ATTEMPT>
 <BREAK/>
 <ATTEMPT>
+	<TRY>
+		<FUNCALL name="open">
+			<IDENTIFIER name="file"/>
+		</FUNCALL>
+	</TRY>
+	<TRY>
+		<FUNCALL name="resolve">
+			<IDENTIFIER name="file"/>
+		</FUNCALL>
+	</TRY>
+	<DEFAULT>
+		<FUNCALL name="kill">
+		</FUNCALL>
+	</DEFAULT>
 </ATTEMPT>
+<OPERATOR text="+">
+	<OPERATOR text="#">
+		<OPERATOR text=".">
+			<IDENTIFIER name="file"/>
+			<IDENTIFIER name="filename"/>
+		</OPERATOR>
+	</OPERATOR>
+	<LITERAL value="3" pseudotype="int"/>
+</OPERATOR>
+<OPERATOR text="+">
+	<OPERATOR text="+">
+		<LITERAL value="3" pseudotype="int"/>
+		<OPERATOR text="*">
+			<LITERAL value="4" pseudotype="int"/>
+			<LITERAL value="5" pseudotype="int"/>
+		</OPERATOR>
+	</OPERATOR>
+	<LITERAL value="6" pseudotype="int"/>
+</OPERATOR>
