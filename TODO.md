@@ -17,3 +17,4 @@
 
 - [ ] write the interpreter
 - [ ] write the asm compiler
+- [ ] write the debugger
