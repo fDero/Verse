@@ -2,12 +2,12 @@
 
 ### Short term goals
 
-- [X] parse expressions
-- [X] parse definitions
+- [x] parse expressions
+- [x] parse definitions
 - [ ] parse statements
-- [X] parse generics
-- [X] better scopes and shadowing rules
-- [X] command line interface
+- [x] parse generics
+- [x] better scopes and shadowing rules
+- [x] command line interface
 - [ ] better error messages
 - [ ] rewrite the lexer from scratch
 - [ ] better type syntax
