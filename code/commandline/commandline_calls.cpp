@@ -11,8 +11,8 @@ void validate_input_files(const std::vector<std::string>& inputs){
 void compile(const std::vector<std::string>& inputs, const std::vector<std::string>& outputs){
     validate_input_files(inputs);
     for (const std::string& out : outputs) switch (file_extension(out)) {
-        //case FileExtension::xml:   compile_xml(inputs,out);    break;
-        //case FileExtension::json:  compile_json(inputs,out);   break;
+        case FileExtension::xml:   compile_xml(inputs,out);    break;
+        case FileExtension::json:  compile_json(inputs,out);   break;
     }
 }
 

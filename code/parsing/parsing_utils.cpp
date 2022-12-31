@@ -10,6 +10,7 @@ void acquire_instruction(std::vector<Token>::iterator& it, const std::vector<Tok
     if (parse_while_loop(it,tokens,output))           return;
     if (parse_until_loop(it,tokens,output))           return;
     if (parse_return(it,tokens,output))               return;
+    if (parse_defer(it,tokens,output))                return;
     if (parse_break(it,tokens,output))                return;
     if (parse_continue(it,tokens,output))             return;
     if (parse_attempt(it,tokens,output))              return;

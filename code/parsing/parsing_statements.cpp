@@ -53,7 +53,7 @@ bool parse_break(std::vector<Token>::iterator& it, const std::vector<Token>& tok
     if (it->sourcetext != "break") return false;
     acquire_exact_match(it,tokens,"break");
     acquire_exact_match(it,tokens,";");
-    output.push_back(Continue{});
+    output.push_back(Break{});
     return true;
 }
 
@@ -61,7 +61,8 @@ bool parse_return(std::vector<Token>::iterator& it, const std::vector<Token>& to
     if (it->sourcetext != "return") return false;
     acquire_exact_match(it,tokens,"return");
     std::shared_ptr<Instruction> value;
-    (it != tokens.end() and it->sourcetext != ";")? acquire_expression(it,tokens,value) : acquire_exact_match(it,tokens,";");
+    acquire_expression(it,tokens,value);
+    acquire_exact_match(it,tokens,";");
     output.push_back(Return{value});
     return true;
 }
@@ -70,7 +71,8 @@ bool parse_defer(std::vector<Token>::iterator& it, const std::vector<Token>& tok
     if (it->sourcetext != "defer") return false;
     acquire_exact_match(it,tokens,"defer");
     std::shared_ptr<Instruction> code;
-    (it != tokens.end() and it->sourcetext != ";")? acquire_expression(it,tokens,code) : acquire_exact_match(it,tokens,";");
+    acquire_expression(it,tokens,code); 
+    acquire_exact_match(it,tokens,";");
     output.push_back(Defer{code});
     return true;
 }

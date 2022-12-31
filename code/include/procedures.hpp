@@ -66,3 +66,8 @@ bool convert_assignment_into_xml(const Instruction& instr, std::fstream& output,
 bool convert_while_into_xml(const Instruction& instr, std::fstream& output, const std::string& prefix);
 bool convert_until_into_xml(const Instruction& instr, std::fstream& output, const std::string& prefix);
 bool convert_conditional_into_xml(const Instruction& instr, std::fstream& output, const std::string& prefix);
+bool convert_continue_into_xml(const Instruction& instr, std::fstream& output, const std::string& prefix);
+bool convert_break_into_xml(const Instruction& instr, std::fstream& output, const std::string& prefix);
+bool convert_return_into_xml(const Instruction& instr, std::fstream& output, const std::string& prefix);
+bool convert_defer_into_xml(const Instruction& instr, std::fstream& output, const std::string& prefix);
+bool convert_attempt_into_xml(const Instruction& instr, std::fstream& output, const std::string& prefix);

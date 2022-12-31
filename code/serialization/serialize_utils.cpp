@@ -56,10 +56,15 @@ void translate_instructions_into_xml(const std::vector<Instruction>& instruction
         if (convert_function_call_into_xml(instr,output,prefix))        continue;
         if (convert_identifier_into_xml(instr,output,prefix))           continue;
         if (convert_literal_into_xml(instr,output,prefix))              continue;
+        if (convert_assignment_into_xml(instr,output,prefix))           continue;
         if (convert_while_into_xml(instr,output,prefix))                continue;
         if (convert_until_into_xml(instr,output,prefix))                continue;
         if (convert_conditional_into_xml(instr,output,prefix))          continue;
-        if (convert_assignment_into_xml(instr,output,prefix))           continue;
+        if (convert_continue_into_xml(instr,output,prefix))             continue;
+        if (convert_break_into_xml(instr,output,prefix))                continue;
+        if (convert_defer_into_xml(instr,output,prefix))                continue;
+        if (convert_return_into_xml(instr,output,prefix))               continue;
+        if (convert_attempt_into_xml(instr,output,prefix))              continue;
         throw std::runtime_error("instruction can't be compiled");
     }
 }

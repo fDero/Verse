@@ -40,3 +40,43 @@ bool convert_conditional_into_xml(const Instruction& instr, std::fstream& output
     output << prefix <<  ("</IF>\n");
     return true;
 }
+
+bool convert_continue_into_xml(const Instruction& instr, std::fstream& output, const std::string& prefix){
+    if (not std::holds_alternative<Continue>(instr)) return false;
+    output << prefix << ("<CONTINUE/>\n");
+    return true;
+}
+
+
+bool convert_break_into_xml(const Instruction& instr, std::fstream& output, const std::string& prefix){
+    if (not std::holds_alternative<Break>(instr)) return false;
+    output << prefix << ("<BREAK/>\n");
+    return true;
+}
+
+bool convert_return_into_xml(const Instruction& instr, std::fstream& output, const std::string& prefix){
+    if (not std::holds_alternative<Return>(instr)) return false;
+    Return ret = std::get<Return>(instr);
+    output << prefix << ("<RETURN>\n");
+    translate_instructions_into_xml({*(ret.value)},output,"\t" + prefix);
+    output << prefix << ("</RETURN>\n");
+    return true;
+}
+
+bool convert_defer_into_xml(const Instruction& instr, std::fstream& output, const std::string& prefix){
+    if (not std::holds_alternative<Defer>(instr)) return false;
+    Defer defer = std::get<Defer>(instr);
+    output << prefix << ("<DEFER>\n");
+    translate_instructions_into_xml({*(defer.operation)},output,"\t" + prefix);
+    output << prefix << ("</DEFER>\n");
+    return true;
+}
+
+bool convert_attempt_into_xml(const Instruction& instr, std::fstream& output, const std::string& prefix){
+    if (not std::holds_alternative<Attempt>(instr)) return false;
+    Attempt attempt = std::get<Attempt>(instr);
+    output << prefix << ("<ATTEMPT>\n");
+    output << prefix << ("</ATTEMPT>\n");
+    return true;
+    
+}
