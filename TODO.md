@@ -2,8 +2,8 @@
 
 ### Short term goals
 
-- [x] parse expressions
 - [x] parse definitions
+- [x] parse expressions
 - [ ] parse statements
 - [x] parse generics
 - [x] better scopes and shadowing rules
