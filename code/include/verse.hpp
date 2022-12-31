@@ -29,13 +29,17 @@ struct EnumDefinition;   struct StructDefinition;  struct UnionDefinition;
 struct FunctionCall;     struct UnaryOperator;     struct BinaryOperator;
 struct WhileLoop;        struct UntilLoop;         struct Conditional; 
 struct Assignment;       struct Literal;           struct Identifier;              
+struct Return;           struct Continue;          struct Break;
+struct Defer;            struct Attempt;           struct Catch;
 
 using Instruction = std::variant<
     Variable,       Constant,          FunctionDefinition,
     /*Enum*/        StructDefinition,  /*Union*/
     FunctionCall,   UnaryOperator,     BinaryOperator,
     WhileLoop,      UntilLoop,         Conditional, 
-    Assignment,     Literal,           Identifier
+    Assignment,     Literal,           Identifier,
+    Return,         Continue,          Break,
+    Attempt,        /*Catch*/          Defer
 >;
 
 #include "types.hpp"

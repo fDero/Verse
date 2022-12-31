@@ -3,9 +3,9 @@
 
 bool parse_variable(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::vector<Instruction>& output){ 
     if(it->sourcetext != "var") return false; 
-    std::advance(it,1); 
     Variable this_var;
     std::shared_ptr<Instruction> value;
+    acquire_exact_match(it,tokens,"var");
     acquire_identifier(it, tokens, this_var.name);
     acquire_exact_match(it,tokens,":");
     acquire_typesignature(it,tokens,this_var.typesignature);
@@ -23,9 +23,9 @@ bool parse_variable(std::vector<Token>::iterator& it, const std::vector<Token>& 
 }
 
 bool parse_constant(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::vector<Instruction>& output){ 
-    if(it->sourcetext != "const") return false; 
-    std::advance(it,1); 
-    Constant this_const;
+    if(it->sourcetext != "const") return false;
+    Constant this_const; 
+    acquire_exact_match(it,tokens,"const");
     acquire_identifier(it, tokens, this_const.name);
     acquire_exact_match(it,tokens,":");
     acquire_typesignature(it,tokens,this_const.typesignature);
@@ -38,8 +38,8 @@ bool parse_constant(std::vector<Token>::iterator& it, const std::vector<Token>& 
 
 bool parse_struct_definition(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::vector<Instruction>& output){
     if(it->sourcetext != "struct") return false;
-    std::advance(it,1);
     StructDefinition this_struct;
+    acquire_exact_match(it,tokens,"struct");
     acquire_baretype(it,tokens,this_struct.struct_name);
     acquire_simple_generics(it,tokens,this_struct.generics);
     acquire_exact_match(it,tokens,"{");
@@ -58,8 +58,8 @@ bool parse_struct_definition(std::vector<Token>::iterator& it, const std::vector
 
 bool parse_function_definition(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::vector<Instruction>& output){    
     if(it->sourcetext != "func") return false;
-    std::advance(it,1);
     FunctionDefinition this_func;
+    acquire_exact_match(it,tokens,"func");
     acquire_identifier(it,tokens,this_func.func_name);
     acquire_simple_generics(it,tokens,this_func.generics);
     acquire_exact_match(it,tokens,"(");

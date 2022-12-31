@@ -16,3 +16,14 @@ struct UntilLoop {
     std::shared_ptr<Instruction> condition;
     std::vector<Instruction> code;
 };
+
+struct Return   { std::shared_ptr<Instruction> value; };
+struct Defer    { std::shared_ptr<Instruction> operation; };
+struct Break    {};
+struct Continue {};
+
+struct Attempt { 
+    std::vector<std::vector<Instruction>> attempts;
+    std::vector<Instruction> otherwise; 
+};
+

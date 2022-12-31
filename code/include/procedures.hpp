@@ -29,10 +29,15 @@ bool parse_struct_definition(std::vector<Token>::iterator&,const std::vector<Tok
 bool parse_function_definition(std::vector<Token>::iterator&,const std::vector<Token>&,std::vector<Instruction>&);
 bool parse_constant(std::vector<Token>::iterator&,const std::vector<Token>&,std::vector<Instruction>&);
 bool parse_variable(std::vector<Token>::iterator&,const std::vector<Token>&,std::vector<Instruction>&);
-bool parse_conditional(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::vector<Instruction>&);
-bool parse_while_loop(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::vector<Instruction>&);
-bool parse_until_loop(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::vector<Instruction>&);
-bool parse_expression(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::vector<Instruction>&);
+bool parse_conditional(std::vector<Token>::iterator&,const std::vector<Token>&,std::vector<Instruction>&);
+bool parse_while_loop(std::vector<Token>::iterator&,const std::vector<Token>&,std::vector<Instruction>&);
+bool parse_until_loop(std::vector<Token>::iterator&,const std::vector<Token>&,std::vector<Instruction>&);
+bool parse_continue(std::vector<Token>::iterator&,const std::vector<Token>&,std::vector<Instruction>&);
+bool parse_break(std::vector<Token>::iterator&,const std::vector<Token>&,std::vector<Instruction>&);
+bool parse_return(std::vector<Token>::iterator&,const std::vector<Token>&,std::vector<Instruction>&);
+bool parse_defer(std::vector<Token>::iterator&,const std::vector<Token>&,std::vector<Instruction>&);
+bool parse_attempt(std::vector<Token>::iterator&,const std::vector<Token>&,std::vector<Instruction>&);
+bool parse_expression(std::vector<Token>::iterator&,const std::vector<Token>&,std::vector<Instruction>&);
 void operator_precedence_lockout(Instruction&);
 void fix_expression(Instruction&);
 bool parse_prefix_operator(std::vector<Token>::iterator&,const std::vector<Token>&,Instruction&);
@@ -41,11 +46,23 @@ bool parse_assignment(std::vector<Token>::iterator&,const std::vector<Token>&,In
 bool parse_terminal(std::vector<Token>::iterator&,const std::vector<Token>&,Instruction&);
 bool parse_non_terminated_expression(std::vector<Token>::iterator&,const std::vector<Token>&,std::vector<Instruction>&);
 
-//compilation
+//seialization
 std::string serialize_type(const TypeSignature&);
-void initialize_output_file(const std::string& filename);
+std::string serialize_generics(const std::vector<TypeSignature>&);
+void translate_tokens_into_json(const std::vector<Token>&,std::fstream&);
 void translate_instructions_into_xml(const std::vector<Instruction>&,std::fstream&,const std::string&);
 void compile_json(const std::vector<std::string>&,const std::string&);
 void compile_xml(const std::vector<std::string>&,const std::string&);
-
-
+bool convert_variable_into_xml(const Instruction& instr, std::fstream& output, const std::string& prefix);
+bool convert_constant_into_xml(const Instruction& instr, std::fstream& output, const std::string& prefix);
+bool convert_struct_definition_into_xml(const Instruction& instr, std::fstream& output, const std::string& prefix);
+bool convert_function_definition_into_xml(const Instruction& instr, std::fstream& output, const std::string& prefix);
+bool convert_function_call_into_xml(const Instruction& instr, std::fstream& output, const std::string& prefix);
+bool convert_identifier_into_xml(const Instruction& instr, std::fstream& output, const std::string& prefix);
+bool convert_literal_into_xml(const Instruction& instr, std::fstream& output, const std::string& prefix);
+bool convert_binary_operator_into_xml(const Instruction& instr, std::fstream& output, const std::string& prefix);
+bool convert_unary_operator_into_xml(const Instruction& instr, std::fstream& output, const std::string& prefix);
+bool convert_assignment_into_xml(const Instruction& instr, std::fstream& output, const std::string& prefix);
+bool convert_while_into_xml(const Instruction& instr, std::fstream& output, const std::string& prefix);
+bool convert_until_into_xml(const Instruction& instr, std::fstream& output, const std::string& prefix);
+bool convert_conditional_into_xml(const Instruction& instr, std::fstream& output, const std::string& prefix);
