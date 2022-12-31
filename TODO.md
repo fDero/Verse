@@ -1,14 +1,16 @@
 # TODO
 
+### Short term goals
 
-### Short Term
-
-- [ ] return statement
-- [ ] attempt statement
-- [ ] compiler / interpreter error handling 
+- [X] better scopes and shadowing rules
+- [X] parse generics
+- [X] command line interface
+- [ ] parse return statement
+- [ ] parse attempt statement
+- [ ] better error messages
 - [ ] rewrite the lexer from scratch
 
-### Medium Term
+### Long term goals
 
 - [ ] write the interpreter
 - [ ] write the asm compiler
