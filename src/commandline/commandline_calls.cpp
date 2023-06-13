@@ -4,15 +4,21 @@
 
 void validate_input_files(const std::vector<std::string>& inputs){
     for(const std::string& in : inputs) {
-        if (file_extension(in) != FileExtension::verse) throw std::runtime_error("input files must be .verse");
+        if (file_extension(in) != FileExtension::verse) throw CommandLineError { "input files must be .verse" };
     }
+}
+
+void verse_output_error(){
+    throw CommandLineError { ".verse file extension cannot be used for output files. type 'verse --help' for more informations" };
 }
 
 void compile(const std::vector<std::string>& inputs, const std::vector<std::string>& outputs){
     validate_input_files(inputs);
+    if (inputs.empty()) throw CommandLineError { "unspecified input files: don't know what to do" };
     for (const std::string& out : outputs) switch (file_extension(out)) {
         case FileExtension::xml:   compile_xml(inputs,out);    break;
         case FileExtension::json:  compile_json(inputs,out);   break;
+        case FileExtension::verse: verse_output_error();       break;
     }
 }
 

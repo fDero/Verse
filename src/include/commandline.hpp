@@ -1,8 +1,9 @@
 #pragma once
 #include "verse.hpp"
+#include <string>
 
 enum class Mode {
-    standard, version, help,
+    unspecified, version, help,
     compiler, interpreter, debugger
 };
 

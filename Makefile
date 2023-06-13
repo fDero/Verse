@@ -1,15 +1,15 @@
 .PHONY: test build clean
 
-COMPILER=g++
+COMPILER=clang++
 STD=c++20
-LINKER=g++
+LINKER=clang++
 PYTHON=python3
 
 clean:
 	@rm -f build/*.o
 	@rm -f test/snippets/*/*.xml
 	@rm -f test/snippets/*/*.json
-	@rmdir -p build
+	@rm -rf build
 	@rm -f verse
 
 build:
