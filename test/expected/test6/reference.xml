@@ -1,0 +1,76 @@
+<!-- file: test/snippets/test6/file1.verse -->
+<WHILE>
+	<OPERATOR text="<">
+		<OPERATOR text="+">
+			<IDENTIFIER name="n"/>
+			<LITERAL value="1" pseudotype="int"/>
+		</OPERATOR>
+		<OPERATOR text="+">
+			<LITERAL value="10" pseudotype="int"/>
+			<OPERATOR text="*">
+				<LITERAL value="3" pseudotype="int"/>
+				<LITERAL value="2" pseudotype="int"/>
+			</OPERATOR>
+		</OPERATOR>
+	</OPERATOR>
+	<CODE>
+		<VAR name="x" type="X"/>
+		<ASSIGNMENT>
+			<IDENTIFIER name="x"/>
+			<ASSIGNMENT>
+				<IDENTIFIER name="y"/>
+				<IDENTIFIER name="z"/>
+			</ASSIGNMENT>
+		</ASSIGNMENT>
+		<FUNCALL name="print">
+			<LITERAL value="`ciao`" pseudotype="string"/>
+		</FUNCALL>
+		<ASSIGNMENT>
+			<IDENTIFIER name="n"/>
+			<OPERATOR text="+">
+				<IDENTIFIER name="n"/>
+				<LITERAL value="1" pseudotype="int"/>
+			</OPERATOR>
+		</ASSIGNMENT>
+	<CODE>
+</WHILE>
+<WHILE>
+	<OPERATOR text="<">
+		<IDENTIFIER name="n"/>
+		<LITERAL value="10" pseudotype="int"/>
+	</OPERATOR>
+	<CODE>
+		<FUNCALL name="print">
+		</FUNCALL>
+	<CODE>
+</WHILE>
+<!-- file: test/snippets/test6/file2.verse -->
+<IF>
+	<OPERATOR text="<">
+		<IDENTIFIER name="n"/>
+		<LITERAL value="10" pseudotype="int"/>
+	</OPERATOR>
+	<THEN>
+		<FUNCALL name="print">
+			<LITERAL value="`less then ten`" pseudotype="string"/>
+		</FUNCALL>
+	</THEN>
+	<ELSE>
+		<IF>
+			<OPERATOR text=">">
+				<IDENTIFIER name="n"/>
+				<LITERAL value="10" pseudotype="int"/>
+			</OPERATOR>
+			<THEN>
+				<FUNCALL name="print">
+					<LITERAL value="`more then ten`" pseudotype="string"/>
+				</FUNCALL>
+			</THEN>
+			<ELSE>
+				<FUNCALL name="print">
+					<LITERAL value="`exactly ten`" pseudotype="string"/>
+				</FUNCALL>
+			</ELSE>
+		</IF>
+	</ELSE>
+</IF>

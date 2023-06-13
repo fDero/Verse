@@ -1,0 +1,8 @@
+<!-- file: test/snippets/test2/main.verse -->
+<OPERATOR text="+">
+	<IDENTIFIER name="a"/>
+	<OPERATOR text="*">
+		<IDENTIFIER name="b"/>
+		<IDENTIFIER name="c"/>
+	</OPERATOR>
+</OPERATOR>
