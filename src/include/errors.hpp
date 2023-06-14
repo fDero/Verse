@@ -26,9 +26,3 @@ struct InternalCompilerError {
 struct CommandLineError {
     std::string error_message;
 };
-
-void inline assert_unreachable(){
-    throw InternalCompilerError{
-        "an execution path that should have been unreachable has been reached! (assert_unreachable)"
-    };
-}

@@ -1,4 +1,5 @@
 #pragma once
+#include "verse.hpp"
 
 //commandline
 CommandLine read_commandline(int,char**);
@@ -8,6 +9,14 @@ void evaluate(const std::vector<std::string>&,const std::vector<std::string>&);
 void debug(const std::vector<std::string>&,const std::vector<std::string>&);
 void display_commandline_version();
 void display_commandline_help(); 
+
+//errors
+void assert_unreachable();
+void display_error_context(const Token&); 
+void display_commandline_error(const CommandLineError&);
+void display_tokenization_error(const TokenizationError&);
+void display_syntax_error(const SyntaxError&);
+void display_ICE(const InternalCompilerError&);
 
 //commandline utilities
 inline std::string red(const std::string& str)    { return std::string("\e[0;31m") + str + std::string("\e[0;0m"); }

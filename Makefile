@@ -9,6 +9,7 @@ clean:
 	@rm -f build/*.o
 	@rm -f test/snippets/*/*.xml
 	@rm -f test/snippets/*/*.json
+	@rm -rf .vscode
 	@rm -rf build
 	@rm -f verse
 
@@ -29,6 +30,7 @@ build:
 	${COMPILER} -c -std=${STD} src/serialization/serialize_expressions.cpp  -o build/serialize_expression.o
 	${COMPILER} -c -std=${STD} src/serialization/serialize_statements.cpp   -o build/serialize_statements.o
 	${COMPILER} -c -std=${STD} src/serialization/serialize_utils.cpp        -o build/serialize_utils.o
+	${COMPILER} -c -std=${STD} src/errors/errors.cpp                        -o build/errors.o
 	${LINKER} build/*.o -o verse
 
 test:
