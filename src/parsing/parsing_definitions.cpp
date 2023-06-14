@@ -42,6 +42,7 @@ bool parse_struct_definition(std::vector<Token>::iterator& it, const std::vector
     acquire_exact_match(it,tokens,"struct");
     acquire_baretype(it,tokens,this_struct.struct_name);
     acquire_simple_generics(it,tokens,this_struct.generics);
+    auto expected_brackets_open = it;
     acquire_exact_match(it,tokens,"{");
     while(it != tokens.end() and it->sourcetext != "}"){
         if (parse_struct_definition(it,tokens,this_struct.internal_definitions)) continue;
@@ -50,7 +51,7 @@ bool parse_struct_definition(std::vector<Token>::iterator& it, const std::vector
         acquire_exact_match(it,tokens,";");
         this_struct.internal_state.push_back(field);
     }
-    if (it == tokens.end()) throw std::runtime_error("brackets opened but never closed in struct definition");
+    if (it == tokens.end()) throw SyntaxError { "brackets opened but never closed in struct definition", *expected_brackets_open };
     std::advance(it,1);
     output.push_back(this_struct);
     return true;
@@ -62,6 +63,7 @@ bool parse_function_definition(std::vector<Token>::iterator& it, const std::vect
     acquire_exact_match(it,tokens,"func");
     acquire_identifier(it,tokens,this_func.func_name);
     acquire_simple_generics(it,tokens,this_func.generics);
+    auto expected_parenthesys_opened = it;
     acquire_exact_match(it,tokens,"(");
     if (it != tokens.end() and it->sourcetext != ")" and it->sourcetext != ",") do {
         std::advance(it,it->sourcetext == ",");
@@ -69,16 +71,17 @@ bool parse_function_definition(std::vector<Token>::iterator& it, const std::vect
         acquire_instance(it,tokens,arg);
         this_func.args.push_back(arg);
     } while (it != tokens.end() and it->sourcetext == ",");
-    if (it != tokens.end() and it->sourcetext != ")") throw std::runtime_error("unexpected token: " + it->sourcetext + " instead of: )");
-    if (it == tokens.end()) throw std::runtime_error("parenthesys opened but never closed");
+    if (it != tokens.end() and it->sourcetext != ")") throw SyntaxError {"unexpected token: " + it->sourcetext + " instead of: )", *it};
+    if (it == tokens.end()) throw SyntaxError {"parenthesys opened but never closed", *expected_parenthesys_opened};
     std::advance(it,1);
+    auto expected_brackets_open = it;
     acquire_exact_match(it,tokens,"{");
     while(it != tokens.end() and it->sourcetext != "}"){
         if (parse_struct_definition(it,tokens,this_func.internal_definitions))   continue;
         if (parse_function_definition(it,tokens,this_func.internal_definitions)) continue;
         acquire_instruction(it,tokens,this_func.code);
     }
-    if (it == tokens.end() or it->sourcetext != "}") throw std::runtime_error("brackets opened but never closed in function definition");
+    if (it == tokens.end() or it->sourcetext != "}") throw SyntaxError { "brackets opened but never closed in function definition", *expected_brackets_open };
     std::advance(it,1);
     output.push_back(this_func);
     return true;

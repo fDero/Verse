@@ -14,6 +14,11 @@ struct TokenizationError {
     TokenInfo data;
 };
 
+struct SyntaxError {
+    std::string error_message;
+    Token error_token;
+};
+
 struct InternalCompilerError {
     std::string error_message;
 };

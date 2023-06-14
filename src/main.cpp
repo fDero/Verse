@@ -29,6 +29,15 @@ int main(int argc, char **argv){
         << purple("\n tok num: ") << err.data.tok_number
         << "\n\n";
     }
+    catch (const SyntaxError& err){
+        std::cout
+        << bold_red("SYNTAX ERROR: \n\t")
+        << red(err.error_message)
+        << purple("\n in file: ") << err.error_token.filename
+        << purple("\n at line: ") << err.error_token.line_number
+        << purple("\n tok num: ") << err.error_token.tok_number
+        << "\n\n";
+    }
     catch (const InternalCompilerError& err){
         std::cout 
         << bold_red("INTERNAL COMPILER ERROR: \n\t")  
