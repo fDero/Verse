@@ -47,7 +47,7 @@ bool parse_struct_definition(std::vector<Token>::iterator& it, const std::vector
     while(it != tokens.end() and it->sourcetext != "}"){
         if (parse_struct_definition(it,tokens,this_struct.internal_definitions)) continue;
         Instance field;  
-        acquire_instance(it,tokens,field);
+        if (!parse_instance(it,tokens,field)) throw SyntaxError { "structs can only contains attributes or nested struct definitions", *it };
         acquire_exact_match(it,tokens,";");
         this_struct.internal_state.push_back(field);
     }
@@ -68,10 +68,10 @@ bool parse_function_definition(std::vector<Token>::iterator& it, const std::vect
     if (it != tokens.end() and it->sourcetext != ")" and it->sourcetext != ",") do {
         std::advance(it,it->sourcetext == ",");
         Instance arg; 
-        acquire_instance(it,tokens,arg);
+        if (!parse_instance(it,tokens,arg)) throw SyntaxError {"unexpected token: " + it->sourcetext + " an argument was expected instead", *it }; 
         this_func.args.push_back(arg);
     } while (it != tokens.end() and it->sourcetext == ",");
-    if (it != tokens.end() and it->sourcetext != ")") throw SyntaxError {"unexpected token: " + it->sourcetext + " instead of: )", *it};
+    if (it != tokens.end() and it->sourcetext != ")") throw SyntaxError {"unexpected token: " + it->sourcetext + " ')' was expected instead ", *it };
     if (it == tokens.end()) throw SyntaxError {"parenthesys opened but never closed", *expected_parenthesys_opened};
     std::advance(it,1);
     auto expected_brackets_open = it;

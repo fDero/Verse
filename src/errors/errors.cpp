@@ -13,58 +13,63 @@ void assert_unreachable(){
     };
 }
 
-void display_error_context(const Token& error_token){
-    std::ifstream infile(error_token.filename);
+void display_error_context(const std::string& filename, int line_number, int char_pos){
+    std::ifstream infile(filename);
     std::string line;
     
-    int line_number = 0;
-    int char_number = 0;
     int spread = 4;
     
     for (int linenum = 1; std::getline(infile, line); linenum++) {
 
-        if (linenum > error_token.line_number - spread and linenum < error_token.line_number){
+        if (linenum > line_number - spread and linenum < line_number){
             std::cout << "\t" << line << "\n";
         }
         
-        if (linenum == error_token.line_number){
-            std::cout << "\t\e[0;33m" << line <<"\e[0;0m\n";
+        if (linenum == line_number){
+            std::cout << "\t";
+            for (int i = 0; i < line.size(); i++){
+                if(i != char_pos) std::cout << yellow(line.substr(i,1)); 
+                else std::cout << red(line.substr(i,1));
+                char_pos += (isalnum(line[i]) and i == char_pos); 
+            }
+            std::cout << "\n";
         }
         
-        if (linenum < error_token.line_number + spread and linenum > error_token.line_number){
+        if (linenum < line_number + spread and linenum > line_number){
             std::cout << "\t" << line << "\n";
         }
         
-        if (linenum > error_token.line_number + spread) break;
+        if (linenum > line_number + spread) break;
     }
 }
 
 void display_commandline_error(const CommandLineError& err){
-    std::cout << std::endl << bold_red("COMMANDLINE ERROR: \n\t") 
+    std::cout << std::endl << bold_red("COMMANDLINE ERROR: \n └─ ") 
     << red(err.error_message + "\n\n")
     << purple("type 'verse --help' in your console to get more informations\n\n");
 }
 
 void display_tokenization_error(const TokenizationError& err){
     std::cout << std::endl
-    << bold_red("TOKENIZATION ERROR: \n\t")
-    << red(err.error_message)
-    << purple("\n in file: ") << err.data.filename << " "
-    << purple("at line: ") << err.data.line_number << "\n";
+    << bold_red("TOKENIZATION ERROR: \n └─ ")
+    << red(err.error_message) << "\n\n";
+    display_error_context(err.data.filename, err.data.line_number, err.data.char_pos);
+    std::cout << purple("\n in file: ") << err.data.filename << " "
+    << purple("at line: ") << err.data.line_number << "\n\n";
 }
 
 void display_syntax_error(const SyntaxError& err){
     std::cout << std::endl
-    << bold_red("SYNTAX ERROR: \n\t")
+    << bold_red("SYNTAX ERROR: \n └─ ")
     << red(err.error_message) << "\n\n";
-    display_error_context(err.error_token);
+    display_error_context(err.error_token.filename, err.error_token.line_number, err.error_token.char_pos);
     std::cout << purple("\n in file: ") << err.error_token.filename
     << purple(" at line: ") << err.error_token.line_number << "\n\n";
 }
 
 void display_ICE(const InternalCompilerError& err){
     std::cout << std::endl
-    << bold_red("INTERNAL COMPILER ERROR: \n\t")  
+    << bold_red("INTERNAL COMPILER ERROR: \n └─ ")  
     << red(err.error_message + "\n\n")
     << yellow("please, write an extensive bug report explaining the issue and report it on the github page ") 
     << yellow("of this project at https://www.github.com/Verse\n\n");

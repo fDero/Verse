@@ -1,12 +1,13 @@
 #include "../include/verse.hpp"
 #include "../include/procedures.hpp"
+#include "../include/errors.hpp"
 
 inline const std::set<char> discardable{'\t','\r','\0','\n',' '}; 
 
 void inspect_for_errors(const std::string& sourcecode, const int current,const TokenInfo& data){
     std::string tmp;
     for (int i = current; i < sourcecode.size() and discardable.find(sourcecode[i]) == discardable.end(); i++) tmp.push_back(sourcecode[i]);
-    if (tmp.size() > 0) throw TokenizationError{"unrecognized token",tmp, data.filename, data.line_number, data.tok_number, data.char_pos};
+    if (tmp.size() > 0) throw TokenizationError{ "unrecognized token: " + tmp, tmp, data };
 }
 
 std::string extract_token(const std::string& sourcecode, const int current, const TokenInfo& data){
@@ -22,7 +23,7 @@ std::string extract_token(const std::string& sourcecode, const int current, cons
 std::vector<Token> get_tokens_from_file(const std::string& input_filename){
     std::fstream source_code;
     source_code.open(input_filename,std::ios::in);
-    if (!source_code.is_open()) throw std::runtime_error("FATAL ERROR: can't find file named: " + input_filename);
+    if (!source_code.is_open()) throw CommandLineError { "no such file has been found: " + input_filename };
     std::vector<Token> tokens;
     std::string line;
     for(unsigned long line_number = 1;  getline(source_code, line); line_number++) {

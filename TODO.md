@@ -8,7 +8,7 @@
 - [x] parse generics
 - [x] better scopes and shadowing rules
 - [x] command line interface
-- [ ] better error messages
+- [x] better error messages
 - [ ] better type syntax
 - [ ] modules and packages
 

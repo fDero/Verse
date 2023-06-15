@@ -12,7 +12,6 @@ void display_commandline_help();
 
 //errors
 void assert_unreachable();
-void display_error_context(const Token&); 
 void display_commandline_error(const CommandLineError&);
 void display_tokenization_error(const TokenizationError&);
 void display_syntax_error(const SyntaxError&);
@@ -52,9 +51,9 @@ void acquire_expression(std::vector<Token>::iterator&,const std::vector<Token>&,
 void acquire_terminal(std::vector<Token>::iterator&,const std::vector<Token>&,std::shared_ptr<Instruction>&);
 void acquire_codeblock(std::vector<Token>::iterator&,const std::vector<Token>&,std::vector<Instruction>&);
 void acquire_instruction(std::vector<Token>::iterator&,const std::vector<Token>&,std::vector<Instruction>&);
-void acquire_instance(std::vector<Token>::iterator&,const std::vector<Token>&,Instance&);
 void acquire_generics(std::vector<Token>::iterator&,const std::vector<Token>&,std::vector<TypeSignature>&);
 void acquire_simple_generics(std::vector<Token>::iterator&,const std::vector<Token>&,std::vector<TypeSignature>&);
+bool parse_instance(std::vector<Token>::iterator&,const std::vector<Token>&,Instance&);
 bool parse_struct_definition(std::vector<Token>::iterator&,const std::vector<Token>&,std::vector<Instruction>&);
 bool parse_function_definition(std::vector<Token>::iterator&,const std::vector<Token>&,std::vector<Instruction>&);
 bool parse_constant(std::vector<Token>::iterator&,const std::vector<Token>&,std::vector<Instruction>&);

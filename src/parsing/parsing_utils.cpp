@@ -1,10 +1,6 @@
 #include "../include/verse.hpp"
 #include "../include/procedures.hpp"
 
-std::set<std::string> forbidden_identifiers {
-    "if", "else", "for", "while", "until", "struct", "var", "const"
-};
-
 void acquire_instruction(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::vector<Instruction>& output){
     if (parse_variable(it,tokens,output))             return;
     if (parse_constant(it,tokens,output))             return;
@@ -29,6 +25,11 @@ std::vector<Instruction> get_instructions_from_tokens(std::vector<Token>& tokens
     return output;
 }
 
+std::set<std::string> forbidden_identifiers {
+    "if", "else", "while", "until", "struct", "var", "const", 
+    "func", "defer", "attempt", "continue", "break"
+};
+
 void acquire_exact_match(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, const std::string& match){
     auto expected_match_position = it;
     bool is_match = (it != tokens.end() and it->sourcetext == match);
@@ -37,20 +38,22 @@ void acquire_exact_match(std::vector<Token>::iterator& it, const std::vector<Tok
     if(not is_match) throw SyntaxError {"unexpected token: " + found + " instead of: " + match, *expected_match_position };
 }
 
-void acquire_identifier(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::string& name){
+void acquire_identifier(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::string& name){    
     auto expected_identifier_position = it;
     bool is_identifier = (it != tokens.end() and isalpha(it->sourcetext[0]) and islower(it->sourcetext[0]));
     name = (is_identifier)? it->sourcetext : "/ERROR";
     if(forbidden_identifiers.find(it->sourcetext) != forbidden_identifiers.end()) throw SyntaxError { "use of a forbidden name as identifier", *it};
     std::advance(it,is_identifier);
     std::string found = (it == tokens.end())? "(END OF FILE)" : it->sourcetext;
-    if(not is_identifier) throw SyntaxError { "unexpected token: " + found + " instead of: " + "identifier", *expected_identifier_position };
+    if(not is_identifier) throw SyntaxError { "unexpected token: " + found + " an identifier was expected instead", *expected_identifier_position };
 }
 
-void acquire_instance(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, Instance& target){
+bool parse_instance(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, Instance& target){
+    if (forbidden_identifiers.find(it->sourcetext) != forbidden_identifiers.end()) return false;
     acquire_identifier(it, tokens, target.name);
     acquire_exact_match(it,tokens,":");
     acquire_typesignature(it,tokens,target.typesignature);
+    return true;
 }
 
 void acquire_baretype(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::string& type){
@@ -59,7 +62,7 @@ void acquire_baretype(std::vector<Token>::iterator& it, const std::vector<Token>
     type = (is_type)? it->sourcetext : "/ERROR";
     std::advance(it,is_type);
     std::string found = (it == tokens.end())? "(END OF FILE)" : it->sourcetext;
-    if(not is_type) throw SyntaxError { "unexpected token: " + found + " instead of: type", *expected_type_position };
+    if(not is_type) throw SyntaxError { "unexpected token: " + found + " a typesignature was expacted instead", *expected_type_position };
 }
 
 void acquire_generics(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::vector<TypeSignature>& generics){

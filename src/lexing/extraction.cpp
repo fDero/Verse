@@ -11,7 +11,7 @@ std::string extract_number(const std::string& sourcecode, const int current, con
         for (int i = current; i < sourcecode.size(); i++){
             if (!isdigit(sourcecode[i]) and sourcecode[i] != '.') break;
             if (floating and sourcecode[i] == '.') 
-                throw TokenizationError{"multiple decimal points in floating point literal", buffer, data.filename, data.tok_number, data.char_pos};
+                throw TokenizationError{"multiple decimal points in floating point literal", buffer, data };
             floating = (sourcecode[i] == '.');
             buffer.push_back(sourcecode[i]);
         }
@@ -40,7 +40,7 @@ std::string extract_string(const std::string& sourcecode, const int current, con
             buffer.push_back(sourcecode[i]);
         }
         if (current+buffer.size() >= sourcecode.size() or sourcecode[current+buffer.size()] != sourcecode[current]){
-            throw TokenizationError{"string literal opened but never closed",buffer, data.filename, data.tok_number, data.char_pos};
+            throw TokenizationError{ "string literal opened but never closed", buffer, data };
         }
         buffer.push_back(sourcecode[current]);
     }
