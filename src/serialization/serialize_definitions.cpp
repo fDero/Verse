@@ -24,7 +24,6 @@ bool convert_struct_definition_into_xml(const Instruction& instr, std::fstream& 
     StructDefinition structdef = std::get<StructDefinition>(instr);
     std::string generics = serialize_generics(structdef.generics);
     output << prefix <<  ("<STRUCT name=\"" + structdef.struct_name + "\"" + generics + ">\n");
-    translate_instructions_into_xml(structdef.internal_definitions,output,"\t"+prefix);
     for (const Instance& internal_state_var : structdef.internal_state) {
         std::string typesignature = serialize_type(internal_state_var.typesignature);
         output << prefix << ("\t<FIELD name=\"" + internal_state_var.name + "\" type=\"" + typesignature + "\"/>\n");
@@ -42,7 +41,6 @@ bool convert_function_definition_into_xml(const Instruction& instr, std::fstream
         std::string typesignature = serialize_type(arg.typesignature);
         output << prefix << ("\t<ARG name=\"" + arg.name + "\" type=\"" + typesignature + "\"/>\n");
     }
-    translate_instructions_into_xml(funcdef.internal_definitions,output,"\t"+prefix);
     translate_instructions_into_xml(funcdef.code,output, "\t" + prefix);
     output << prefix <<  ("</FUNCDEF>\n");
     return true;

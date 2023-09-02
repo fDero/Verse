@@ -1,5 +1,0 @@
-<!-- file: test/snippets/test1/main.verse -->
-<OPERATOR text="+">
-	<IDENTIFIER name="a"/>
-	<IDENTIFIER name="b"/>
-</OPERATOR>

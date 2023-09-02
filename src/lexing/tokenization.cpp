@@ -12,10 +12,10 @@ void inspect_for_errors(const std::string& sourcecode, const int current,const T
 
 std::string extract_token(const std::string& sourcecode, const int current, const TokenInfo& data){
     std::string extracted; 
-    extracted = extract_text(sourcecode,current,data);    if (!extracted.empty()) return extracted;
-    extracted = extract_symbol(sourcecode,current,data);  if (!extracted.empty()) return extracted;
-    extracted = extract_number(sourcecode,current,data);  if (!extracted.empty()) return extracted;
-    extracted = extract_string(sourcecode,current,data);  if (!extracted.empty()) return extracted;
+    if ((extracted = extract_text(sourcecode,current,data)) != "")    return extracted;
+    if ((extracted = extract_symbol(sourcecode,current,data)) != "")  return extracted;
+    if ((extracted = extract_number(sourcecode,current,data)) != "")  return extracted;
+    if ((extracted = extract_string(sourcecode,current,data)) != "")  return extracted;
     inspect_for_errors(sourcecode,current,data);
     return extracted;
 }

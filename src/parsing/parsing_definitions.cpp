@@ -36,16 +36,23 @@ bool parse_constant(std::vector<Token>::iterator& it, const std::vector<Token>& 
     return true;
 }
 
-bool parse_struct_definition(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::vector<Instruction>& output){
+bool parse_struct_definition (
+    std::vector<Token>::iterator& it, 
+    const std::vector<Token>& tokens, 
+    std::vector<Instruction>& output, 
+    const std::string& parent
+) {
     if(it->sourcetext != "struct") return false;
     StructDefinition this_struct;
     acquire_exact_match(it,tokens,"struct");
     acquire_baretype(it,tokens,this_struct.struct_name);
+    this_struct.struct_name = parent + "\\" + this_struct.struct_name;
     acquire_simple_generics(it,tokens,this_struct.generics);
     auto expected_brackets_open = it;
     acquire_exact_match(it,tokens,"{");
     while(it != tokens.end() and it->sourcetext != "}"){
-        if (parse_struct_definition(it,tokens,this_struct.internal_definitions)) continue;
+        if (it->sourcetext == "func") throw std::runtime_error { "it's illegal to define a function inside of a struct" };
+        if (parse_struct_definition(it, tokens, output, this_struct.struct_name)) continue;
         Instance field;  
         if (!parse_instance(it,tokens,field)) throw SyntaxError { "structs can only contains attributes or nested struct definitions", *it };
         acquire_exact_match(it,tokens,";");
@@ -57,12 +64,18 @@ bool parse_struct_definition(std::vector<Token>::iterator& it, const std::vector
     return true;
 }
 
-bool parse_function_definition(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::vector<Instruction>& output){    
+bool parse_function_definition(
+    std::vector<Token>::iterator& it, 
+    const std::vector<Token>& tokens, 
+    std::vector<Instruction>& output,
+    const std::string& parent
+) {    
     if(it->sourcetext != "func") return false;
     FunctionDefinition this_func;
     acquire_exact_match(it,tokens,"func");
     acquire_identifier(it,tokens,this_func.func_name);
     acquire_simple_generics(it,tokens,this_func.generics);
+    this_func.func_name = parent + "\\" + this_func.func_name;
     auto expected_parenthesys_opened = it;
     acquire_exact_match(it,tokens,"(");
     if (it != tokens.end() and it->sourcetext != ")" and it->sourcetext != ",") do {
@@ -77,8 +90,8 @@ bool parse_function_definition(std::vector<Token>::iterator& it, const std::vect
     auto expected_brackets_open = it;
     acquire_exact_match(it,tokens,"{");
     while(it != tokens.end() and it->sourcetext != "}"){
-        if (parse_struct_definition(it,tokens,this_func.internal_definitions))   continue;
-        if (parse_function_definition(it,tokens,this_func.internal_definitions)) continue;
+        if (it->sourcetext == "struct") throw std::runtime_error { "it's illegal to define a struct inside of a function" };
+        if (parse_function_definition(it, tokens, output, this_func.func_name)) continue;
         acquire_instruction(it,tokens,this_func.code);
     }
     if (it == tokens.end() or it->sourcetext != "}") throw SyntaxError { "brackets opened but never closed in function definition", *expected_brackets_open };

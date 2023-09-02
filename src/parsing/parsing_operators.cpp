@@ -2,7 +2,7 @@
 #include "../include/procedures.hpp"
 
 inline const std::set<std::string> prefixes{"!","-","+","#"};
-inline const std::set<std::string> infixies{"+","-","*","/","^","<",">","<=",">=","->","<-","&&","||","^^",".",":",","};
+inline const std::set<std::string> infixies{".","+","-","*","/","%","^","<",">","<=",">=","==","&&","||","^^","!="};
 
 bool parse_prefix_operator(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, Instruction& target){
     if (it == tokens.end() or prefixes.find(it->sourcetext) == prefixes.end()) return false;
@@ -27,7 +27,7 @@ bool parse_prefix_operator(std::vector<Token>::iterator& it, const std::vector<T
 int get_precedence(const Instruction& expr){
     if (std::holds_alternative<BinaryOperator>(expr)){
         std::string optext = std::get<BinaryOperator>(expr).text;
-        if (optext == ",")  return 0;
+        //if (optext == ",")  return 0;
         if (optext == "&&" or optext == "||" or optext == "^^") return 1;
         if (optext == "<" or optext == ">" or optext == "==" or optext == "!=" or optext == ">=" or optext == "<=") return 2;
         if (optext == "+" or optext == "-")  return 3;

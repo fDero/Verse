@@ -60,6 +60,11 @@ bool parse_break(std::vector<Token>::iterator& it, const std::vector<Token>& tok
 bool parse_return(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::vector<Instruction>& output){
     if (it->sourcetext != "return") return false;
     acquire_exact_match(it,tokens,"return");
+    if(it != tokens.end() and it->sourcetext == ";") {
+        output.push_back(Return{nullptr});    
+        std::advance(it,1);
+        return true;
+    } 
     std::shared_ptr<Instruction> value;
     acquire_expression(it,tokens,value);
     acquire_exact_match(it,tokens,";");

@@ -72,5 +72,5 @@ void display_ICE(const InternalCompilerError& err){
     << bold_red("INTERNAL COMPILER ERROR: \n └─ ")  
     << red(err.error_message + "\n\n")
     << yellow("please, write an extensive bug report explaining the issue and report it on the github page ") 
-    << yellow("of this project at https://www.github.com/Verse\n\n");
+    << yellow("of this project at https://www.github.com/fDero/Verse\n\n");
 }

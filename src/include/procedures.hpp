@@ -54,8 +54,8 @@ void acquire_instruction(std::vector<Token>::iterator&,const std::vector<Token>&
 void acquire_generics(std::vector<Token>::iterator&,const std::vector<Token>&,std::vector<TypeSignature>&);
 void acquire_simple_generics(std::vector<Token>::iterator&,const std::vector<Token>&,std::vector<TypeSignature>&);
 bool parse_instance(std::vector<Token>::iterator&,const std::vector<Token>&,Instance&);
-bool parse_struct_definition(std::vector<Token>::iterator&,const std::vector<Token>&,std::vector<Instruction>&);
-bool parse_function_definition(std::vector<Token>::iterator&,const std::vector<Token>&,std::vector<Instruction>&);
+bool parse_struct_definition (std::vector<Token>::iterator&,const std::vector<Token>&,std::vector<Instruction>&, const std::string&);
+bool parse_function_definition(std::vector<Token>::iterator&,const std::vector<Token>&,std::vector<Instruction>&, const std::string&);
 bool parse_constant(std::vector<Token>::iterator&,const std::vector<Token>&,std::vector<Instruction>&);
 bool parse_variable(std::vector<Token>::iterator&,const std::vector<Token>&,std::vector<Instruction>&);
 bool parse_conditional(std::vector<Token>::iterator&,const std::vector<Token>&,std::vector<Instruction>&);

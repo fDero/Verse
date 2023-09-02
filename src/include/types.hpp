@@ -1,11 +1,14 @@
 #pragma once
 #include "verse.hpp"
 
-struct BaseType; struct Pointer; struct Array;
+struct BaseType; struct Pointer;
+struct NestedType; struct Array;
+
 using TypeSignature = std::variant<
     BaseType,
     Pointer,
-    Array
+    Array,
+    NestedType
 >;
 
 struct BaseType {
@@ -20,4 +23,9 @@ struct Pointer {
 struct Array {
     std::shared_ptr<TypeSignature> type;
     int length;
+};
+
+struct NestedType {
+    std::shared_ptr<TypeSignature> left;
+    std::shared_ptr<TypeSignature> right;
 };

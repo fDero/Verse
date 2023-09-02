@@ -3,6 +3,7 @@
 #include <string>
 #include <set>
 #include <map>
+#include <iomanip>
 #include <sstream>
 #include <fstream>
 #include <vector>
@@ -13,6 +14,9 @@
 #include <variant>
 #include <memory>
 #include <stdio.h>
+#include <cmath>
+#include <math.h>
+#include <map>
 
 struct CommandLine; enum class FileExtension;  enum class Mode;
 
@@ -30,7 +34,7 @@ struct FunctionCall;     struct UnaryOperator;     struct BinaryOperator;
 struct WhileLoop;        struct UntilLoop;         struct Conditional; 
 struct Assignment;       struct Literal;           struct Identifier;              
 struct Return;           struct Continue;          struct Break;
-struct Defer;            struct Attempt;           struct Catch;
+struct Defer;            struct Attempt;           struct DoNothing;
 
 using Instruction = std::variant<
     Variable,       Constant,          FunctionDefinition,
@@ -39,7 +43,7 @@ using Instruction = std::variant<
     WhileLoop,      UntilLoop,         Conditional, 
     Assignment,     Literal,           Identifier,
     Return,         Continue,          Break,
-    Attempt,        /*Catch*/          Defer
+    Attempt,        DoNothing,         Defer
 >;
 
 #include "types.hpp"
@@ -47,3 +51,4 @@ using Instruction = std::variant<
 #include "definitions.hpp"
 #include "expressions.hpp"
 #include "statements.hpp"
+#include "interpreter.hpp"

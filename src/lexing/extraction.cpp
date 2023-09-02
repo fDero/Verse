@@ -1,7 +1,7 @@
 #include "../include/verse.hpp"
 #include "../include/procedures.hpp"
 
-inline const std::set<char> symbols{'+','-','*','/','=','.',':','<','>','!','(',')','[',']','{','}',',',';','&','|','^','#'};
+inline const std::set<char> symbols{'+','-','*','/','=','.',':','<','>','!','(',')','[',']','{','}',',',';','&','|','^','#','%'};
 inline const std::set<std::string> combinations{">=","<=","!=","++","--","==","->","<-","&&","||","^^"};
 
 std::string extract_number(const std::string& sourcecode, const int current, const TokenInfo& data){

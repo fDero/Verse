@@ -15,6 +15,7 @@ void verse_output_error(){
 void compile(const std::vector<std::string>& inputs, const std::vector<std::string>& outputs){
     validate_input_files(inputs);
     if (inputs.empty()) throw CommandLineError { "unspecified input files: don't know what to do" };
+    if (outputs.empty()) throw CommandLineError { "unspecified output target: don't know what to do" };
     for (const std::string& out : outputs) switch (file_extension(out)) {
         case FileExtension::xml:   compile_xml(inputs,out);    break;
         case FileExtension::json:  compile_json(inputs,out);   break;
@@ -22,7 +23,7 @@ void compile(const std::vector<std::string>& inputs, const std::vector<std::stri
     }
 }
 
-void evaluate(const std::vector<std::string>& inputs, const std::vector<std::string>& outputs){
+void evaluate(const std::vector<std::string>& input_files, const std::vector<std::string>& outputs){
     std::cout << "the verse interpreter is not yet implemented\n";
     std::cout << "check for updates at https://www.github.com/fDero/Verse\n\n";
 }
@@ -30,7 +31,6 @@ void evaluate(const std::vector<std::string>& inputs, const std::vector<std::str
 void debug(const std::vector<std::string>& inputs, const std::vector<std::string>& outputs){
     std::cout << "the verse debugger is not yet implemented\n";
     std::cout << "check for updates at https://www.github.com/fDero/Verse\n\n";
-
 }
 
 void display_commandline_version(){

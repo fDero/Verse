@@ -17,10 +17,11 @@ struct UntilLoop {
     std::vector<Instruction> code;
 };
 
-struct Return   { std::shared_ptr<Instruction> value; };
-struct Defer    { std::shared_ptr<Instruction> operation; };
-struct Break    {};
-struct Continue {};
+struct Return    { std::shared_ptr<Instruction> value; };
+struct Defer     { std::shared_ptr<Instruction> operation; };
+struct Break     { std::string loop_tag; };
+struct Continue  { std::string loop_tag; };
+struct DoNothing {};
 
 struct Attempt { 
     std::vector<std::vector<Instruction>> attempts;

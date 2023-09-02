@@ -2,19 +2,19 @@
 #include "../include/procedures.hpp"
 
 void acquire_instruction(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::vector<Instruction>& output){
-    if (parse_variable(it,tokens,output))             return;
-    if (parse_constant(it,tokens,output))             return;
-    if (parse_struct_definition(it,tokens,output))    return;
-    if (parse_function_definition(it,tokens,output))  return;
-    if (parse_conditional(it,tokens,output))          return;
-    if (parse_while_loop(it,tokens,output))           return;
-    if (parse_until_loop(it,tokens,output))           return;
-    if (parse_return(it,tokens,output))               return;
-    if (parse_defer(it,tokens,output))                return;
-    if (parse_break(it,tokens,output))                return;
-    if (parse_continue(it,tokens,output))             return;
-    if (parse_attempt(it,tokens,output))              return;
-    if (parse_expression(it,tokens,output))           return;
+    if (parse_variable(it,tokens,output))                     return;
+    if (parse_constant(it,tokens,output))                     return;
+    if (parse_struct_definition(it,tokens,output,"global"))   return;
+    if (parse_function_definition(it,tokens,output,"global")) return;
+    if (parse_conditional(it,tokens,output))                  return;
+    if (parse_while_loop(it,tokens,output))                   return;
+    if (parse_until_loop(it,tokens,output))                   return;
+    if (parse_return(it,tokens,output))                       return;
+    if (parse_defer(it,tokens,output))                        return;
+    if (parse_break(it,tokens,output))                        return;
+    if (parse_continue(it,tokens,output))                     return;
+    if (parse_attempt(it,tokens,output))                      return;
+    if (parse_expression(it,tokens,output))                   return;
     throw SyntaxError {"unexpected token", *it};
 }
 
@@ -87,25 +87,30 @@ void acquire_simple_generics(std::vector<Token>::iterator& it, const std::vector
     acquire_exact_match(it,tokens,">");
 }
 
-void acquire_typesignature(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, TypeSignature& type){
+void acquire_typesignature_utility(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, TypeSignature& type){
     std::string base_type;
     std::vector<TypeSignature> generics;
     acquire_baretype(it,tokens,base_type);
     acquire_generics(it,tokens,generics);
     type = BaseType{base_type,generics};
-    while (it != tokens.end()){
-        if (it->sourcetext == "*") { 
-            std::advance(it,1); 
-            type = Pointer{std::make_shared<TypeSignature>(type)};
-            continue;
-        }
-        if (it->sourcetext == "["){
-            std::advance(it,1); 
-            acquire_exact_match(it,tokens,"]");
-            type = Array{std::make_shared<TypeSignature>(type),0}; 
-            continue;
-        }
-        break;
+    while (it != tokens.end() and it->sourcetext == "."){
+        std::advance(it,1);
+        TypeSignature following_type_specs;
+        acquire_typesignature_utility(it, tokens, following_type_specs);
+        std::shared_ptr<TypeSignature> type_ptr = std::make_shared<TypeSignature>(type);
+        std::shared_ptr<TypeSignature> following_ptr = std::make_shared<TypeSignature>(following_type_specs);
+        type = NestedType { type_ptr, following_ptr };    
+    }
+}
+
+void acquire_typesignature(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, TypeSignature& type){
+    if (it != tokens.end() and it->sourcetext == "#"){
+        acquire_exact_match(it, tokens, "#");
+        acquire_typesignature(it, tokens, type);
+        type = Pointer{std::make_shared<TypeSignature>(type)};
+    }
+    else {
+        acquire_typesignature_utility(it, tokens, type);
     }
 }
 
@@ -132,8 +137,8 @@ void acquire_terminal(std::vector<Token>::iterator& it, const std::vector<Token>
 void acquire_codeblock(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::vector<Instruction>& code){
     if (it != tokens.end() and it->sourcetext != "{") {
         auto single_line_codeblock_begin = it;
-        if (parse_struct_definition(it,tokens,code))   throw SyntaxError { "struct definitions not allowed in single-line codeblock", *single_line_codeblock_begin };
-        if (parse_function_definition(it,tokens,code)) throw SyntaxError { "function definitions not allowed in single-line codeblock", *single_line_codeblock_begin };
+        if (it->sourcetext == "struct") throw SyntaxError { "struct definitions not allowed in single-line codeblock", *single_line_codeblock_begin };
+        if (it->sourcetext == "func")   throw SyntaxError { "function definitions not allowed in single-line codeblock", *single_line_codeblock_begin };
         acquire_instruction(it,tokens,code);
     } 
     else {
@@ -141,8 +146,8 @@ void acquire_codeblock(std::vector<Token>::iterator& it, const std::vector<Token
         acquire_exact_match(it,tokens,"{");
         while(it != tokens.end() and it->sourcetext != "}") {
             auto begin_current_line_in_multiline_codeblock = it;
-            if (parse_struct_definition(it,tokens,code))   throw SyntaxError { "struct definitions not allowed in multi-line codeblock", *begin_current_line_in_multiline_codeblock };
-            if (parse_function_definition(it,tokens,code)) throw SyntaxError { "function definitions not allowed in multi-line codeblock", *begin_current_line_in_multiline_codeblock };
+            if (it->sourcetext == "struct") throw SyntaxError { "struct definitions not allowed in multi-line codeblock", *begin_current_line_in_multiline_codeblock };
+            if (it->sourcetext == "func")   throw SyntaxError { "function definitions not allowed in multi-line codeblock", *begin_current_line_in_multiline_codeblock };
             acquire_instruction(it,tokens,code);
         }
         if (it == tokens.end() or it->sourcetext != "}") throw SyntaxError { "brackets opened but never closed", *brackets_opened };

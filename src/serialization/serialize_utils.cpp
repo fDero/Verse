@@ -86,6 +86,11 @@ std::string serialize_base_type(const TypeSignature& type){
     return serialized;
 }
 
+std::string serialize_nested_type(const TypeSignature& type){
+    NestedType base = std::get<NestedType>(type);
+    return serialize_type(*base.left) + "." + serialize_base_type(*base.right);
+}
+
 std::string serialize_pointer_type(const TypeSignature& type){
     Pointer ptr = std::get<Pointer>(type);
     return serialize_type(*(ptr.pointed)) + "*";
@@ -101,5 +106,6 @@ std::string serialize_type(const TypeSignature& type){
     if (std::holds_alternative<Pointer>(type)) return serialize_pointer_type(type);
     if (std::holds_alternative<BaseType>(type)) return serialize_base_type(type);
     if (std::holds_alternative<Array>(type)) return serialize_array_type(type);
+    if (std::holds_alternative<NestedType>(type)) return serialize_nested_type(type);
     throw std::runtime_error("can't serialize ill formed type");
 }
