@@ -4,8 +4,8 @@
 void acquire_instruction(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::vector<Instruction>& output){
     if (parse_variable(it,tokens,output))                     return;
     if (parse_constant(it,tokens,output))                     return;
-    if (parse_struct_definition(it,tokens,output,"global"))   return;
-    if (parse_function_definition(it,tokens,output,"global")) return;
+    if (parse_struct_definition(it,tokens,output, nullptr))   return;
+    if (parse_function_definition(it,tokens,output, nullptr)) return;
     if (parse_conditional(it,tokens,output))                  return;
     if (parse_while_loop(it,tokens,output))                   return;
     if (parse_until_loop(it,tokens,output))                   return;
