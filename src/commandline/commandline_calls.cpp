@@ -24,6 +24,9 @@ void compile(const std::vector<std::string>& inputs, const std::vector<std::stri
 }
 
 void evaluate(const std::vector<std::string>& input_files, const std::vector<std::string>& outputs){
+    if (not outputs.empty()) throw CommandLineError { "running your code directly with the verse interpreter does not produce output compilation files" };
+    init_global_definitions_table(input_files);
+    validate_structs_definitions();
     std::cout << "the verse interpreter is not yet implemented\n";
     std::cout << "check for updates at https://www.github.com/fDero/Verse\n\n";
 }

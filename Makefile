@@ -33,7 +33,10 @@ build:
 	${COMPILER} -c -std=${STD} src/serialization/serialize_expressions.cpp     -o build/serialize_expression.o
 	${COMPILER} -c -std=${STD} src/serialization/serialize_statements.cpp      -o build/serialize_statements.o
 	${COMPILER} -c -std=${STD} src/serialization/serialize_utils.cpp           -o build/serialize_utils.o
-	${COMPILER} -c -std=${STD} src/errors/errors.cpp                           -o build/errors.o
+	${COMPILER} -c -std=${STD} src/errors/display_errors.cpp                   -o build/display_errors.o
+	${COMPILER} -c -std=${STD} src/preprocessing/definitions_table.cpp         -o build/definitions_table.o
+	${COMPILER} -c -std=${STD} src/preprocessing/structs_validation.cpp        -o build/structs_validation.o
+	${COMPILER} -c -std=${STD} src/preprocessing/typesignature_comparison.cpp  -o build/typesignature_comparison.o
 	${LINKER} build/*.o -o verse
 
 test:

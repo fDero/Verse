@@ -100,3 +100,14 @@ bool convert_break_into_xml(const Instruction& instr, std::fstream& output, cons
 bool convert_return_into_xml(const Instruction& instr, std::fstream& output, const std::string& prefix);
 bool convert_defer_into_xml(const Instruction& instr, std::fstream& output, const std::string& prefix);
 bool convert_attempt_into_xml(const Instruction& instr, std::fstream& output, const std::string& prefix);
+
+//preprocessing
+void init_global_definitions_table(const std::vector<std::string>& input_files);
+void validate_structs_definitions();
+
+//type-utilities
+bool types_are_equal(const TypeSignature&, const TypeSignature&);
+bool typesignatures_vectors_are_equals(const std::vector<TypeSignature>&,const std::vector<TypeSignature>&);
+bool given_type_is_a_template_generic(const BaseType&, const std::vector<TypeSignature>&);
+bool given_type_is_a_template_generic_for_this_struct(const BaseType&,const StructDefinition&);
+bool is_default_integral_type(const BaseType&);

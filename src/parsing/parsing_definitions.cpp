@@ -61,6 +61,7 @@ bool parse_struct_definition (
     }
     if (it == tokens.end()) throw SyntaxError { "brackets opened but never closed in struct definition", *expected_brackets_open };
     std::advance(it,1);
+    this_struct.parent_scope = parent;
     output.push_back(this_struct);
     return true;
 }
@@ -98,6 +99,7 @@ bool parse_function_definition(
     }
     if (it == tokens.end() or it->sourcetext != "}") throw SyntaxError { "brackets opened but never closed in function definition", *expected_brackets_open };
     std::advance(it,1);
+    this_func.parent_scope = parent;
     output.push_back(this_func);
     return true;
 }

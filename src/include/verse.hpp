@@ -52,3 +52,5 @@ using Instruction = std::variant<
 #include "expressions.hpp"
 #include "statements.hpp"
 #include "interpreter.hpp"
+
+inline DefinitionsTable global_definitions_table;

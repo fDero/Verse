@@ -1,5 +1,4 @@
 #include "verse.hpp"
-#include <any>
 
 struct DefinitionsTable {
     std::unordered_map<std::string, std::vector<FunctionDefinition>> functions;

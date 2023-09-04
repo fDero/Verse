@@ -44,15 +44,13 @@ void display_error_context(const std::string& filename, int line_number, int cha
 }
 
 void display_commandline_error(const CommandLineError& err){
-    std::cout << std::endl << bold_red("COMMANDLINE ERROR: \n └─ ") 
-    << red(err.error_message + "\n\n")
+    std::cout << std::endl << bold_red("COMMANDLINE ERROR: ") << red(err.error_message + "\n\n")
     << purple("type 'verse --help' in your console to get more informations\n\n");
 }
 
 void display_tokenization_error(const TokenizationError& err){
     std::cout << std::endl
-    << bold_red("TOKENIZATION ERROR: \n └─ ")
-    << red(err.error_message) << "\n\n";
+    << bold_red("TOKENIZATION ERROR: ") << red(err.error_message) << "\n\n";
     display_error_context(err.data.filename, err.data.line_number, err.data.char_pos);
     std::cout << purple("\n in file: ") << err.data.filename << " "
     << purple("at line: ") << err.data.line_number << "\n\n";
@@ -60,8 +58,7 @@ void display_tokenization_error(const TokenizationError& err){
 
 void display_syntax_error(const SyntaxError& err){
     std::cout << std::endl
-    << bold_red("SYNTAX ERROR: \n └─ ")
-    << red(err.error_message) << "\n\n";
+    << bold_red("SYNTAX ERROR: ") << red(err.error_message) << "\n\n";
     display_error_context(err.error_token.filename, err.error_token.line_number, err.error_token.char_pos);
     std::cout << purple("\n in file: ") << err.error_token.filename
     << purple(" at line: ") << err.error_token.line_number << "\n\n";
@@ -69,8 +66,7 @@ void display_syntax_error(const SyntaxError& err){
 
 void display_ICE(const InternalCompilerError& err){
     std::cout << std::endl
-    << bold_red("INTERNAL COMPILER ERROR: \n └─ ")  
-    << red(err.error_message + "\n\n")
+    << bold_red("INTERNAL COMPILER ERROR: ") << red(err.error_message + "\n\n")
     << yellow("please, write an extensive bug report explaining the issue and report it on the github page ") 
     << yellow("of this project at https://www.github.com/fDero/Verse\n\n");
 }
