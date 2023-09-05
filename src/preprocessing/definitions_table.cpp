@@ -3,10 +3,12 @@
 
 void struct_preprocessing(const Instruction& instruction){
     const StructDefinition& struct_definition = std::get<StructDefinition>(instruction);
+    std::string fully_qualified_name = get_qualified_struct_name(struct_definition);
     if (global_structs_definitions.find(struct_definition.struct_name) != global_structs_definitions.end()){
         throw std::runtime_error { "another struct already exists with this name" };
     }
-    global_structs_definitions[struct_definition.struct_name] = struct_definition;
+    global_structs_definitions[fully_qualified_name] = struct_definition;
+    global_structs_names_register[struct_definition.struct_name].push_back(fully_qualified_name);
 }
 
 void function_preprocessing(const Instruction& instruction){

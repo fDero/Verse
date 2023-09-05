@@ -36,6 +36,19 @@ void run(const std::vector<std::string>& input_files, const std::vector<std::str
     FunctionDefinition main_entry_point = find_main_entry_point();
     ExecutionContext call_with_no_arguments_context;
     execute_function_body(main_entry_point, call_with_no_arguments_context);
+    for (const auto& names_register_entry : global_structs_names_register){
+        std::cerr << names_register_entry.first << " : ";
+        for (const std::string& name : names_register_entry.second){
+            std::cerr << name << " ";
+        }
+        std::cerr << "\n";
+    }
+
+    std::cerr << "\n\n---------------------------------------------------------\n\n";
+
+    for (const auto& definitons_register_entry : global_structs_definitions){
+        std::cerr << definitons_register_entry.first << "\n";
+    }
 }
 
 void debug(const std::vector<std::string>& inputs, const std::vector<std::string>& outputs){

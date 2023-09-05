@@ -12,12 +12,34 @@ std::string type_to_string(const TypeSignature& type){
         if (generics_str.size() <= 1) return type_str;
         return type_str + generics_str;
     }
-    else if (std::holds_alternative<Pointer>(type)) throw std::runtime_error("pointers not yet supported");
-    else if (std::holds_alternative<Array>(type)) throw std::runtime_error("arrays not yet supported");
+    else if (std::holds_alternative<Pointer>(type)) return "#" + type_to_string(*std::get<Pointer>(type).pointed);
+    else if (std::holds_alternative<Array>(type)) return "Array[" + type_to_string(*std::get<Pointer>(type).pointed) + "]";
     else if (std::holds_alternative<NestedType>(type)) {
         std::string left = type_to_string(*std::get<NestedType>(type).left);
         std::string right = type_to_string(*std::get<NestedType>(type).right);
         return left + "." + right;
     }
     else throw InternalCompilerError { "somehow a typesignature is not a base-type, nor an array nor a pointer" };
+}
+
+std::string type_to_string_without_generics(const TypeSignature& type){
+    if (std::holds_alternative<BaseType>(type)) return std::get<BaseType>(type).base_type;
+    else if (std::holds_alternative<Pointer>(type)) return "#" + type_to_string(*std::get<Pointer>(type).pointed);
+    else if (std::holds_alternative<Array>(type)) return "Array[" + type_to_string(*std::get<Pointer>(type).pointed) + "]";
+    else if (std::holds_alternative<NestedType>(type)) {
+        std::string left = type_to_string(*std::get<NestedType>(type).left);
+        std::string right = type_to_string(*std::get<NestedType>(type).right);
+        return left + "." + right;
+    }
+    else throw InternalCompilerError { "somehow a typesignature is not a base-type, nor an array nor a pointer" };
+}
+
+std::string get_qualified_struct_name(const StructDefinition& structdef){
+    std::string prefix = (structdef.parent_scope != nullptr)? get_qualified_struct_name(*structdef.parent_scope) + "." : "";
+    std::string name = structdef.struct_name;
+    std::string generics = "<";
+    for (const auto& generic : structdef.generics) generics += "\\w+,";
+    generics.back() = '>';
+    if (generics.size() <= 1) generics.clear();
+    return (prefix + name + generics);
 }

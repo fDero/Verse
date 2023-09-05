@@ -134,4 +134,6 @@ void initialize_type_macros();
 //type-utilities
 bool typesignatures_are_equal(const TypeSignature&, const TypeSignature&);;
 bool is_default_integral_type(const TypeSignature&);
+std::string type_to_string_without_generics(const TypeSignature&);
 std::string type_to_string(const TypeSignature&);
+std::string get_qualified_struct_name(const StructDefinition&);

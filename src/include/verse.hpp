@@ -54,5 +54,6 @@ using Instruction = std::variant<
 #include "interpreter.hpp"
 
 inline std::unordered_map<std::string, std::vector<FunctionDefinition>> global_functions_definitions;
+inline std::unordered_map<std::string, std::vector<std::string>> global_structs_names_register;
 inline std::unordered_map<std::string, StructDefinition> global_structs_definitions;
 inline std::map<std::string, verselang_macro_procedure> verselang_macros;
