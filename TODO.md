@@ -8,13 +8,13 @@
 - [x] parse generics
 - [x] better scopes and shadowing rules
 - [x] command line interface
-- [x] better error messages
+- [ ] better error messages
 - [ ] better type syntax
 - [ ] modules and packages
 
 ### Long term goals
 
-- [x] proper test-suite
-- [ ] write the interpreter
+- [ ] proper test-suite
+- [x] write the interpreter
 - [ ] write the asm compiler
 - [ ] write the debugger
