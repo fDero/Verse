@@ -46,9 +46,15 @@ bool parse_struct_definition (
     StructDefinition this_struct;
     acquire_exact_match(it,tokens,"struct");
     acquire_baretype(it,tokens,this_struct.struct_name);
-    std::string parent_name = (parent == nullptr)? "global" : parent->struct_name;
-    this_struct.struct_name = parent_name + "\\" + this_struct.struct_name;
     acquire_simple_generics(it,tokens,this_struct.generics);
+    if (not this_struct.generics.empty()) {
+        this_struct.struct_name += "<";
+        for (const TypeSignature& generic : this_struct.generics) this_struct.struct_name += "?,";        
+        this_struct.struct_name.back() = '>';
+    }
+    if (parent != nullptr) {
+        this_struct.struct_name = parent->struct_name + "." + this_struct.struct_name;
+    }
     auto expected_brackets_open = it;
     acquire_exact_match(it,tokens,"{");
     while(it != tokens.end() and it->sourcetext != "}"){

@@ -19,6 +19,23 @@ clean:
 build:
 	@mkdir -p build
 	@rm -f build/*.o
+	${COMPILER} -c -std=${STD} src/verselang_macros/print_macros.cpp           -o build/print_macros.o
+	${COMPILER} -c -std=${STD} src/verselang_macros/type_macros.cpp            -o build/type_macros.o
+	${COMPILER} -c -std=${STD} src/interpreter/execute_function.cpp            -o build/execute_function.o
+	${COMPILER} -c -std=${STD} src/interpreter/execute_expression.cpp          -o build/execute_expression.o
+	${COMPILER} -c -std=${STD} src/interpreter/execute_definition.cpp          -o build/execute_definition.o
+	${COMPILER} -c -std=${STD} src/interpreter/execute_math_operators.cpp      -o build/execute_math_operators.o
+	${COMPILER} -c -std=${STD} src/interpreter/execute_logical_operators.cpp   -o build/execute_logical_operators.o
+	${COMPILER} -c -std=${STD} src/interpreter/execute_statement.cpp           -o build/execute_statement.o
+	${COMPILER} -c -std=${STD} src/interpreter/pointers_arithmetic.cpp         -o build/pointers_arithmetic.o
+	${COMPILER} -c -std=${STD} src/scoping/functions_retrieval.cpp             -o build/functions_retrieval.o
+	${COMPILER} -c -std=${STD} src/scoping/structs_retrieval.cpp               -o build/structs_retrieval.o
+	${COMPILER} -c -std=${STD} src/scoping/struct_members.cpp                  -o build/struct_members.o
+	${COMPILER} -c -std=${STD} src/typesystem/basic_type_utils.cpp             -o build/basic_type_utils.o
+	${COMPILER} -c -std=${STD} src/typesystem/types_as_strings.cpp             -o build/types_as_strings.o
+	${COMPILER} -c -std=${STD} src/preprocessing/definitions_table.cpp         -o build/definitions_table.o
+	${COMPILER} -c -std=${STD} src/preprocessing/entry_point.cpp               -o build/entry_point.o
+
 	${COMPILER} -c -std=${STD} src/main.cpp                                    -o build/main.o
 	${COMPILER} -c -std=${STD} src/commandline/commandline_utils.cpp           -o build/commandline_utils.o
 	${COMPILER} -c -std=${STD} src/commandline/commandline_calls.cpp           -o build/commandline_calls.o
@@ -34,10 +51,6 @@ build:
 	${COMPILER} -c -std=${STD} src/serialization/serialize_statements.cpp      -o build/serialize_statements.o
 	${COMPILER} -c -std=${STD} src/serialization/serialize_utils.cpp           -o build/serialize_utils.o
 	${COMPILER} -c -std=${STD} src/errors/display_errors.cpp                   -o build/display_errors.o
-	${COMPILER} -c -std=${STD} src/preprocessing/definitions_table.cpp         -o build/definitions_table.o
-	${COMPILER} -c -std=${STD} src/preprocessing/structs_validation.cpp        -o build/structs_validation.o
-	${COMPILER} -c -std=${STD} src/preprocessing/typesignature_comparison.cpp  -o build/typesignature_comparison.o
 	${LINKER} build/*.o -o verse
-
 test:
 	@${PYTHON} test/test.py

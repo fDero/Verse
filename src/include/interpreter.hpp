@@ -1,10 +1,5 @@
 #include "verse.hpp"
 
-struct DefinitionsTable {
-    std::unordered_map<std::string, std::vector<FunctionDefinition>> functions;
-    std::unordered_map<std::string, std::vector<StructDefinition>> structs;
-};
-
 struct StructValue;
 struct ArrayValue;
 struct PointerValue;
@@ -29,7 +24,7 @@ struct PointerValue { RuntimeValue* pointer; };
 struct VoidValue    { /*nothing*/ };
 
 struct ExecutionContext {
-    ScopingData current_scope;
+    std::shared_ptr<FunctionDefinition> current_scope;
     std::unordered_map<std::string, TypeSignature> variable_types;
     std::unordered_map<std::string, RuntimeValue> variable_values;
     std::unordered_map<std::string, TypeSignature> constant_types;
@@ -39,5 +34,8 @@ struct ExecutionContext {
 using ExpressionResult = std::pair<TypeSignature, RuntimeValue>;
 using ArgumentValues = std::vector<RuntimeValue>;
 using ArgumentTypes = std::vector<TypeSignature>;
+using OverloadSet = std::vector<FunctionDefinition>;
+using BinaryOperatorData = std::tuple<TypeSignature, RuntimeValue, RuntimeValue>;
 
-using verselang_macro_procedure = std::function<ExpressionResult(const ArgumentValues&, ExecutionContext&)>;
+using verselang_macro_procedure = std::function<
+    ExpressionResult(const ArgumentTypes&, const ArgumentValues&, ExecutionContext&)>;

@@ -53,4 +53,6 @@ using Instruction = std::variant<
 #include "statements.hpp"
 #include "interpreter.hpp"
 
-inline DefinitionsTable global_definitions_table;
+inline std::unordered_map<std::string, std::vector<FunctionDefinition>> global_functions_definitions;
+inline std::unordered_map<std::string, StructDefinition> global_structs_definitions;
+inline std::map<std::string, verselang_macro_procedure> verselang_macros;

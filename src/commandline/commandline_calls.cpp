@@ -4,12 +4,15 @@
 
 void validate_input_files(const std::vector<std::string>& inputs){
     for(const std::string& in : inputs) {
-        if (file_extension(in) != FileExtension::verse) throw CommandLineError { "input files must be .verse" };
+        if (file_extension(in) != FileExtension::verse) 
+            throw CommandLineError { "input files must be .verse" };
     }
 }
 
 void verse_output_error(){
-    throw CommandLineError { ".verse file extension cannot be used for output files. type 'verse --help' for more informations" };
+    throw CommandLineError { 
+        ".verse file extension cannot be used for output files. type 'verse --help' for more informations" 
+    };
 }
 
 void compile(const std::vector<std::string>& inputs, const std::vector<std::string>& outputs){
@@ -23,12 +26,16 @@ void compile(const std::vector<std::string>& inputs, const std::vector<std::stri
     }
 }
 
-void evaluate(const std::vector<std::string>& input_files, const std::vector<std::string>& outputs){
-    if (not outputs.empty()) throw CommandLineError { "running your code directly with the verse interpreter does not produce output compilation files" };
+void run(const std::vector<std::string>& input_files, const std::vector<std::string>& outputs){
+    if (not outputs.empty()) throw CommandLineError { 
+        "running your code directly with the verse interpreter does not produce output compilation files" 
+    };
     init_global_definitions_table(input_files);
-    validate_structs_definitions();
-    std::cout << "the verse interpreter is not yet implemented\n";
-    std::cout << "check for updates at https://www.github.com/fDero/Verse\n\n";
+    initialize_print_macros();
+    initialize_type_macros();
+    FunctionDefinition main_entry_point = find_main_entry_point();
+    ExecutionContext call_with_no_arguments_context;
+    execute_function_body(main_entry_point, call_with_no_arguments_context);
 }
 
 void debug(const std::vector<std::string>& inputs, const std::vector<std::string>& outputs){

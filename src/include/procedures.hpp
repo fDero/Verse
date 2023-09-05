@@ -5,7 +5,7 @@
 CommandLine read_commandline(int,char**);
 FileExtension file_extension(const std::string& filename);
 void compile(const std::vector<std::string>&,const std::vector<std::string>&);
-void evaluate(const std::vector<std::string>&,const std::vector<std::string>&);
+void run(const std::vector<std::string>&,const std::vector<std::string>&);
 void debug(const std::vector<std::string>&,const std::vector<std::string>&);
 void display_commandline_version();
 void display_commandline_help(); 
@@ -103,11 +103,35 @@ bool convert_attempt_into_xml(const Instruction& instr, std::fstream& output, co
 
 //preprocessing
 void init_global_definitions_table(const std::vector<std::string>& input_files);
-void validate_structs_definitions();
+FunctionDefinition find_main_entry_point();
+
+//interpreter
+Instruction execute_conditional(const Conditional&, ExecutionContext&);
+Instruction execute_until_loop(const UntilLoop&, ExecutionContext&);
+Instruction execute_while_loop(const WhileLoop&, ExecutionContext&);
+ExpressionResult execute_function_call(const FunctionCall&,ExecutionContext&);
+ExpressionResult execute_function_body(const FunctionDefinition&,ExecutionContext&);
+ExpressionResult execute_math_binary_operator(const BinaryOperator&,ExecutionContext&);
+ExpressionResult execute_logical_binary_operator(const BinaryOperator&,ExecutionContext&);
+ExpressionResult execute_logical_unary_operator(const UnaryOperator&,ExecutionContext&);
+ExpressionResult execute_math_unary_operator(const UnaryOperator&,ExecutionContext&);
+ExpressionResult execute_expression(const Instruction&,ExecutionContext&);
+ExpressionResult dot_access_on_struct_member(const Instruction&,ExecutionContext&);
+ExpressionResult execute_logical_not(const Instruction&,ExecutionContext&);
+ExpressionResult execute_minus_sign(const Instruction&,ExecutionContext&);
+ExpressionResult execute_plus_sign(const Instruction&,ExecutionContext&);
+ExpressionResult execute_address_operator(const Instruction&,ExecutionContext&);
+ExpressionResult verselang_print_macro(const std::vector<RuntimeValue>&);
+BinaryOperatorData execute_standard_binary_operator(const BinaryOperator&,ExecutionContext&);
+FunctionDefinition retrieve_function_overload(const std::string&,const ArgumentTypes&,ExecutionContext&);
+Instruction execute_instruction(const Instruction&,ExecutionContext&);
+void execute_assignment(const Assignment&, ExecutionContext&);
+void define_variable(const Variable&, ExecutionContext&);
+void define_constant(const Constant&, ExecutionContext&);
+void initialize_print_macros();
+void initialize_type_macros();
 
 //type-utilities
-bool types_are_equal(const TypeSignature&, const TypeSignature&);
-bool typesignatures_vectors_are_equals(const std::vector<TypeSignature>&,const std::vector<TypeSignature>&);
-bool given_type_is_a_template_generic(const BaseType&, const std::vector<TypeSignature>&);
-bool given_type_is_a_template_generic_for_this_struct(const BaseType&,const StructDefinition&);
-bool is_default_integral_type(const BaseType&);
+bool typesignatures_are_equal(const TypeSignature&, const TypeSignature&);;
+bool is_default_integral_type(const TypeSignature&);
+std::string type_to_string(const TypeSignature&);
