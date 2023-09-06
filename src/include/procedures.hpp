@@ -105,13 +105,17 @@ bool convert_attempt_into_xml(const Instruction& instr, std::fstream& output, co
 void init_global_definitions_table(const std::vector<std::string>& input_files);
 FunctionDefinition find_main_entry_point();
 
+//scoping
+StructDefinition retrieve_struct_definition_from_function_body(const TypeSignature&);
+StructDefinition retrieve_struct_definition_from_struct_scope(const TypeSignature&,const StructDefinition&);
+FunctionDefinition retrieve_function_overload(const std::string&,const ArgumentTypes&,ExecutionContext&);
+
 //interpreter
 Instruction execute_instruction(const Instruction&,ExecutionContext&);
 Instruction execute_conditional(const Conditional&, ExecutionContext&);
 Instruction execute_until_loop(const UntilLoop&, ExecutionContext&);
 Instruction execute_while_loop(const WhileLoop&, ExecutionContext&);
 BinaryOperatorData execute_standard_binary_operator(const BinaryOperator&,ExecutionContext&);
-FunctionDefinition retrieve_function_overload(const std::string&,const ArgumentTypes&,ExecutionContext&);
 ExpressionResult dot_access_on_struct_member(const Instruction&,ExecutionContext&);
 ExpressionResult execute_function_call(const FunctionCall&,ExecutionContext&);
 ExpressionResult execute_function_body(const FunctionDefinition&,ExecutionContext&);

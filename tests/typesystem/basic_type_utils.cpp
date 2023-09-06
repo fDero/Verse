@@ -3,7 +3,7 @@
 #include "../tests.hpp"
 
 void compare_base_types_test1(){
-    perform_test("src/typesystem/structs_generics_utils.cpp/compare_base_types[1]",[](){
+    perform_test("src/typesystem/basic_type_util.cpp/compare_base_types[1]",[](){
         TypeSignature A = BaseType { "A", {BaseType{"S"}, BaseType{"U"}} };
         TypeSignature B = BaseType { "B", {BaseType{"K"}} };
         TypeSignature C = BaseType { "C", {} };
@@ -19,7 +19,7 @@ void compare_base_types_test1(){
 }
 
 void compare_base_types_test2(){
-    perform_test("src/typesystem/structs_generics_utils.cpp/compare_base_types[2]",[](){
+    perform_test("src/typesystem/basic_type_util.cpp/compare_base_types[2]",[](){
         TypeSignature A = BaseType { "A", {BaseType{"S"}, BaseType{"U"}} };
         TypeSignature B = BaseType { "B", {BaseType{"K"}} };
         TypeSignature C = BaseType { "C", {} };
@@ -36,7 +36,7 @@ void compare_base_types_test2(){
 
 
 void compare_base_types_test3(){
-    perform_test("src/typesystem/structs_generics_utils.cpp/compare_base_types[3]",[](){
+    perform_test("src/typesystem/basic_type_util.cpp/compare_base_types[3]",[](){
         TypeSignature A = BaseType { "A", {BaseType{"S"}, BaseType{"U"}} };
         TypeSignature B = BaseType { "B", {BaseType{"K"}} };
         TypeSignature C = BaseType { "C", {} };
@@ -53,7 +53,7 @@ void compare_base_types_test3(){
 
 
 void compare_base_types_test4(){
-    perform_test("src/typesystem/structs_generics_utils.cpp/compare_base_types[4]",[](){
+    perform_test("src/typesystem/basic_type_util.cpp/compare_base_types[4]",[](){
         TypeSignature A = BaseType { "A", {BaseType{"S"}, BaseType{"U"}} };
         TypeSignature B = BaseType { "B", {BaseType{"K"}} };
         TypeSignature C = BaseType { "C", {} };
@@ -69,7 +69,7 @@ void compare_base_types_test4(){
 }
 
 void compare_base_types_test5(){
-    perform_test("src/typesystem/structs_generics_utils.cpp/compare_base_types[5]",[](){
+    perform_test("src/typesystem/basic_type_util.cpp/compare_base_types[5]",[](){
         TypeSignature A = BaseType { "A", {BaseType{"S"}, BaseType{"U"}} };
         TypeSignature B = BaseType { "B", {BaseType{"K"}} };
         TypeSignature C = BaseType { "C", {} };
@@ -83,7 +83,7 @@ void compare_base_types_test5(){
 }
 
 void compare_base_types_test6(){
-    perform_test("src/typesystem/structs_generics_utils.cpp/compare_base_types[6]",[](){
+    perform_test("src/typesystem/basic_type_util.cpp/compare_base_types[6]",[](){
         TypeSignature Aptr1 = Pointer { std::make_shared<TypeSignature>(BaseType{"A"}) };
         TypeSignature Aptr2 = Pointer { std::make_shared<TypeSignature>(BaseType{"A"}) };
         expect(typesignatures_are_equal(Aptr1, Aptr2));
@@ -92,7 +92,7 @@ void compare_base_types_test6(){
 
 
 void compare_base_types_test7(){
-    perform_test("src/typesystem/structs_generics_utils.cpp/compare_base_types[7]",[](){
+    perform_test("src/typesystem/basic_type_util.cpp/compare_base_types[7]",[](){
         TypeSignature Aptr1 = Pointer { std::make_shared<TypeSignature>(BaseType{"A", {BaseType{"T"}}}) };
         TypeSignature Aptr2 = Pointer { std::make_shared<TypeSignature>(BaseType{"A"}) };
         expect(not typesignatures_are_equal(Aptr1, Aptr2));
@@ -101,7 +101,7 @@ void compare_base_types_test7(){
 
 
 void compare_base_types_test8(){
-    perform_test("src/typesystem/structs_generics_utils.cpp/compare_base_types[8]",[](){
+    perform_test("src/typesystem/basic_type_util.cpp/compare_base_types[8]",[](){
         TypeSignature Aptr1 = Pointer { std::make_shared<TypeSignature>(BaseType{"A", {BaseType{"T"}}}) };
         TypeSignature Aptr2 = Pointer { std::make_shared<TypeSignature>(BaseType{"A", {BaseType{"T"}}}) };
         expect(typesignatures_are_equal(Aptr1, Aptr2));
@@ -110,7 +110,7 @@ void compare_base_types_test8(){
 
 
 void compare_base_types_test9(){
-    perform_test("src/typesystem/structs_generics_utils.cpp/compare_base_types[9]",[](){
+    perform_test("src/typesystem/basic_type_util.cpp/compare_base_types[9]",[](){
         TypeSignature Aptr1 = Pointer { std::make_shared<TypeSignature>(BaseType{"A", {BaseType{"T"}}}) };
         TypeSignature Aptr2 = Pointer { std::make_shared<TypeSignature>(BaseType{"A", {BaseType{"K"}}}) };
         expect(not typesignatures_are_equal(Aptr1, Aptr2));
@@ -118,7 +118,7 @@ void compare_base_types_test9(){
 }
 
 void is_default_integral_type_test1(){
-    perform_test("src/typesystem/structs_generics_utils.cpp/is_default_integral_type[1]",[](){
+    perform_test("src/typesystem/basic_type_util.cpp/is_default_integral_type[1]",[](){
         TypeSignature A = BaseType { "A", {BaseType{"S"}, BaseType{"U"}} };
         TypeSignature B = BaseType { "B", {BaseType{"K"}} };
         TypeSignature C = BaseType { "C", {} };
@@ -139,7 +139,7 @@ void is_default_integral_type_test1(){
 }
 
 void is_default_integral_type_test2(){
-    perform_test("src/typesystem/structs_generics_utils.cpp/is_default_integral_type[2]",[](){       
+    perform_test("src/typesystem/basic_type_util.cpp/is_default_integral_type[2]",[](){       
         expect(is_default_integral_type(BaseType{"Int"}));
         expect(is_default_integral_type(BaseType{"Float"}));
         expect(is_default_integral_type(BaseType{"Char"}));

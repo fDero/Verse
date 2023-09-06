@@ -63,3 +63,9 @@ typesystem_unit_testing:
 	@tests/typesystem/typesystem_unit_testing.${EXECUTABLE_EXTENSION}
 	@$(RM) tests/typesystem/typesystem_unit_testing.out
 	@$(RM) tests/typesystem/typesystem_unit_testing.exe
+
+scoping_unit_testing:
+	@${COMPILER} -std=${STD} tests/scoping/*.cpp src/scoping/*.cpp src/typesystem/*.cpp -o tests/scoping/scoping_unit_testing.out
+	@tests/scoping/scoping_unit_testing.${EXECUTABLE_EXTENSION}
+	@$(RM) tests/scoping/scoping_unit_testing.out
+	@$(RM) tests/scoping/scoping_unit_testing.exe
