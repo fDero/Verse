@@ -17,6 +17,7 @@
 #include <cmath>
 #include <math.h>
 #include <map>
+#include <list>
 
 struct CommandLine; enum class FileExtension;  enum class Mode;
 

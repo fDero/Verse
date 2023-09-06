@@ -106,9 +106,13 @@ void init_global_definitions_table(const std::vector<std::string>& input_files);
 FunctionDefinition find_main_entry_point();
 
 //interpreter
+Instruction execute_instruction(const Instruction&,ExecutionContext&);
 Instruction execute_conditional(const Conditional&, ExecutionContext&);
 Instruction execute_until_loop(const UntilLoop&, ExecutionContext&);
 Instruction execute_while_loop(const WhileLoop&, ExecutionContext&);
+BinaryOperatorData execute_standard_binary_operator(const BinaryOperator&,ExecutionContext&);
+FunctionDefinition retrieve_function_overload(const std::string&,const ArgumentTypes&,ExecutionContext&);
+ExpressionResult dot_access_on_struct_member(const Instruction&,ExecutionContext&);
 ExpressionResult execute_function_call(const FunctionCall&,ExecutionContext&);
 ExpressionResult execute_function_body(const FunctionDefinition&,ExecutionContext&);
 ExpressionResult execute_math_binary_operator(const BinaryOperator&,ExecutionContext&);
@@ -116,24 +120,24 @@ ExpressionResult execute_logical_binary_operator(const BinaryOperator&,Execution
 ExpressionResult execute_logical_unary_operator(const UnaryOperator&,ExecutionContext&);
 ExpressionResult execute_math_unary_operator(const UnaryOperator&,ExecutionContext&);
 ExpressionResult execute_expression(const Instruction&,ExecutionContext&);
-ExpressionResult dot_access_on_struct_member(const Instruction&,ExecutionContext&);
 ExpressionResult execute_logical_not(const Instruction&,ExecutionContext&);
 ExpressionResult execute_minus_sign(const Instruction&,ExecutionContext&);
 ExpressionResult execute_plus_sign(const Instruction&,ExecutionContext&);
 ExpressionResult execute_address_operator(const Instruction&,ExecutionContext&);
 ExpressionResult verselang_print_macro(const std::vector<RuntimeValue>&);
-BinaryOperatorData execute_standard_binary_operator(const BinaryOperator&,ExecutionContext&);
-FunctionDefinition retrieve_function_overload(const std::string&,const ArgumentTypes&,ExecutionContext&);
-Instruction execute_instruction(const Instruction&,ExecutionContext&);
 void execute_assignment(const Assignment&, ExecutionContext&);
 void define_variable(const Variable&, ExecutionContext&);
 void define_constant(const Constant&, ExecutionContext&);
 void initialize_print_macros();
 void initialize_type_macros();
 
-//type-utilities
+//typesystem
 bool typesignatures_are_equal(const TypeSignature&, const TypeSignature&);;
 bool is_default_integral_type(const TypeSignature&);
 std::string type_to_string_without_generics(const TypeSignature&);
 std::string type_to_string(const TypeSignature&);
 std::string get_qualified_struct_name(const StructDefinition&);
+std::string most_derived_type(const TypeSignature&);
+InstanciatedGenerics get_instanciated_generics(const TypeSignature&);
+TemplateGenerics get_template_generics(const StructDefinition&);
+GenericsLookupTable get_generics_lookup_table(const TemplateGenerics&,const InstanciatedGenerics&);

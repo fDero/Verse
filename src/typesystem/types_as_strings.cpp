@@ -24,14 +24,24 @@ std::string type_to_string(const TypeSignature& type){
 
 std::string type_to_string_without_generics(const TypeSignature& type){
     if (std::holds_alternative<BaseType>(type)) return std::get<BaseType>(type).base_type;
-    else if (std::holds_alternative<Pointer>(type)) return "#" + type_to_string(*std::get<Pointer>(type).pointed);
-    else if (std::holds_alternative<Array>(type)) return "Array[" + type_to_string(*std::get<Pointer>(type).pointed) + "]";
+    else if (std::holds_alternative<Pointer>(type)) return "#" + type_to_string_without_generics(*std::get<Pointer>(type).pointed);
+    else if (std::holds_alternative<Array>(type)) return "Array[" + type_to_string_without_generics(*std::get<Pointer>(type).pointed) + "]";
     else if (std::holds_alternative<NestedType>(type)) {
-        std::string left = type_to_string(*std::get<NestedType>(type).left);
-        std::string right = type_to_string(*std::get<NestedType>(type).right);
+        std::string left = type_to_string_without_generics(*std::get<NestedType>(type).left);
+        std::string right = type_to_string_without_generics(*std::get<NestedType>(type).right);
         return left + "." + right;
     }
     else throw InternalCompilerError { "somehow a typesignature is not a base-type, nor an array nor a pointer" };
+}
+
+std::string most_derived_type(const TypeSignature& type){
+    if (std::holds_alternative<BaseType>(type)) return std::get<BaseType>(type).base_type;
+    if (std::holds_alternative<Pointer>(type)) return most_derived_type(*std::get<Pointer>(type).pointed);
+    if (std::holds_alternative<Array>(type)) return most_derived_type(*std::get<Array>(type).type);
+    if (std::holds_alternative<NestedType>(type)) return most_derived_type(*std::get<NestedType>(type).right);
+    throw InternalCompilerError {
+        "Typesignature is neither a base-type, nor a pointer, nor an array nor a nested-type"
+    };
 }
 
 std::string get_qualified_struct_name(const StructDefinition& structdef){

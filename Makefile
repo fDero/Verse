@@ -3,22 +3,26 @@
 COMPILER=clang++
 STD=c++20
 LINKER=clang++
-PYTHON=python3
+
+MKDIR := mkdir -p
+RM := rm -rf
+EXECUTABLE_EXTENSION := out
+TARGET := verse
 
 clean:
-	@rm -f build/*.o
-	@rm -f test/snippets/*/*.xml
-	@rm -f test/snippets/*/*.json
-	@rm -rf .vscode
-	@rm -rf build
-	@rm -f verse
-	@rm -f *.verse
-	@rm -f *.xml
-	@rm -f *.json
+	@$(RM) build
+	@$(RM) test/snippets/*/*.xml
+	@$(RM) test/snippets/*/*.json
+	@$(RM) .vscode
+	@$(RM) verse
+	@$(RM) *.verse
+	@$(RM) *.xml
+	@$(RM) *.json
+	@$(RM) *.out
 
 build:
-	@mkdir -p build
-	@rm -f build/*.o
+	@$(RM) build
+	@$(MKDIR) -p build
 	${COMPILER} -c -std=${STD} src/verselang_macros/print_macros.cpp           -o build/print_macros.o
 	${COMPILER} -c -std=${STD} src/verselang_macros/type_macros.cpp            -o build/type_macros.o
 	${COMPILER} -c -std=${STD} src/interpreter/execute_function.cpp            -o build/execute_function.o
@@ -33,6 +37,7 @@ build:
 	${COMPILER} -c -std=${STD} src/scoping/struct_members.cpp                  -o build/struct_members.o
 	${COMPILER} -c -std=${STD} src/typesystem/basic_type_utils.cpp             -o build/basic_type_utils.o
 	${COMPILER} -c -std=${STD} src/typesystem/types_as_strings.cpp             -o build/types_as_strings.o
+	${COMPILER} -c -std=${STD} src/typesystem/structs_generics_utils.cpp       -o build/structs_generics_utils.o
 	${COMPILER} -c -std=${STD} src/preprocessing/definitions_table.cpp         -o build/definitions_table.o
 	${COMPILER} -c -std=${STD} src/preprocessing/entry_point.cpp               -o build/entry_point.o
 
@@ -51,6 +56,10 @@ build:
 	${COMPILER} -c -std=${STD} src/serialization/serialize_statements.cpp      -o build/serialize_statements.o
 	${COMPILER} -c -std=${STD} src/serialization/serialize_utils.cpp           -o build/serialize_utils.o
 	${COMPILER} -c -std=${STD} src/errors/display_errors.cpp                   -o build/display_errors.o
-	${LINKER} build/*.o -o verse
-test:
-	@${PYTHON} test/test.py
+	${LINKER} build/*.o -o ${TARGET}
+
+typesystem_unit_testing:
+	@${COMPILER} -std=${STD} tests/typesystem/*.cpp src/typesystem/*.cpp -o tests/typesystem/typesystem_unit_testing.out
+	@tests/typesystem/typesystem_unit_testing.${EXECUTABLE_EXTENSION}
+	@$(RM) tests/typesystem/typesystem_unit_testing.out
+	@$(RM) tests/typesystem/typesystem_unit_testing.exe
