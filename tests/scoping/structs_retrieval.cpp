@@ -2,10 +2,6 @@
 #include "../../src/include/procedures.hpp"
 #include "../tests.hpp"
 
-//        for (const auto& pair : global_structs_names_register) 
-//            for (const auto& sec : pair.second) 
-//                std::cout << pair.first << " -> " << sec << " -> " << global_structs_definitions[sec].struct_name <<"\n";
-
 void retrieve_struct_definition_from_function_body_test1(){
     global_structs_names_register.clear();
     global_structs_definitions.clear();   

@@ -105,6 +105,10 @@ bool convert_attempt_into_xml(const Instruction& instr, std::fstream& output, co
 void init_global_definitions_table(const std::vector<std::string>& input_files);
 FunctionDefinition find_main_entry_point();
 
+//generics
+TypeSignature apply_generics_to_typesignature(const TypeSignature&,const GenericsLookupTable&);
+StructDefinition apply_generics_to_struct_definition(const StructDefinition&, const GenericsLookupTable&);
+
 //scoping
 StructDefinition retrieve_struct_definition_from_function_body(const TypeSignature&);
 StructDefinition retrieve_struct_definition_from_struct_scope(const TypeSignature&,const StructDefinition&);

@@ -69,3 +69,9 @@ scoping_unit_testing:
 	@tests/scoping/scoping_unit_testing.${EXECUTABLE_EXTENSION}
 	@$(RM) tests/scoping/scoping_unit_testing.out
 	@$(RM) tests/scoping/scoping_unit_testing.exe
+
+generics_unit_testing:
+	@${COMPILER} -std=${STD} tests/generics/*.cpp src/generics/*.cpp src/typesystem/*.cpp -o tests/generics/generics_unit_testing.out
+	@tests/generics/generics_unit_testing.${EXECUTABLE_EXTENSION}
+	@$(RM) tests/generics/generics_unit_testing.out
+	@$(RM) tests/generics/generics_unit_testing.exe
