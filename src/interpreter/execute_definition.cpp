@@ -26,7 +26,7 @@ void assert_variable_name_avialable(const Variable& vardef, ExecutionContext& co
     }
 }
 
-void assert_variable_name_avialable(const Constant& constdef, ExecutionContext& context){
+void assert_constant_name_avialable(const Constant& constdef, ExecutionContext& context){
     bool name_taken = context.constant_values.find(constdef.name) != context.constant_values.end();
     name_taken |= context.variable_values.find(constdef.name) != context.variable_values.end();
     if (name_taken) {
@@ -35,6 +35,17 @@ void assert_variable_name_avialable(const Constant& constdef, ExecutionContext& 
             "that name is already taken"
         };
     }
+}
+
+StructValue default_struct_value(const TypeSignature& type){
+    StructDefinition retrieved_struct_definition = retrieve_and_instanciate_struct(type);
+    std::shared_ptr<StructDefinition> new_scope = std::make_shared<StructDefinition>(retrieved_struct_definition);
+    StructValue struct_value { {}, {}, std::make_shared<StructDefinition>(retrieved_struct_definition) };
+    for (const Instance& field : retrieved_struct_definition.internal_state){
+        struct_value.fields_names.push_back(Identifier{field.name});
+        struct_value.fields.push_back(default_value(field.typesignature));
+    }
+    return struct_value;
 }
 
 RuntimeValue default_value(const TypeSignature& type){
@@ -46,6 +57,9 @@ RuntimeValue default_value(const TypeSignature& type){
         if (std::get<BaseType>(type).base_type == "Bool")   return (BoolValue)(false);
         throw InternalCompilerError { "somehow a non default-integral-types it's been identified as such" };
     }
+    else if (std::holds_alternative<Pointer>(type)) return PointerValue{nullptr};
+    else if (std::holds_alternative<Array>(type)) throw InternalCompilerError { "Arrays not implemented yet" };
+    else if (std::holds_alternative<BaseType>(type) or std::holds_alternative<NestedType>(type)) return default_struct_value(type);
     throw InternalCompilerError { "default values for non default-integral-types are not implemented yet (work in progress)" };
 }
 
@@ -56,7 +70,7 @@ void define_variable(const Variable& vardef, ExecutionContext& context){
 }
 
 void define_constant(const Constant& constdef, ExecutionContext& context){
-    assert_variable_name_avialable(constdef, context);
+    assert_constant_name_avialable(constdef, context);
     auto [constant_type, constant_value] = execute_expression(*constdef.value, context);
     if (not typesignatures_are_equal(constant_type, constdef.typesignature)) {
         throw std::runtime_error { "type mismatch (expected vs given) in const declaration" };

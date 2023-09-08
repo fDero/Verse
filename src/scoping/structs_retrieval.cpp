@@ -18,16 +18,10 @@ StructDefinition struct_retrieval_helper_function(const std::string& struct_base
     return best_match;
 }
 
-StructDefinition retrieve_struct_definition_from_function_body(const TypeSignature& type){
+StructDefinition retrieve_struct_definition(const TypeSignature& type){
     std::string struct_base_name = most_derived_type(type);
     std::string struct_fully_qualified_name = type_to_string(type);
-    return struct_retrieval_helper_function(struct_base_name, struct_fully_qualified_name);
-}
-
-StructDefinition retrieve_struct_definition_from_struct_scope(const TypeSignature& type, const StructDefinition& struct_definition){
-    std::string struct_base_name = most_derived_type(type);
-    std::string struct_fully_qualified_name = get_qualified_struct_name(struct_definition) + "." + type_to_string(type);
     StructDefinition retrieved = struct_retrieval_helper_function(struct_base_name, struct_fully_qualified_name);
-    if (not retrieved.struct_name.empty() or struct_definition.parent_scope == nullptr) return retrieved;
-    else return retrieve_struct_definition_from_struct_scope(type, *struct_definition.parent_scope);
+    if (retrieved.struct_name.empty()) throw std::runtime_error { "no such struct named: " + type_to_string(type) + " in this scope" };
+    return retrieved;
 }

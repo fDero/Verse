@@ -132,7 +132,7 @@ void get_qualified_struct_name_test1(){
         StructDefinition A { "A", {BaseType{"T1"}}, {}, nullptr };
         StructDefinition B { "B", {BaseType{"T2"}, BaseType{"T3"}}, {}, std::make_shared<StructDefinition>(A) };
         StructDefinition C { "C", {}, {}, std::make_shared<StructDefinition>(B) };
-        expect(get_qualified_struct_name(C) == "A<\\w+>.B<\\w+,\\w+>.C");
+        expect(get_qualified_struct_name(C) == "A<#*\\w+>.B<#*\\w+,#*\\w+>.C");
     });
 }
 
@@ -141,7 +141,7 @@ void get_qualified_struct_name_test2(){
         StructDefinition A { "A", {BaseType{"T1"}, BaseType{"T2"}}, {}, nullptr };
         StructDefinition B { "B", {BaseType{"T3"}}, {}, std::make_shared<StructDefinition>(A) };
         StructDefinition C { "C", {}, {}, std::make_shared<StructDefinition>(B) };
-        expect(get_qualified_struct_name(C) == "A<\\w+,\\w+>.B<\\w+>.C");
+        expect(get_qualified_struct_name(C) == "A<#*\\w+,#*\\w+>.B<#*\\w+>.C");
     });
 }
 
@@ -150,7 +150,7 @@ void get_qualified_struct_name_test3(){
         StructDefinition A { "A", {BaseType{"T1"}}, {}, nullptr };
         StructDefinition B { "B", {BaseType{"T2"}}, {}, std::make_shared<StructDefinition>(A) };
         StructDefinition C { "C", {BaseType{"T3"}}, {}, std::make_shared<StructDefinition>(B) };
-        expect(get_qualified_struct_name(C) == "A<\\w+>.B<\\w+>.C<\\w+>");
+        expect(get_qualified_struct_name(C) == "A<#*\\w+>.B<#*\\w+>.C<#*\\w+>");
     });
 }
 

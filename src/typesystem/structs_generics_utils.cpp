@@ -29,9 +29,13 @@ GenericsLookupTable get_generics_lookup_table(const TemplateGenerics& template_g
     GenericsLookupTable generics_lookup_table;
     auto template_generics_iterator = template_generics.begin();
     auto instanciated_generics_iterator = instanciated_generics.begin();
-    if (template_generics.size() != instanciated_generics.size()) throw InternalCompilerError { 
-        "different number of template-generics and instanciated-generics" 
-    };
+    if (template_generics.size() != instanciated_generics.size()) {
+        std::cerr << "template-generics size: " << template_generics.size() << "\n";
+        std::cerr << "instanciated-generics size: " << instanciated_generics.size() << "\n";
+        throw InternalCompilerError { 
+            "different number of template-generics and instanciated-generics" 
+        };
+    }
     for (int t = 0; t < template_generics.size(); t++){
         for (int i = 0; i < template_generics_iterator->size(); i++){
             if (template_generics_iterator->size() != instanciated_generics_iterator->size()) {
@@ -44,4 +48,27 @@ GenericsLookupTable get_generics_lookup_table(const TemplateGenerics& template_g
         ++instanciated_generics_iterator;
     }
     return generics_lookup_table;
+}
+
+StructDefinition apply_generics_to_struct_definition(const StructDefinition& struct_template, const GenericsLookupTable& generics_lookup_table){
+    StructDefinition instanciated_struct = struct_template;
+    for (Instance& field : instanciated_struct.internal_state){
+        field.typesignature = apply_generics_to_typesignature(field.typesignature, generics_lookup_table);
+    }
+    return instanciated_struct;
+}
+
+StructDefinition retrieve_and_instanciate_struct(const TypeSignature& type){
+    std::string fully_qualified_name = type_to_string(type);
+    if (global_structs_definitions.find(fully_qualified_name) != global_structs_definitions.end()) {
+        return global_structs_definitions[fully_qualified_name];
+    }
+    StructDefinition retrieved_struct_definition = retrieve_struct_definition(type);
+    InstanciatedGenerics instanciated_generics = get_instanciated_generics(type);
+    TemplateGenerics template_generics = get_template_generics(retrieved_struct_definition);
+    GenericsLookupTable generics_lookup_table = get_generics_lookup_table(template_generics, instanciated_generics);    
+    StructDefinition instanciated = apply_generics_to_struct_definition(retrieved_struct_definition, generics_lookup_table);
+    global_structs_names_register[instanciated.struct_name].push_back(fully_qualified_name);
+    global_structs_definitions[fully_qualified_name] = instanciated;
+    return instanciated;
 }

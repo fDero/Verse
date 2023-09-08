@@ -23,6 +23,10 @@ clean:
 build:
 	@$(RM) build
 	@$(MKDIR) -p build
+	
+	
+	${COMPILER} -c -std=${STD} src/typesystem/generic_type_utils.cpp           -o build/generic_type_utils.o
+	${COMPILER} -c -std=${STD} src/typesystem/structs_generics_utils.cpp       -o build/structs_generics_utils.o
 	${COMPILER} -c -std=${STD} src/verselang_macros/print_macros.cpp           -o build/print_macros.o
 	${COMPILER} -c -std=${STD} src/verselang_macros/type_macros.cpp            -o build/type_macros.o
 	${COMPILER} -c -std=${STD} src/interpreter/execute_function.cpp            -o build/execute_function.o
@@ -59,7 +63,7 @@ build:
 	${LINKER} build/*.o -o ${TARGET}
 
 typesystem_unit_testing:
-	@${COMPILER} -std=${STD} tests/typesystem/*.cpp src/typesystem/*.cpp -o tests/typesystem/typesystem_unit_testing.out
+	@${COMPILER} -std=${STD} tests/typesystem/*.cpp src/typesystem/*.cpp src/scoping/*.cpp -o tests/typesystem/typesystem_unit_testing.out
 	@tests/typesystem/typesystem_unit_testing.${EXECUTABLE_EXTENSION}
 	@$(RM) tests/typesystem/typesystem_unit_testing.out
 	@$(RM) tests/typesystem/typesystem_unit_testing.exe
@@ -69,9 +73,3 @@ scoping_unit_testing:
 	@tests/scoping/scoping_unit_testing.${EXECUTABLE_EXTENSION}
 	@$(RM) tests/scoping/scoping_unit_testing.out
 	@$(RM) tests/scoping/scoping_unit_testing.exe
-
-generics_unit_testing:
-	@${COMPILER} -std=${STD} tests/generics/*.cpp src/generics/*.cpp src/typesystem/*.cpp -o tests/generics/generics_unit_testing.out
-	@tests/generics/generics_unit_testing.${EXECUTABLE_EXTENSION}
-	@$(RM) tests/generics/generics_unit_testing.out
-	@$(RM) tests/generics/generics_unit_testing.exe

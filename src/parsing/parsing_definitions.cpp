@@ -44,6 +44,7 @@ bool parse_struct_definition (
 ) {
     if(it->sourcetext != "struct") return false;
     StructDefinition this_struct;
+    this_struct.parent_scope = parent;
     acquire_exact_match(it,tokens,"struct");
     acquire_baretype(it,tokens,this_struct.struct_name);
     acquire_simple_generics(it,tokens,this_struct.generics);
@@ -59,7 +60,6 @@ bool parse_struct_definition (
     }
     if (it == tokens.end()) throw SyntaxError { "brackets opened but never closed in struct definition", *expected_brackets_open };
     std::advance(it,1);
-    this_struct.parent_scope = parent;
     output.push_back(this_struct);
     return true;
 }

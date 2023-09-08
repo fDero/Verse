@@ -108,10 +108,10 @@ FunctionDefinition find_main_entry_point();
 //generics
 TypeSignature apply_generics_to_typesignature(const TypeSignature&,const GenericsLookupTable&);
 StructDefinition apply_generics_to_struct_definition(const StructDefinition&, const GenericsLookupTable&);
+StructDefinition retrieve_and_instanciate_struct(const TypeSignature&);
 
 //scoping
-StructDefinition retrieve_struct_definition_from_function_body(const TypeSignature&);
-StructDefinition retrieve_struct_definition_from_struct_scope(const TypeSignature&,const StructDefinition&);
+StructDefinition retrieve_struct_definition(const TypeSignature&);
 FunctionDefinition retrieve_function_overload(const std::string&,const ArgumentTypes&,ExecutionContext&);
 
 //interpreter
@@ -133,6 +133,7 @@ ExpressionResult execute_minus_sign(const Instruction&,ExecutionContext&);
 ExpressionResult execute_plus_sign(const Instruction&,ExecutionContext&);
 ExpressionResult execute_address_operator(const Instruction&,ExecutionContext&);
 ExpressionResult verselang_print_macro(const std::vector<RuntimeValue>&);
+RuntimeValue default_value(const TypeSignature&);
 void execute_assignment(const Assignment&, ExecutionContext&);
 void define_variable(const Variable&, ExecutionContext&);
 void define_constant(const Constant&, ExecutionContext&);

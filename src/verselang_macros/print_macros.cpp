@@ -6,7 +6,9 @@ void print_struct(const RuntimeValue& value){
         StructValue structx = std::get<StructValue>(value);
         std::cout << "{ "; verselang_print_macro(structx.fields); std::cout << "} "; 
     }
-    throw InternalCompilerError { "print_strcut() procedure called on a non-struct-value" };
+    else {
+        throw InternalCompilerError { "print_strcut() procedure called on a non-struct-value" };
+    }
 }
 
 void print_array(const RuntimeValue& value){

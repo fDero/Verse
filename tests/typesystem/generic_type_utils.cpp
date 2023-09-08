@@ -3,7 +3,7 @@
 #include "../tests.hpp"
 
 void apply_generics_to_typesignature_test1(){
-    perform_test("src/scoping/apply_generics_to_typesignature.cpp/apply_generics_to_typesignature[1]",[](){
+    perform_test("src/typesystem/generic_type_utils.cpp/apply_generics_to_typesignature[1]",[](){
         TypeSignature T = BaseType{"T"};
         GenericsLookupTable generics_lookup_table;
         generics_lookup_table["T"] = BaseType{"List", {BaseType{"Int"}}};
@@ -13,7 +13,7 @@ void apply_generics_to_typesignature_test1(){
 }
 
 void apply_generics_to_typesignature_test2(){
-    perform_test("src/scoping/apply_generics_to_typesignature.cpp/apply_generics_to_typesignature[2]",[](){
+    perform_test("src/typesystem/generic_type_utils.cpp/apply_generics_to_typesignature[2]",[](){
         TypeSignature T = BaseType{"Pair", {BaseType{"T"}, BaseType{"U"}}};
         GenericsLookupTable generics_lookup_table;
         generics_lookup_table["T"] = BaseType{"Int"};
@@ -24,7 +24,7 @@ void apply_generics_to_typesignature_test2(){
 }
 
 void apply_generics_to_typesignature_test3(){
-    perform_test("src/scoping/apply_generics_to_typesignature.cpp/apply_generics_to_typesignature[3]",[](){
+    perform_test("src/typesystem/generic_type_utils.cpp.cpp/apply_generics_to_typesignature[3]",[](){
         TypeSignature T = BaseType{"Pair", {BaseType{"T"}, BaseType{"U"}}};
         TypeSignature Tptr = Pointer { std::make_shared<TypeSignature>(T) };
         GenericsLookupTable generics_lookup_table;
@@ -36,7 +36,7 @@ void apply_generics_to_typesignature_test3(){
 }
 
 void apply_generics_to_typesignature_test4(){
-    perform_test("src/scoping/apply_generics_to_typesignature.cpp/apply_generics_to_typesignature[4]",[](){
+    perform_test("src/typesystem/generic_type_utils.cpp/apply_generics_to_typesignature[4]",[](){
         TypeSignature T = BaseType{"Pair", {BaseType{"T"}, BaseType{"U"}}};
         TypeSignature Tptr = Pointer { std::make_shared<TypeSignature>(T) };
         GenericsLookupTable generics_lookup_table;
@@ -48,7 +48,7 @@ void apply_generics_to_typesignature_test4(){
 }
 
 void apply_generics_to_typesignature_test5(){
-    perform_test("src/scoping/apply_generics_to_typesignature.cpp/apply_generics_to_typesignature[5]",[](){
+    perform_test("src/typesystem/generic_type_utils.cpp/apply_generics_to_typesignature[5]",[](){
         TypeSignature HashMap_of_T = BaseType{"HashMap", {BaseType{"T"}, BaseType{"T"}}};
         TypeSignature HashMapEntry = BaseType{"HashMapEntry"};
         TypeSignature HashMap_of_T_dot_HashMapEntry = NestedType { 
@@ -67,7 +67,7 @@ void apply_generics_to_typesignature_test5(){
 
 
 void apply_generics_to_typesignature_test6(){
-    perform_test("src/scoping/apply_generics_to_typesignature.cpp/apply_generics_to_typesignature[6]",[](){
+    perform_test("src/typesystem/generic_type_utils.cpp/apply_generics_to_typesignature[6]",[](){
         TypeSignature A = BaseType{"A", {BaseType{"T"}}};
         TypeSignature B = BaseType{"B", {BaseType{"U"}}};
         TypeSignature C = BaseType{"C", {BaseType{"T"}}};

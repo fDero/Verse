@@ -6,7 +6,7 @@ void apply_generics_to_struct_definition_test1(){
     global_structs_names_register.clear();
     global_structs_definitions.clear();   
     global_functions_definitions.clear(); 
-    perform_test("src/scoping/apply_generics_to_struct_definition.cpp/apply_generics_to_struct_definition[1]",[](){
+    perform_test("src/typesystem/structs_generics_utils.cpp.cpp/apply_generics_to_struct_definition[1]",[](){
         StructDefinition Pair = {
             "Pair", {BaseType{"T"}}, {
                 Instance{"first",BaseType{"T"}}, 
@@ -27,7 +27,7 @@ void apply_generics_to_struct_definition_test2(){
     global_structs_names_register.clear();
     global_structs_definitions.clear();   
     global_functions_definitions.clear(); 
-    perform_test("src/scoping/apply_generics_to_struct_definition.cpp/apply_generics_to_struct_definition[2]",[](){
+    perform_test("src/typesystem/structs_generics_utils.cpp.cpp/apply_generics_to_struct_definition[2]",[](){
         StructDefinition Struct = {
             "Struct", {BaseType{"T"}, BaseType{"U"}}, {
                 Instance{"pair", BaseType{"Pair", {BaseType{"T"}, BaseType{"U"}}}}, 

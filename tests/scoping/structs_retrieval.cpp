@@ -2,11 +2,11 @@
 #include "../../src/include/procedures.hpp"
 #include "../tests.hpp"
 
-void retrieve_struct_definition_from_function_body_test1(){
+void retrieve_struct_definition_test1(){
     global_structs_names_register.clear();
     global_structs_definitions.clear();   
     global_functions_definitions.clear(); 
-    perform_test("src/scoping/structs_retrieval.cpp/retrieve_struct_definition_from_function_body[1]",[](){
+    perform_test("src/scoping/structs_retrieval.cpp/retrieve_struct_definition[1]",[](){
         StructDefinition Outer { "Outer", {BaseType{"T"}}, {}, nullptr };
         StructDefinition Inner { "Inner", {}, {}, std::make_shared<StructDefinition>(Outer) };
         
@@ -19,18 +19,18 @@ void retrieve_struct_definition_from_function_body_test1(){
         TypeSignature outer = BaseType{ "Outer", {BaseType{"Int"}} };
         TypeSignature inner = BaseType{ "Inner", {} };
         TypeSignature type = NestedType{ std::make_shared<TypeSignature>(outer), std::make_shared<TypeSignature>(inner) };
-        StructDefinition retrieved = retrieve_struct_definition_from_function_body(type);
+        StructDefinition retrieved = retrieve_struct_definition(type);
         expect(retrieved.struct_name == "Inner");
         expect(retrieved.parent_scope->struct_name == "Outer");
         expect(retrieved.generics.empty());
     });
 }
 
-void retrieve_struct_definition_from_function_body_test2(){
+void retrieve_struct_definition_test2(){
     global_structs_names_register.clear();
     global_structs_definitions.clear();   
     global_functions_definitions.clear(); 
-    perform_test("src/scoping/structs_retrieval.cpp/retrieve_struct_definition_from_function_body[2]",[](){
+    perform_test("src/scoping/structs_retrieval.cpp/retrieve_struct_definition[2]",[](){
         StructDefinition Outer { "Outer", {BaseType{"T"}}, {}, nullptr };
         StructDefinition Inner { "Inner", {}, {}, std::make_shared<StructDefinition>(Outer) };
         
@@ -42,18 +42,18 @@ void retrieve_struct_definition_from_function_body_test2(){
         
         global_structs_definitions[get_qualified_struct_name(Inner)] = Inner;
         TypeSignature type = BaseType{ "Outer", {BaseType{"Int"}} };
-        StructDefinition retrieved = retrieve_struct_definition_from_function_body(type);
+        StructDefinition retrieved = retrieve_struct_definition(type);
         expect(retrieved.struct_name == "Outer");
         expect(retrieved.parent_scope == nullptr);
         expect(retrieved.generics.size() == 1);
     });
 }
 
-void retrieve_struct_definition_from_function_body_test3(){
+void retrieve_struct_definition_test3(){
     global_structs_names_register.clear();
     global_structs_definitions.clear();   
     global_functions_definitions.clear(); 
-    perform_test("src/scoping/structs_retrieval.cpp/retrieve_struct_definition_from_function_body[3]",[](){
+    perform_test("src/scoping/structs_retrieval.cpp/retrieve_struct_definition[3]",[](){
         StructDefinition List_of_T { "List", {BaseType{"T"}}, {}, nullptr };
         StructDefinition List_of_Int { "List<Int>", {}, {}, nullptr };
         StructDefinition List_of_String { "List<String>", {}, {}, nullptr };
@@ -70,89 +70,13 @@ void retrieve_struct_definition_from_function_body_test3(){
         TypeSignature list_of_Int = BaseType{ "List", {BaseType{"Int"}} };
         TypeSignature list_of_Float = BaseType{ "List", {BaseType{"Float"}} };
         
-        StructDefinition retrieved_int = retrieve_struct_definition_from_function_body(list_of_Int);
-        StructDefinition retrieved_float = retrieve_struct_definition_from_function_body(list_of_Float);
+        StructDefinition retrieved_int = retrieve_struct_definition(list_of_Int);
+        StructDefinition retrieved_float = retrieve_struct_definition(list_of_Float);
                 
         expect(retrieved_int.struct_name == "List<Int>");
         expect(retrieved_int.generics.empty());
         expect(retrieved_float.struct_name == "List");
         expect(retrieved_float.generics.size() == 1);
         
-    });
-}
-
-void retrieve_struct_definition_from_struct_scope_test1(){
-    global_structs_names_register.clear();
-    global_structs_definitions.clear();   
-    global_functions_definitions.clear(); 
-    perform_test("src/scoping/structs_retrieval.cpp/retrieve_struct_definition_from_struct_scope[1]",[](){
-        StructDefinition Adef { "A", {}, {}, nullptr };
-        StructDefinition Bdef { "B", {}, {}, std::make_shared<StructDefinition>(Adef) };
-        StructDefinition Cdef { "C", {}, {}, std::make_shared<StructDefinition>(Bdef) };
-        
-        global_structs_names_register["A"].push_back("A");
-        global_structs_definitions["A"] = Adef;
-        
-        global_structs_names_register["B"].push_back("A.B");
-        global_structs_definitions["A.B"] = Bdef;
-        
-        global_structs_names_register["C"].push_back("A.B.C");
-        global_structs_definitions["A.B.C"] = Cdef;
-        
-        TypeSignature Btype = BaseType{"B"};
-        StructDefinition retrieved = retrieve_struct_definition_from_struct_scope(Btype, Cdef);
-        expect(retrieved.struct_name == "B");
-        expect(retrieved.generics.empty());
-        expect(get_qualified_struct_name(retrieved) == "A.B");
-    });
-}
-
-void retrieve_struct_definition_from_struct_scope_test2(){
-    global_structs_names_register.clear();
-    global_structs_definitions.clear();   
-    global_functions_definitions.clear(); 
-    perform_test("src/scoping/structs_retrieval.cpp/retrieve_struct_definition_from_struct_scope[2]",[](){
-        StructDefinition Adef { "A", {}, {}, nullptr };
-        StructDefinition Bdef { "B", {BaseType{"T"}}, {}, std::make_shared<StructDefinition>(Adef) };
-        StructDefinition Cdef { "C", {}, {}, std::make_shared<StructDefinition>(Bdef) };
-        
-        global_structs_names_register["A"].push_back("A");
-        global_structs_definitions["A"] = Adef;
-        
-        global_structs_names_register["B"].push_back("A.B<\\w+>");
-        global_structs_definitions["A.B<\\w+>"] = Bdef;
-        
-        global_structs_names_register["C"].push_back("A.B<\\w+>.C");
-        global_structs_definitions["A.B<\\w+>.C"] = Cdef;
-        
-        TypeSignature Btype = BaseType{"B", {BaseType{"Int"}}};
-        StructDefinition retrieved = retrieve_struct_definition_from_struct_scope(Btype, Cdef);
-        expect(retrieved.struct_name == "B");
-        expect(retrieved.generics.size() == 1);
-        expect(get_qualified_struct_name(retrieved) == "A.B<\\w+>");
-    });
-}
-
-void retrieve_struct_definition_from_struct_scope_test3(){
-    global_structs_names_register.clear();
-    global_structs_definitions.clear();   
-    global_functions_definitions.clear(); 
-    perform_test("src/scoping/structs_retrieval.cpp/retrieve_struct_definition_from_struct_scope[3]",[](){
-        StructDefinition Adef { "A", {}, {}, nullptr };
-        StructDefinition Bdef { "B", {BaseType{"T"}}, {}, std::make_shared<StructDefinition>(Adef) };
-        StructDefinition Cdef { "C", {}, {}, std::make_shared<StructDefinition>(Bdef) };
-        
-        global_structs_names_register["A"].push_back("A");
-        global_structs_definitions["A"] = Adef;
-        
-        global_structs_names_register["B"].push_back("A.B<\\w+>");
-        global_structs_definitions["A.B<\\w+>"] = Bdef;
-        
-        global_structs_names_register["C"].push_back("A.B<\\w+>.C");
-        global_structs_definitions["A.B<\\w+>.C"] = Cdef;
-        
-        TypeSignature Btype = BaseType{"B"};
-        StructDefinition retrieved = retrieve_struct_definition_from_struct_scope(Btype, Cdef);
-        expect(retrieved.struct_name.empty());
     });
 }

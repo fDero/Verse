@@ -18,7 +18,12 @@ using RuntimeValue = std::variant<
 
 using ScopingData = std::vector<std::string>;
 
-struct StructValue  { std::vector<RuntimeValue> fields; };
+struct StructValue  { 
+    std::vector<RuntimeValue> fields; 
+    std::vector<Identifier> fields_names;
+    std::shared_ptr<StructDefinition> struct_definition; 
+};
+
 struct ArrayValue   { std::vector<RuntimeValue> values; };
 struct PointerValue { RuntimeValue* pointer; };
 struct VoidValue    { /*nothing*/ };
