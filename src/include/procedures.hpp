@@ -102,8 +102,10 @@ bool convert_defer_into_xml(const Instruction& instr, std::fstream& output, cons
 bool convert_attempt_into_xml(const Instruction& instr, std::fstream& output, const std::string& prefix);
 
 //preprocessing
-void init_global_definitions_table(const std::vector<std::string>& input_files);
 FunctionDefinition find_main_entry_point();
+void fully_qualify_struct_field_typesignature(TypeSignature&,StructDefinition&);
+void init_global_definitions_table(const std::vector<std::string>&);
+void fully_qualify_struct_fields();
 
 //generics
 TypeSignature apply_generics_to_typesignature(const TypeSignature&,const GenericsLookupTable&);

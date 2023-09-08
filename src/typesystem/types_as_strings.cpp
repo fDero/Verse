@@ -48,7 +48,7 @@ std::string get_qualified_struct_name(const StructDefinition& structdef){
     std::string prefix = (structdef.parent_scope != nullptr)? get_qualified_struct_name(*structdef.parent_scope) + "." : "";
     std::string name = structdef.struct_name;
     std::string generics = "<";
-    for (const auto& generic : structdef.generics) generics += "#*\\w+,";
+    for (const auto& generic : structdef.generics) generics += "[^,]*,";
     generics.back() = '>';
     if (generics.size() <= 1) generics.clear();
     return (prefix + name + generics);

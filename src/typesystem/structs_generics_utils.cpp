@@ -17,7 +17,8 @@ InstanciatedGenerics get_instanciated_generics(const TypeSignature& type){
     else if (std::holds_alternative<NestedType>(type)){
         InstanciatedGenerics instanciated_generics = get_instanciated_generics(*std::get<NestedType>(type).right);
         const TypeSignature& lx = *std::get<NestedType>(type).left;
-        instanciated_generics.push_back(std::get<BaseType>(lx).generics);
+        auto generics_on_left = get_instanciated_generics(lx);
+        for (const auto& g : generics_on_left) instanciated_generics.push_back(g);
         return instanciated_generics;
     }
     throw InternalCompilerError {
@@ -30,8 +31,6 @@ GenericsLookupTable get_generics_lookup_table(const TemplateGenerics& template_g
     auto template_generics_iterator = template_generics.begin();
     auto instanciated_generics_iterator = instanciated_generics.begin();
     if (template_generics.size() != instanciated_generics.size()) {
-        std::cerr << "template-generics size: " << template_generics.size() << "\n";
-        std::cerr << "instanciated-generics size: " << instanciated_generics.size() << "\n";
         throw InternalCompilerError { 
             "different number of template-generics and instanciated-generics" 
         };
@@ -66,7 +65,7 @@ StructDefinition retrieve_and_instanciate_struct(const TypeSignature& type){
     StructDefinition retrieved_struct_definition = retrieve_struct_definition(type);
     InstanciatedGenerics instanciated_generics = get_instanciated_generics(type);
     TemplateGenerics template_generics = get_template_generics(retrieved_struct_definition);
-    GenericsLookupTable generics_lookup_table = get_generics_lookup_table(template_generics, instanciated_generics);    
+    GenericsLookupTable generics_lookup_table = get_generics_lookup_table(template_generics, instanciated_generics);   
     StructDefinition instanciated = apply_generics_to_struct_definition(retrieved_struct_definition, generics_lookup_table);
     global_structs_names_register[instanciated.struct_name].push_back(fully_qualified_name);
     global_structs_definitions[fully_qualified_name] = instanciated;

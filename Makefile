@@ -44,6 +44,7 @@ build:
 	${COMPILER} -c -std=${STD} src/typesystem/structs_generics_utils.cpp       -o build/structs_generics_utils.o
 	${COMPILER} -c -std=${STD} src/preprocessing/definitions_table.cpp         -o build/definitions_table.o
 	${COMPILER} -c -std=${STD} src/preprocessing/entry_point.cpp               -o build/entry_point.o
+	${COMPILER} -c -std=${STD} src/preprocessing/structs_fields_correction.cpp -o build/structs_fields_correction.o
 
 	${COMPILER} -c -std=${STD} src/main.cpp                                    -o build/main.o
 	${COMPILER} -c -std=${STD} src/commandline/commandline_utils.cpp           -o build/commandline_utils.o

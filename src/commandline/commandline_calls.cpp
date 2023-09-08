@@ -36,10 +36,8 @@ void run(const std::vector<std::string>& input_files, const std::vector<std::str
     initialize_type_macros();
     FunctionDefinition main_entry_point = find_main_entry_point();
     ExecutionContext call_with_no_arguments_context;
-    
-    dump_global_structs_names_and_defs();
+    fully_qualify_struct_fields();
     execute_function_body(main_entry_point, call_with_no_arguments_context);
-    dump_global_structs_names_and_defs();
 }
 
 void debug(const std::vector<std::string>& inputs, const std::vector<std::string>& outputs){

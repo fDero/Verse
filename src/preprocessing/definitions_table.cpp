@@ -4,7 +4,7 @@
 void struct_preprocessing(const Instruction& instruction){
     const StructDefinition& struct_definition = std::get<StructDefinition>(instruction);
     std::string fully_qualified_name = get_qualified_struct_name(struct_definition);
-    if (global_structs_definitions.find(struct_definition.struct_name) != global_structs_definitions.end()){
+    if (global_structs_definitions.find(fully_qualified_name) != global_structs_definitions.end()){
         throw std::runtime_error { "another struct already exists with this name" };
     }
     global_structs_definitions[fully_qualified_name] = struct_definition;
