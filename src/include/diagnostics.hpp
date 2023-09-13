@@ -2,19 +2,10 @@
 #include "verse.hpp"
 #include "procedures.hpp"
 
-inline void dump(TemplateGenerics tgs){
-    for (const auto& tg : tgs) {
+inline void dump(std::list<std::vector<TypeSignature>> generics){
+    for (const auto& generics_vector : generics) {
         std::cerr << "[ ";
-        for (const auto& t : tg) std::cerr << type_to_string(t) << " ";
-        std::cerr << "] ";
-    }
-    std::cerr << std::endl;
-}
-
-inline void dump(InstanciatedGenerics tgs){
-    for (const auto& tg : tgs) {
-        std::cerr << "[ ";
-        for (const auto& t : tg) std::cerr << type_to_string(t) << " ";
+        for (const auto& generic : generics_vector) std::cerr << type_to_string(generic) << " ";
         std::cerr << "] ";
     }
     std::cerr << std::endl;

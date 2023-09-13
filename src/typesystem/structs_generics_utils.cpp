@@ -17,8 +17,9 @@ InstanciatedGenerics get_instanciated_generics(const TypeSignature& type){
     else if (std::holds_alternative<NestedType>(type)){
         InstanciatedGenerics instanciated_generics = get_instanciated_generics(*std::get<NestedType>(type).right);
         const TypeSignature& lx = *std::get<NestedType>(type).left;
-        auto generics_on_left = get_instanciated_generics(lx);
-        for (const auto& g : generics_on_left) instanciated_generics.push_back(g);
+        //auto generics_on_left = get_instanciated_generics(lx);
+        //for (const auto& g : generics_on_left) instanciated_generics.push_back(g);
+        instanciated_generics.splice(instanciated_generics.end(), get_instanciated_generics(lx));
         return instanciated_generics;
     }
     throw InternalCompilerError {

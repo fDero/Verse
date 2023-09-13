@@ -41,7 +41,7 @@ using ArgumentValues = std::vector<RuntimeValue>;
 using ArgumentTypes = std::vector<TypeSignature>;
 using OverloadSet = std::vector<FunctionDefinition>;
 using BinaryOperatorData = std::tuple<TypeSignature, RuntimeValue, RuntimeValue>;
-using InstanciatedGenerics = std::vector<std::vector<TypeSignature>>;
+using InstanciatedGenerics = std::list<std::vector<TypeSignature>>;
 using TemplateGenerics = std::list<std::vector<TypeSignature>>;
 using GenericsLookupTable = std::map<std::string, TypeSignature>;
 
