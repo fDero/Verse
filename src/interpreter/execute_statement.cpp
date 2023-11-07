@@ -1,5 +1,5 @@
-#include "../include/verse.hpp"
-#include "../include/procedures.hpp"
+#include "../../include/verse.hpp"
+#include "../../prototypes/procedures.hpp"
 
 
 Instruction execute_conditional(const Conditional& conditional, ExecutionContext& context){

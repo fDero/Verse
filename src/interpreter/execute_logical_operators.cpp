@@ -1,5 +1,5 @@
-#include "../include/verse.hpp"
-#include "../include/procedures.hpp"
+#include "../../include/verse.hpp"
+#include "../../prototypes/procedures.hpp"
 
 
 ExpressionResult execute_logical_and_binary_operator(const BinaryOperator& binary_operator, ExecutionContext& context){

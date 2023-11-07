@@ -1,6 +1,6 @@
 #pragma once
-#include "../src/include/verse.hpp"
-#include "../src/include/procedures.hpp"
+#include "../include/verse.hpp"
+#include "../prototypes/procedures.hpp"
 #include <exception>
 #include <iostream>
 #include <functional>

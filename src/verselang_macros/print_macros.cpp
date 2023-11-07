@@ -1,5 +1,5 @@
-#include "../include/verse.hpp"
-#include "../include/procedures.hpp"
+#include "../../include/verse.hpp"
+#include "../../prototypes/procedures.hpp"
 
 void print_struct(const RuntimeValue& value){
     if (std::holds_alternative<StructValue>(value)){

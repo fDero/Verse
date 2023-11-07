@@ -1,5 +1,5 @@
-#include "../../src/include/verse.hpp"
-#include "../../src/include/procedures.hpp"
+#include "../../include/verse.hpp"
+#include "../../prototypes/procedures.hpp"
 #include "../tests.hpp"
 
 void get_instanciated_generics_test1(){
@@ -11,9 +11,8 @@ void get_instanciated_generics_test1(){
         NestedType AdotBdotC = NestedType { std::make_shared<TypeSignature>(A), std::make_shared<TypeSignature>(BdotC) };    
         InstanciatedGenerics instaciated_generics = get_instanciated_generics(AdotBdotC);
         expect(instaciated_generics.size() == 3);
-        expect(instaciated_generics[0].size() == 0);
-        expect(instaciated_generics[1].size() == 1);
-        expect(instaciated_generics[2].size() == 2);
+        expect(instaciated_generics.front().size() == 0);
+        expect(instaciated_generics.back().size() == 2);
     });
 }
 
@@ -26,9 +25,8 @@ void get_instanciated_generics_test2(){
         NestedType AdotBdotC = NestedType { std::make_shared<TypeSignature>(A), std::make_shared<TypeSignature>(BdotC) };    
         InstanciatedGenerics instaciated_generics = get_instanciated_generics(AdotBdotC);
         expect(instaciated_generics.size() == 3);
-        expect(instaciated_generics[0].size() == 1);
-        expect(instaciated_generics[1].size() == 1);
-        expect(instaciated_generics[2].size() == 1);
+        expect(instaciated_generics.front().size() == 1);
+        expect(instaciated_generics.back().size() == 1);
     });
 }
 
@@ -41,9 +39,8 @@ void get_instanciated_generics_test3(){
         NestedType AdotBdotC = NestedType { std::make_shared<TypeSignature>(A), std::make_shared<TypeSignature>(BdotC) };    
         InstanciatedGenerics instaciated_generics = get_instanciated_generics(AdotBdotC);
         expect(instaciated_generics.size() == 3);
-        expect(instaciated_generics[0].size() == 0);
-        expect(instaciated_generics[1].size() == 0);
-        expect(instaciated_generics[2].size() == 0);
+        expect(instaciated_generics.front().size() == 0);
+        expect(instaciated_generics.back().size() == 0);
     });
 }
 
@@ -52,7 +49,7 @@ void get_instanciated_generics_test4(){
         TypeSignature A = BaseType { "A" };    
         InstanciatedGenerics instaciated_generics = get_instanciated_generics(A);
         expect(instaciated_generics.size() == 1);
-        expect(instaciated_generics[0].size() == 0);
+        expect(instaciated_generics.back().size() == 0);
     });
 }
 
@@ -62,7 +59,7 @@ void get_instanciated_generics_test5(){
         TypeSignature A = BaseType { "A", {BaseType{"T"}} };    
         InstanciatedGenerics instaciated_generics = get_instanciated_generics(A);
         expect(instaciated_generics.size() == 1);
-        expect(instaciated_generics[0].size() == 1);
+        expect(instaciated_generics.back().size() == 1);
     });
 }
 

@@ -1,5 +1,5 @@
-#include "../include/verse.hpp"
-#include "../include/procedures.hpp"
+#include "../../include/verse.hpp"
+#include "../../prototypes/procedures.hpp"
 
 OverloadSet retrieve_whole_overload_set(const std::string& function_name, std::shared_ptr<FunctionDefinition>& scope){
     std::string scoped_function_name = ((scope != nullptr)? scope->func_name : "global") + "\\" + function_name;

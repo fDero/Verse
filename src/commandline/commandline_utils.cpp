@@ -1,6 +1,6 @@
-#include "../include/verse.hpp"
-#include "../include/procedures.hpp"
-#include "../include/commandline.hpp"
+#include "../../include/verse.hpp"
+#include "../../prototypes/procedures.hpp"
+#include "../../include/commandline.hpp"
 
 bool compiler_flag(int& i, int argc, char **argv, CommandLine& state){
     if (std::string(argv[i]) != "-c" and std::string(argv[i]) != "--compile") return false;

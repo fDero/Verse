@@ -1,5 +1,5 @@
-#include "../include/verse.hpp"
-#include "../include/procedures.hpp"
+#include "../../include/verse.hpp"
+#include "../../prototypes/procedures.hpp"
 
 void struct_preprocessing(const Instruction& instruction){
     const StructDefinition& struct_definition = std::get<StructDefinition>(instruction);

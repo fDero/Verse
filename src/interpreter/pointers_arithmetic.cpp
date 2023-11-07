@@ -1,5 +1,5 @@
-#include "../include/verse.hpp"
-#include "../include/procedures.hpp"
+#include "../../include/verse.hpp"
+#include "../../prototypes/procedures.hpp"
 
 ExpressionResult dot_access_on_struct_member(const Instruction& dot, ExecutionContext& context){
     throw InternalCompilerError { "not implemented yet" };

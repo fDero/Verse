@@ -1,6 +1,6 @@
-#include "include/verse.hpp"
-#include "include/procedures.hpp"
-#include "include/commandline.hpp"
+#include "../include/verse.hpp"
+#include "../prototypes/procedures.hpp"
+#include "../include/commandline.hpp"
 
 int main(int argc, char** argv){
     try {

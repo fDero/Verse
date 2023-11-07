@@ -1,5 +1,5 @@
-#include "../include/verse.hpp"
-#include "../include/procedures.hpp"
+#include "../../include/verse.hpp"
+#include "../../prototypes/procedures.hpp"
 
 bool convert_variable_into_xml(const Instruction& instr, std::fstream& output, const std::string& prefix){
     if (not std::holds_alternative<Variable>(instr)) return false;

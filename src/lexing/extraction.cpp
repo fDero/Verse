@@ -1,5 +1,5 @@
-#include "../include/verse.hpp"
-#include "../include/procedures.hpp"
+#include "../../include/verse.hpp"
+#include "../../prototypes/procedures.hpp"
 
 inline const std::set<char> symbols{'+','-','*','/','=','.',':','<','>','!','(',')','[',']','{','}',',',';','&','|','^','#','%'};
 inline const std::set<std::string> combinations{">=","<=","!=","++","--","==","->","<-","&&","||","^^"};

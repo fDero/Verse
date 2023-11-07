@@ -1,7 +1,7 @@
-#include "../include/verse.hpp"
-#include "../include/procedures.hpp"
-#include "../include/commandline.hpp"
-#include "../include/diagnostics.hpp"
+#include "../../include/verse.hpp"
+#include "../../prototypes/procedures.hpp"
+#include "../../include/commandline.hpp"
+#include "../../include/diagnostics.hpp"
 
 void validate_input_files(const std::vector<std::string>& inputs){
     for(const std::string& in : inputs) {

@@ -1,5 +1,5 @@
-#include "../include/verse.hpp"
-#include "../include/procedures.hpp"
+#include "../../include/verse.hpp"
+#include "../../prototypes/procedures.hpp"
 
 void acquire_instruction(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::vector<Instruction>& output){
     if (parse_variable(it,tokens,output))                     return;

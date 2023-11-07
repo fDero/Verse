@@ -1,5 +1,5 @@
-#include "../include/verse.hpp"
-#include "../include/procedures.hpp"
+#include "../../include/verse.hpp"
+#include "../../prototypes/procedures.hpp"
 
 TypeSignature apply_generics_to_typesignature(const TypeSignature& generic_type, const GenericsLookupTable& generics_lookup_table){
     if (std::holds_alternative<BaseType>(generic_type)){

@@ -1,5 +1,5 @@
-#include "../include/verse.hpp"
-#include "../include/procedures.hpp"
+#include "../../include/verse.hpp"
+#include "../../prototypes/procedures.hpp"
 
 void execute_assignment(const Assignment& assignment, ExecutionContext& context){
     if (std::holds_alternative<Identifier>(*assignment.target)) {

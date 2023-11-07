@@ -1,5 +1,5 @@
-#include "../include/verse.hpp"
-#include "../include/procedures.hpp"
+#include "../../include/verse.hpp"
+#include "../../prototypes/procedures.hpp"
 
 StructDefinition struct_retrieval_helper_function(const std::string& struct_base_name, const std::string& struct_fully_qualified_name){
     std::vector<std::string>& candidates = global_structs_names_register[struct_base_name];

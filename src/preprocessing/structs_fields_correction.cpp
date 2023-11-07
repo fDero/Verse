@@ -1,5 +1,5 @@
-#include "../include/verse.hpp"
-#include "../include/procedures.hpp"
+#include "../../include/verse.hpp"
+#include "../../prototypes/procedures.hpp"
 
 std::string craft_type_regex(const BaseType& type){
     std::string regex = type.base_type + "<";
@@ -59,7 +59,9 @@ void fully_qualify_struct_field_basetype(TypeSignature& type, StructDefinition& 
 }
 
 void fully_qualify_struct_field_nestedtype(NestedType& type, StructDefinition& structdef){
-    for (TypeSignature& generic : std::get<BaseType>(*type.right).generics) fully_qualify_struct_field_typesignature(generic, structdef);
+    for (TypeSignature& generic : std::get<BaseType>(*type.right).generics) {
+        fully_qualify_struct_field_typesignature(generic, structdef);
+    }
     fully_qualify_struct_field_typesignature(*type.left, structdef);
 }
 

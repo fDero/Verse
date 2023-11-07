@@ -1,6 +1,6 @@
-#include "../include/verse.hpp"
-#include "../include/procedures.hpp"
-#include "../include/errors.hpp"
+#include "../../include/verse.hpp"
+#include "../../prototypes/procedures.hpp"
+#include "../../include/errors.hpp"
 
 inline const std::set<char> discardable{'\t','\r','\0','\n',' '}; 
 

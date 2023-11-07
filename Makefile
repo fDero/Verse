@@ -14,6 +14,7 @@ clean:
 	@$(RM) test/snippets/*/*.xml
 	@$(RM) test/snippets/*/*.json
 	@$(RM) .vscode
+	@$(RM) .idea
 	@$(RM) verse
 	@$(RM) *.verse
 	@$(RM) *.xml
@@ -22,7 +23,7 @@ clean:
 
 build:
 	@$(RM) build
-	@$(MKDIR) -p build
+	@$(MKDIR) build
 	
 	
 	${COMPILER} -c -std=${STD} src/typesystem/generic_type_utils.cpp           -o build/generic_type_utils.o

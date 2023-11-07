@@ -1,5 +1,5 @@
-#include "../include/verse.hpp"
-#include "../include/procedures.hpp"
+#include "../../include/verse.hpp"
+#include "../../prototypes/procedures.hpp"
 
 ExpressionResult execute_add_binary_operator(const BinaryOperator& binary_operator,ExecutionContext& context){
     auto [type, lx, rx] = execute_standard_binary_operator(binary_operator, context);

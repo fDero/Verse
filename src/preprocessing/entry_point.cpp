@@ -1,5 +1,5 @@
-#include "../include/verse.hpp"
-#include "../include/procedures.hpp"
+#include "../../include/verse.hpp"
+#include "../../prototypes/procedures.hpp"
 
 void ensure_correct_formatting_of_main_function(const FunctionDefinition& main_function){
     if (not main_function.generics.empty()) throw std::runtime_error { "the main function cannot has generics" };

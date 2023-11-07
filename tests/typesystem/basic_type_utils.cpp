@@ -1,5 +1,5 @@
-#include "../../src/include/verse.hpp"
-#include "../../src/include/procedures.hpp"
+#include "../../include/verse.hpp"
+#include "../../prototypes/procedures.hpp"
 #include "../tests.hpp"
 
 void compare_base_types_test1(){

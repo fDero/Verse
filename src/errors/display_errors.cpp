@@ -1,6 +1,6 @@
-#include "../include/verse.hpp"
-#include "../include/errors.hpp"
-#include "../include/procedures.hpp"
+#include "../../include/verse.hpp"
+#include "../../include/errors.hpp"
+#include "../../prototypes/procedures.hpp"
 
 #include <iostream>
 #include <sstream>

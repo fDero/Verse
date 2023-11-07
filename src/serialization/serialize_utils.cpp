@@ -1,5 +1,5 @@
-#include "../include/verse.hpp"
-#include "../include/procedures.hpp"
+#include "../../include/verse.hpp"
+#include "../../prototypes/procedures.hpp"
 
 void translate_tokens_into_json(const std::vector<Token>& tokens, std::fstream& output){
     for (auto it = tokens.begin(); it != tokens.end(); it++){

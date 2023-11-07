@@ -1,5 +1,5 @@
-#include "../include/verse.hpp"
-#include "../include/procedures.hpp"
+#include "../../include/verse.hpp"
+#include "../../prototypes/procedures.hpp"
 
 ExpressionResult verselang_typeof_macro(const std::vector<TypeSignature>& arguments){
     if (arguments.size() != 1) throw std::runtime_error{ "wrong number of arguments for typeof" };

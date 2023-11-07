@@ -1,5 +1,5 @@
-#include "../include/verse.hpp"
-#include "../include/procedures.hpp"
+#include "../../include/verse.hpp"
+#include "../../prototypes/procedures.hpp"
 
 bool parse_char_literal(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, Instruction& target){
     bool is_char_literal = it->sourcetext[0] == '\'';

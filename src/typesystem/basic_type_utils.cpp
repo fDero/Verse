@@ -1,5 +1,5 @@
-#include "../include/verse.hpp"
-#include "../include/procedures.hpp"
+#include "../../include/verse.hpp"
+#include "../../prototypes/procedures.hpp"
 
 bool compare_base_types(const BaseType& typex, const BaseType& typey){
     if (typex.base_type != typey.base_type) return false;

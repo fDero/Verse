@@ -1,5 +1,5 @@
-#include "../include/verse.hpp"
-#include "../include/procedures.hpp"
+#include "../../include/verse.hpp"
+#include "../../prototypes/procedures.hpp"
 
 bool parse_conditional(std::vector<Token>::iterator& it, const std::vector<Token>& tokens, std::vector<Instruction>& output){
     if (it->sourcetext != "if") return false;

@@ -1,5 +1,5 @@
-#include "../include/verse.hpp"
-#include "../include/procedures.hpp"
+#include "../../include/verse.hpp"
+#include "../../prototypes/procedures.hpp"
 
 ExecutionContext craft_execution_context(const FunctionDefinition& function, const ArgumentValues& arguments){
     ExecutionContext context { std::make_shared<FunctionDefinition>(function) };
