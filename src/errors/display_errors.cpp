@@ -70,3 +70,9 @@ void display_ICE(const InternalCompilerError& err){
     << yellow("please, write an extensive bug report explaining the issue and report it on the github page ") 
     << yellow("of this project at https://www.github.com/fDero/Verse\n\n");
 }
+
+void display_runtime_error(const std::runtime_error& err){
+    std::cout << std::endl
+    << bold_red("RUNTIME ERROR: ") << red(err.what())
+    << blue("\n\nbetter error messages are work in progress right now\n\n");
+}
