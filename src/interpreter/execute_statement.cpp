@@ -32,9 +32,7 @@ Instruction execute_code_block_once(const std::vector<Instruction>& code, Execut
     for (const Instruction& instruction : code){
         update_local_symbols(instruction, local_symbols);
         Instruction callback = execute_instruction(instruction, context);
-        if (std::holds_alternative<Return>(callback)) {
-            return callback;
-        }
+        if (std::holds_alternative<Return>(callback)) return callback;
         else if (std::holds_alternative<Break>(callback) or std::holds_alternative<Continue>(callback)) {
             remove_local_symbols_from_outside_context(local_symbols, context);
             return callback;
@@ -46,7 +44,6 @@ Instruction execute_code_block_once(const std::vector<Instruction>& code, Execut
 
 Instruction execute_conditional(const Conditional& conditional, ExecutionContext& context){
     bool boolean_condition = evaluate_boolean_condition(*conditional.condition, context);
-    std::vector<Identifier> local_symbols;
     const std::vector<Instruction>& execution_path = (boolean_condition)? conditional.then : conditional.otherwise;
     Instruction callback =  execute_code_block_once(execution_path, context);
     if (not std::holds_alternative<DoNothing>(callback)){
@@ -55,7 +52,6 @@ Instruction execute_conditional(const Conditional& conditional, ExecutionContext
         if (std::holds_alternative<Continue>(callback))  return callback;
         throw InternalCompilerError { "cannot recognize callback instruction" };
     }
-    remove_local_symbols_from_outside_context(local_symbols, context);
     return DoNothing{};
 }
 
