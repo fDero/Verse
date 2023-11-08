@@ -26,18 +26,6 @@ TypeSignature apply_generics_to_pointer_type(const Pointer& pointer_type, const 
     return Pointer { new_pointed_type };
 }
 
-TypeSignature apply_generics_to_base_type_deprecated(const TypeSignature& base_type, const GenericsLookupTable& generics_lookup_table){
-    for (const auto& pair : generics_lookup_table){
-        if (std::get<BaseType>(base_type).base_type == pair.first) return pair.second;
-    }
-    if (std::get<BaseType>(base_type).generics.empty()) return base_type;
-    TypeSignature instanciated_generic_type = base_type;
-    for (TypeSignature& generic : std::get<BaseType>(instanciated_generic_type).generics){
-        generic = apply_generics_to_typesignature(generic, generics_lookup_table);
-    }
-    return instanciated_generic_type;
-}
-
 TypeSignature apply_generics_to_base_type(const BaseType& type, const GenericsLookupTable& generics_lookup_table){
     BaseType instanciated_type = type;
     auto base_type_replacement = generics_lookup_table.find(type.base_type);

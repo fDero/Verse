@@ -26,3 +26,7 @@ struct InternalCompilerError {
 struct CommandLineError {
     std::string error_message;
 };
+
+inline InternalCompilerError unrecognized_error { 
+    "an unrecognized error has occurred, the point of failure is unknown" 
+};

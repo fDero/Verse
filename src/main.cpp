@@ -18,4 +18,5 @@ int main(int argc, char** argv){
     catch (const TokenizationError& err)      { display_tokenization_error(err); }
     catch (const SyntaxError& err)            { display_syntax_error(err);       }
     catch (const InternalCompilerError& err)  { display_ICE(err);                }
+    catch (...)                               { display_ICE(unrecognized_error); }
 }
