@@ -4,6 +4,10 @@
 - [x] have a runnable demo of the language
 - [ ] rewrite includes to only include the bare minimum
 - [ ] write a proper test-suite
+- [ ] factor out error handling from all the modules and write error handling routines in the src/errors package
+- [ ] support modules/packages/library
+- [ ] find a better syntax for pointers and arrays
+- [ ] write a language documentation
 
 ### Lexer/Parser
 - [x] definitions
@@ -34,6 +38,8 @@
 - [x] scoping rules
 - [ ] function overloading
 - [ ] function generics
+- [x] structs instanciation
+- [x] console print of instances
 - [x] structs generics
 - [ ] dot operator on object
 
