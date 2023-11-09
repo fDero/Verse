@@ -56,7 +56,10 @@ build:
 	${COMPILER} -c -std=${STD} src/parsing/parsing_expressions.cpp             -o build/parsing_expressions.o
 	${COMPILER} -c -std=${STD} src/parsing/parsing_operators.cpp               -o build/parsing_operators.o
 	${COMPILER} -c -std=${STD} src/parsing/parsing_statements.cpp              -o build/parsing_statements.o
-	${COMPILER} -c -std=${STD} src/parsing/parsing_utils.cpp                   -o build/parsing_utils.o
+	${COMPILER} -c -std=${STD} src/parsing/acquire_instructions.cpp            -o build/acquire_instructions.o
+	${COMPILER} -c -std=${STD} src/parsing/acquire_sections.cpp                -o build/acquire_sections.o
+	${COMPILER} -c -std=${STD} src/parsing/acquire_terminals.cpp               -o build/acquire_terminals.o
+	${COMPILER} -c -std=${STD} src/parsing/acquire_typesignatures.cpp          -o build/acquire_typesignatures.o
 	${COMPILER} -c -std=${STD} src/serialization/serialize_definitions.cpp     -o build/serialize_definitions.o
 	${COMPILER} -c -std=${STD} src/serialization/serialize_expressions.cpp     -o build/serialize_expression.o
 	${COMPILER} -c -std=${STD} src/serialization/serialize_statements.cpp      -o build/serialize_statements.o
