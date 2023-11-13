@@ -17,5 +17,4 @@ struct FunctionDefinition {
     std::vector<TypeSignature>          generics;
     std::vector<Instance>               args; 
     std::vector<Instruction>            code; 
-    std::shared_ptr<FunctionDefinition> parent_scope;
 };

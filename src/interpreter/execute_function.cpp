@@ -2,7 +2,7 @@
 #include "../../prototypes/procedures.hpp"
 
 ExecutionContext craft_execution_context(const FunctionDefinition& function, const ArgumentValues& arguments){
-    ExecutionContext context { std::make_shared<FunctionDefinition>(function) };
+    ExecutionContext context;
     for (int i = 0; i < function.args.size(); i++){
         context.variable_values[function.args[i].name] = arguments[i];
         context.variable_types[function.args[i].name] = function.args[i].typesignature;

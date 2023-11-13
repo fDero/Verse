@@ -13,7 +13,7 @@ void acquire_instruction(std::vector<Token>::iterator&,const std::vector<Token>&
 void acquire_generics(std::vector<Token>::iterator&,const std::vector<Token>&,std::vector<TypeSignature>&);
 void acquire_simple_generics(std::vector<Token>::iterator&,const std::vector<Token>&,std::vector<TypeSignature>&);
 bool parse_struct_definition (std::vector<Token>::iterator&,const std::vector<Token>&,std::vector<Instruction>&, std::shared_ptr<StructDefinition>);
-bool parse_function_definition(std::vector<Token>::iterator&,const std::vector<Token>&,std::vector<Instruction>&, std::shared_ptr<FunctionDefinition>);
+bool parse_function_definition(std::vector<Token>::iterator&,const std::vector<Token>&,std::vector<Instruction>&);
 bool parse_constant(std::vector<Token>::iterator&,const std::vector<Token>&,std::vector<Instruction>&);
 bool parse_variable(std::vector<Token>::iterator&,const std::vector<Token>&,std::vector<Instruction>&);
 bool parse_conditional(std::vector<Token>::iterator&,const std::vector<Token>&,std::vector<Instruction>&);
@@ -33,7 +33,7 @@ bool parse_assignment(std::vector<Token>::iterator&,const std::vector<Token>&,In
 bool parse_terminal(std::vector<Token>::iterator&,const std::vector<Token>&,Instruction&);
 bool parse_non_terminated_expression(std::vector<Token>::iterator&,const std::vector<Token>&,std::vector<Instruction>&);
 void acquire_struct_state_section(std::vector<Token>::iterator&,const std::vector<Token>&,std::vector<Instruction>&,std::shared_ptr<StructDefinition>,StructDefinition&);
-void acquire_function_definition_code_section(std::vector<Token>::iterator&,const std::vector<Token>&,std::vector<Instruction>&,std::shared_ptr<FunctionDefinition>,FunctionDefinition&);
-void acquire_function_definition_arguments_section(std::vector<Token>::iterator&,const std::vector<Token>&,std::vector<Instruction>&,std::shared_ptr<FunctionDefinition>,FunctionDefinition&);
+void acquire_function_definition_code_section(std::vector<Token>::iterator&,const std::vector<Token>&,std::vector<Instruction>&,FunctionDefinition&);
+void acquire_function_definition_arguments_section(std::vector<Token>::iterator&,const std::vector<Token>&,std::vector<Instruction>&,FunctionDefinition&);
 void acquire_field(std::vector<Token>::iterator&,const std::vector<Token>&,std::vector<Instance>&);
 void acquire_argument(std::vector<Token>::iterator&,const std::vector<Token>&,std::vector<Instance>&);

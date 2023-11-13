@@ -53,18 +53,15 @@ bool parse_struct_definition (
 
 bool parse_function_definition(
     std::vector<Token>::iterator& it, const std::vector<Token>& tokens, 
-    std::vector<Instruction>& output, std::shared_ptr<FunctionDefinition> parent
+    std::vector<Instruction>& output
 ) {    
     if(it->sourcetext != "func") return false;
     FunctionDefinition this_func;
     acquire_exact_match(it,tokens,"func");
     acquire_identifier(it,tokens,this_func.func_name);
     acquire_simple_generics(it,tokens,this_func.generics);
-    std::string parent_name = (parent == nullptr)? "global" : parent->func_name;
-    this_func.func_name = parent_name + "\\" + this_func.func_name;
-    acquire_function_definition_arguments_section(it, tokens, output, parent, this_func);
-    acquire_function_definition_code_section(it, tokens, output, parent, this_func);
-    this_func.parent_scope = parent;
+    acquire_function_definition_arguments_section(it, tokens, output, this_func);
+    acquire_function_definition_code_section(it, tokens, output, this_func);
     output.push_back(this_func);
     return true;
 }

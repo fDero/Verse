@@ -50,8 +50,7 @@ void acquire_struct_state_section(
 
 void acquire_function_definition_arguments_section(
     std::vector<Token>::iterator& it, const std::vector<Token>& tokens, 
-    std::vector<Instruction>& output, std::shared_ptr<FunctionDefinition> parent,
-    FunctionDefinition& this_func
+    std::vector<Instruction>& output, FunctionDefinition& this_func
 ){
     auto expected_parenthesys_opened = it;
     acquire_exact_match(it,tokens,"(");
@@ -66,14 +65,13 @@ void acquire_function_definition_arguments_section(
 
 void acquire_function_definition_code_section(
     std::vector<Token>::iterator& it, const std::vector<Token>& tokens, 
-    std::vector<Instruction>& output, std::shared_ptr<FunctionDefinition> parent, 
-    FunctionDefinition& this_func
+    std::vector<Instruction>& output, FunctionDefinition& this_func
 ){
     auto expected_brackets_open = it;
     acquire_exact_match(it,tokens,"{");
     while(it != tokens.end() and it->sourcetext != "}"){
         if (it->sourcetext == "struct") throw std::runtime_error { "it's illegal to define a struct inside of a function" };
-        if (parse_function_definition(it, tokens, output, std::make_shared<FunctionDefinition>(this_func))) continue;
+        if (it->sourcetext == "func") throw std::runtime_error { "it's illegal to define a function inside of another function" };
         acquire_instruction(it,tokens,this_func.code);
     }
     if (it == tokens.end() or it->sourcetext != "}") throw SyntaxError { "brackets opened but never closed in function definition", *expected_brackets_open };

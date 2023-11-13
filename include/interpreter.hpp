@@ -29,7 +29,6 @@ struct PointerValue { RuntimeValue* pointer; };
 struct VoidValue    { /*nothing*/ };
 
 struct ExecutionContext {
-    std::shared_ptr<FunctionDefinition> current_scope;
     std::unordered_map<std::string, TypeSignature> variable_types;
     std::unordered_map<std::string, RuntimeValue> variable_values;
     std::unordered_map<std::string, TypeSignature> constant_types;

@@ -43,6 +43,7 @@ void acquire_field(std::vector<Token>::iterator& it, const std::vector<Token>& t
     acquire_identifier(it, tokens, field.name);
     acquire_exact_match(it,tokens,":");
     acquire_typesignature(it,tokens,field.typesignature);
+    acquire_exact_match(it,tokens,";");
     fields.push_back(field);
 }
 
