@@ -3,7 +3,7 @@
 
 # Verse
 Verse is an interpreter for the Verse programming language. In the future, the goal is to evolve this project into an all-in-one bundle made of an interpreter, a compiler, and a debugger.
-Verse is designed to be compiled directly to machine code, and offers all the features a low level language would, while still being able to be interpreted like languages like Python or Ruby (enhancing portability, and reducing wasted time by removing the need to perform a full compilation of your code base just to run unit-tests).
+Verse is designed to be compiled directly to machine code, and offers all the features a low level language would, while still being able to be interpreted like languages like Python or Ruby (enhancing portability, and reducing wasted time by removing the need to perform a full compilation of your code-base just to run unit-tests).
 
 ### Installation (Building from source)
 In order to install verse, you have to build it from source. By default, the build process tries to use `clang++`, but you can change that
