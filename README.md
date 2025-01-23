@@ -24,8 +24,8 @@ func main(){
 
 Once you have the file set up, to run it just use the `verse -r hello.verse` command in console.
 ```bash
-$$ verse -r hello.verse
-$$ Hello world!
+$ verse -r hello.verse
+$ Hello world!
 ```
 
 ### Types
