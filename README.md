@@ -2,7 +2,7 @@
 
 # Verse
 `verse` is an interpreter for the Verse programming language. This language was the result of various experimentations that ultimetly led to [Basalt](https://www.github.com/fDero/Basalt), 
-my second language. It's important to note that what i created has nothing to do with [Verse made by epic games](https://dev.epicgames.com/documentation/en-us/uefn/verse-language-reference)
+my second language. It's important to note that what i created has nothing to do with [Verse made by epic games](https://dev.epicgames.com/documentation/en-us/uefn/verse-language-reference).
 
 ### Installation (Building from source)
 In order to install verse, you have to build it from source. By default, the build process tries to use `clang++`, but you can change that
